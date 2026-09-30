@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Dados grandes (baixar localmente, não versionar)
+dados_brutos/
+*.zip
+*.7z
+
+# Power BI temporário
+*.pbix.bak
+~$*
