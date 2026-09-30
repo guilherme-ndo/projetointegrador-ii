@@ -12,9 +12,8 @@ python scripts/03_caged.py            # CAGED: arquivos em dados_brutos/caged/
 python scripts/04_dim_cbo.py          # dCBO: cascata do de-para em todas as ocupações
 python scripts/05_rais.py             # RAIS: dados_brutos/rais/RAIS_VINC_PUB_SP_<ano>.7z
 python scripts/06_ibge.py             # IBGE: Censo 2022 pela API do SIDRA (precisa de internet)
-python scripts/indicadores.py         # indicadores por ano, área e município
-python scripts/07_detalhe.py          # detalhe por município e curso (Fatec)
-python scripts/indicadores.py         # indicadores por ano e por área (conferência do Power BI)
+python scripts/indicadores.py         # indicadores por ano, área e município (conferência do Power BI)
+python scripts/07_detalhe.py          # detalhe por município e curso (Fatec); roda depois de indicadores
 ```
 
 | Script | Entrada | Saída |
