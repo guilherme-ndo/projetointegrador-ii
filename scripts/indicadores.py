@@ -2,7 +2,7 @@
 Indicadores do projeto por ano e por área, calculados direto dos dados tratados.
 
 Serve para conferir as medidas DAX do Power BI e alimentar relatório e
-apresentação. Rode depois dos scripts 02, 03 e 04.
+apresentação. Rode depois dos scripts 02, 03, 04 e 05 (a RAIS é opcional).
 
 Saídas (pequenas, versionadas):
   dados_tratados/indicadores_ano.csv       um registro por ano (região toda)
@@ -27,10 +27,32 @@ def carregar():
                       dtype={"cbo2002ocupacao": str, "movimento": "category", "nivel_instrucao": "category"})
     adm = adm[adm["movimento"] == "Admissão"]
     adm = adm.merge(cbo, left_on="cbo2002ocupacao", right_on="cbo_codigo", how="left")
-    return oferta, adm
+    estoque = None
+    if (TRATADOS / "fEstoqueEmprego.csv").exists():
+        estoque = pd.read_csv(TRATADOS / "fEstoqueEmprego.csv", dtype={"cbo2002ocupacao": str})
+        estoque = estoque.merge(cbo, left_on="cbo2002ocupacao", right_on="cbo_codigo", how="left")
+    return oferta, adm, estoque, cbo
 
 
-def por_ano(oferta, adm):
+def estoque_por_ano(estoque):
+    """Indicadores da RAIS: vínculos ativos em 31/12."""
+    sup = estoque[estoque["nivel_instrucao"] == SUPERIOR]
+    ind = pd.DataFrame({
+        "vinculos_ativos": estoque.groupby("ano")["vinculos"].sum(),
+        "vinculos_superior": sup.groupby("ano")["vinculos"].sum(),
+    })
+    ind["part_superior_estoque"] = ind["vinculos_superior"] / ind["vinculos_ativos"]
+    medio_op = sup["categoria_ocupacao"] == "Nível médio ou operacional"
+    ind["sobrequalificacao_estoque"] = sup[medio_op].groupby("ano")["vinculos"].sum() / ind["vinculos_superior"]
+    med = pd.read_csv(TRATADOS / "rais_mediana_ano.csv").pivot_table(
+        index="ano", columns="nivel_instrucao", values="rem_mediana")
+    ind["rem_mediana_superior_estoque"] = med[SUPERIOR]
+    ind["rem_mediana_medio_estoque"] = med[MEDIO]
+    ind["premio_salarial_estoque"] = med[SUPERIOR] / med[MEDIO]
+    return ind
+
+
+def por_ano(oferta, adm, estoque):
     of = oferta.groupby("NU_ANO_CENSO").agg(
         ingressantes=("QT_ING", "sum"), matriculas=("QT_MAT", "sum"), concluintes=("QT_CONC", "sum"))
     of["part_privada_matriculas"] = (oferta[oferta["rede"] == "Privada"].groupby("NU_ANO_CENSO")["QT_MAT"].sum()
@@ -55,10 +77,13 @@ def por_ano(oferta, adm):
     ad["salario_mediano_medio"] = med[MEDIO]
     ad["premio_salarial"] = med[SUPERIOR] / med[MEDIO]
 
-    return of.join(ad, how="outer").rename_axis("ano").reset_index()
+    res = of.join(ad, how="outer")
+    if estoque is not None:
+        res = res.join(estoque_por_ano(estoque), how="outer")
+    return res.rename_axis("ano").reset_index()
 
 
-def por_area_ano(oferta, adm):
+def por_area_ano(oferta, adm, estoque):
     of = (oferta.groupby(["NU_ANO_CENSO", "CO_CINE_AREA_GERAL", "NO_CINE_AREA_GERAL"])
           [["QT_ING", "QT_MAT", "QT_CONC"]].sum().reset_index()
           .rename(columns={"NU_ANO_CENSO": "ano", "CO_CINE_AREA_GERAL": "area_codigo", "NO_CINE_AREA_GERAL": "area_nome",
@@ -66,14 +91,18 @@ def por_area_ano(oferta, adm):
     sup = adm[(adm["nivel_instrucao"] == SUPERIOR) & (adm["tipo_vinculo"] == "Principal")]
     ad = sup.groupby(["ano", "area_codigo"])["peso"].sum().rename("admissoes_superior_principal").reset_index()
     df = of.merge(ad, on=["ano", "area_codigo"], how="outer")
+    if estoque is not None:
+        est = estoque[(estoque["nivel_instrucao"] == SUPERIOR) & (estoque["tipo_vinculo"] == "Principal")]
+        est = est.groupby(["ano", "area_codigo"])["vinculos"].sum().rename("estoque_superior_principal").reset_index()
+        df = df.merge(est, on=["ano", "area_codigo"], how="outer")
     df["indice_descompasso"] = df["admissoes_superior_principal"] / df["concluintes"].where(df["concluintes"] > 0)
     return df.sort_values(["ano", "area_codigo"])
 
 
 def main():
-    oferta, adm = carregar()
-    ano = por_ano(oferta, adm)
-    area = por_area_ano(oferta, adm)
+    oferta, adm, estoque, _ = carregar()
+    ano = por_ano(oferta, adm, estoque)
+    area = por_area_ano(oferta, adm, estoque)
     ano.to_csv(TRATADOS / "indicadores_ano.csv", index=False, encoding="utf-8-sig")
     area.to_csv(TRATADOS / "indicadores_area_ano.csv", index=False, encoding="utf-8-sig")
 

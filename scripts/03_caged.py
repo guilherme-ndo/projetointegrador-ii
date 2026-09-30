@@ -24,7 +24,7 @@ import argparse
 
 import pandas as pd
 
-from utils import BRUTOS, TRATADOS, carregar_municipios, normalizar
+from utils import BRUTOS, NIVEL_INSTRUCAO, TRATADOS, carregar_municipios, normalizar
 
 PASTA = BRUTOS / "caged"
 
@@ -36,17 +36,6 @@ COLUNAS = [
     "horascontratuais", "indtrabintermitente", "indtrabparcial",
     "unidadesalariocodigo",
 ]
-
-# Grau de instrução do Novo CAGED agrupado em níveis (layout do PDET)
-NIVEL_INSTRUCAO = {
-    **{c: "Abaixo do médio" for c in range(1, 7)},
-    7: "Médio completo",
-    8: "Superior incompleto",
-    9: "Superior completo ou mais",
-    10: "Superior completo ou mais",  # mestrado
-    11: "Superior completo ou mais",  # doutorado
-    80: "Superior completo ou mais",  # pós-graduação completa
-}
 
 UNIDADE_MENSAL = 5  # unidadesalariocodigo = mês (layout do PDET)
 
