@@ -1,0 +1,50 @@
+table fPopulacao
+	lineageTag: 7198eaa0-a1d6-575b-b743-abd37585f7b8
+
+	column municipio
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 6e2ef0d6-385e-5e69-b2cc-815684875a85
+		summarizeBy: none
+		sourceColumn: municipio
+
+		annotation SummarizationSetBy = User
+
+	column grupo_idade
+		dataType: string
+		lineageTag: 0cf46a12-2001-5dd3-b5f9-f583073e0797
+		summarizeBy: none
+		sourceColumn: grupo_idade
+
+		annotation SummarizationSetBy = User
+
+	column nivel_instrucao
+		dataType: string
+		lineageTag: f3ee1ffc-b73b-531e-9434-be4b7919fbff
+		summarizeBy: none
+		sourceColumn: nivel_instrucao
+
+		annotation SummarizationSetBy = User
+
+	column pessoas
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: df49777f-e1ff-55d3-90f1-06aff3b4db65
+		summarizeBy: none
+		sourceColumn: pessoas
+
+		annotation SummarizationSetBy = User
+
+	partition fPopulacao = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "fPopulacao.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalho, {{"municipio", Int64.Type}, {"grupo_idade", type text}, {"nivel_instrucao", type text}, {"pessoas", Int64.Type}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

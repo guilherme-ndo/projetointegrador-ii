@@ -148,6 +148,44 @@ table _Medidas
 		displayFolder: Estoque
 		lineageTag: d1362c38-03f8-5be5-8acb-1ad91478633f
 
+	measure 'População' = CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "Todas as idades" )
+		formatString: #,0
+		displayFolder: Censo 2022
+		lineageTag: 0f68ca9d-ff08-504c-acea-be8e2b3ba12c
+
+	measure 'Pessoas de 25 anos ou mais com superior' = CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "25 anos ou mais", fPopulacao[nivel_instrucao] = "Superior completo" )
+		formatString: #,0
+		displayFolder: Censo 2022
+		lineageTag: 23c2e285-ce8a-57cc-b333-2f1b7eca1243
+
+	measure 'Participação de superior (25 anos ou mais)' = DIVIDE ( [Pessoas de 25 anos ou mais com superior], CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "25 anos ou mais", fPopulacao[nivel_instrucao] = "Total" ) )
+		formatString: 0.0%
+		displayFolder: Censo 2022
+		lineageTag: b7b2ddb5-56cf-5922-bd41-ca0eee6b7af3
+
+	measure 'Taxa de graduação (18 a 24 anos)' =
+			DIVIDE (
+			    CALCULATE ( SUM ( fFrequenciaEscolar[pessoas] ), fFrequenciaEscolar[grupo_idade] = "18 a 24 anos",
+			        fFrequenciaEscolar[nivel_frequentado] = "Superior de graduação" ),
+			    CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "18 a 24 anos",
+			        fPopulacao[nivel_instrucao] = "Total" )
+			)
+		formatString: 0.0%
+		displayFolder: Censo 2022
+		lineageTag: fe96e093-8272-590e-a0ed-8be0795b5649
+
+	measure 'Formados moradores' = CALCULATE ( SUM ( fFormadosResidentes[pessoas] ), fFormadosResidentes[grupo_idade] = "Total" )
+		formatString: #,0
+		displayFolder: Censo 2022
+		lineageTag: 431fab85-f432-5831-bac0-0d9a278d8987
+
+	measure 'Formados moradores por vínculo na área' =
+			-- Censo 2022 comparado com a RAIS do mesmo ano
+			DIVIDE ( [Formados moradores], CALCULATE ( [Vínculos com superior na área], dCalendario[Ano] = 2022 ) )
+		formatString: 0.00
+		displayFolder: Censo 2022
+		lineageTag: bed931f2-9ed5-561d-8fa5-a13f130f1314
+
 	measure 'Prêmio salarial no estoque (média)' = DIVIDE ( [Remuneração média (superior)], [Remuneração média (médio)] )
 		formatString: 0.00
 		displayFolder: Estoque

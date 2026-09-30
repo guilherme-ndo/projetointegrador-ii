@@ -11,6 +11,7 @@ python scripts/02_censo_superior.py   # INEP: arquivos em dados_brutos/inep/
 python scripts/03_caged.py            # CAGED: arquivos em dados_brutos/caged/
 python scripts/04_dim_cbo.py          # dCBO: cascata do de-para em todas as ocupações
 python scripts/05_rais.py             # RAIS: dados_brutos/rais/RAIS_VINC_PUB_SP_<ano>.7z
+python scripts/06_ibge.py             # IBGE: Censo 2022 pela API do SIDRA (precisa de internet)
 python scripts/indicadores.py         # indicadores por ano e por área (conferência do Power BI)
 ```
 
@@ -21,6 +22,7 @@ python scripts/indicadores.py         # indicadores por ano e por área (confer�
 | `03_caged.py` | `dados_brutos/caged/CAGEDMOV*.txt` ou `.7z` | `dados_tratados/fAdmissoes.csv` |
 | `04_dim_cbo.py` | `docs/depara_cine_cbo.xlsx` e layout do CAGED | `dados_tratados/dCBO.csv`, `docs/cobertura_depara.csv` |
 | `05_rais.py` | `dados_brutos/rais/RAIS_VINC_PUB_SP_<ano>.7z` | `dados_tratados/fEstoqueEmprego.csv`, `dados_tratados/rais_mediana_ano.csv` |
+| `06_ibge.py` | API do SIDRA (tabelas 9514, 10059, 10061, 10064) | `dados_tratados/fPopulacao.csv`, `fFormadosResidentes.csv`, `fFrequenciaEscolar.csv` |
 | `indicadores.py` | saídas de 02, 03 e 04 | `dados_tratados/indicadores_ano.csv`, `dados_tratados/indicadores_area_ano.csv` |
 
 Municípios do recorte e ano inicial ficam em `utils.py` (`MUNICIPIOS_RECORTE`, `ANO_INICIAL`).

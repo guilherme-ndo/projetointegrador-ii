@@ -5,8 +5,9 @@ Serve para conferir as medidas DAX do Power BI e alimentar relatório e
 apresentação. Rode depois dos scripts 02, 03, 04 e 05 (a RAIS é opcional).
 
 Saídas (pequenas, versionadas):
-  dados_tratados/indicadores_ano.csv       um registro por ano (região toda)
-  dados_tratados/indicadores_area_ano.csv  um registro por área CINE e ano
+  dados_tratados/indicadores_ano.csv        um registro por ano (região toda)
+  dados_tratados/indicadores_area_ano.csv   um registro por área CINE e ano
+  dados_tratados/indicadores_municipio.csv  Censo 2022 por município (script 06)
 
 Uso: python scripts/indicadores.py
 """
@@ -99,10 +100,47 @@ def por_area_ano(oferta, adm, estoque):
     return df.sort_values(["ano", "area_codigo"])
 
 
+def por_municipio():
+    """Indicadores do Censo 2022 (IBGE) por município."""
+    pop = pd.read_csv(TRATADOS / "fPopulacao.csv")
+    freq = pd.read_csv(TRATADOS / "fFrequenciaEscolar.csv")
+    mun = pd.read_csv(TRATADOS / "dMunicipio.csv")
+    p = pop.pivot_table(index="municipio", columns=["grupo_idade", "nivel_instrucao"], values="pessoas")
+    f = freq.pivot_table(index="municipio", columns=["grupo_idade", "nivel_frequentado"], values="pessoas")
+    ind = pd.DataFrame({
+        "populacao": p[("Todas as idades", "Total")],
+        "pop_25mais": p[("25 anos ou mais", "Total")],
+        "superior_25mais": p[("25 anos ou mais", "Superior completo")],
+        "pop_18a24": p[("18 a 24 anos", "Total")],
+        "graduacao_18a24": f[("18 a 24 anos", "Superior de graduação")],
+    })
+    ind["part_superior_25mais"] = ind["superior_25mais"] / ind["pop_25mais"]
+    ind["taxa_graduacao_18a24"] = ind["graduacao_18a24"] / ind["pop_18a24"]
+    ind = ind.join(mun.set_index("cod_ibge_7")["nome"]).reset_index().rename(columns={"index": "municipio"})
+    total = ind[["populacao", "pop_25mais", "superior_25mais", "pop_18a24", "graduacao_18a24"]].sum()
+    regiao = {"municipio": 0, "nome": "Região (8 municípios)", **total,
+              "part_superior_25mais": total["superior_25mais"] / total["pop_25mais"],
+              "taxa_graduacao_18a24": total["graduacao_18a24"] / total["pop_18a24"]}
+    return pd.concat([ind, pd.DataFrame([regiao])], ignore_index=True)
+
+
 def main():
     oferta, adm, estoque, _ = carregar()
     ano = por_ano(oferta, adm, estoque)
     area = por_area_ano(oferta, adm, estoque)
+    if (TRATADOS / "fFormadosResidentes.csv").exists():
+        form = pd.read_csv(TRATADOS / "fFormadosResidentes.csv", dtype={"area_codigo": str})
+        form = form[form["grupo_idade"] == "Total"].groupby("area_codigo")["pessoas"].sum()
+        area["formados_residentes_2022"] = area["area_codigo"].map(form).where(area["ano"] == 2022)
+        area["formados_residentes_por_vinculo"] = (area["formados_residentes_2022"]
+                                                   / area["estoque_superior_principal"])
+        mun = por_municipio()
+        mun.to_csv(TRATADOS / "indicadores_municipio.csv", index=False, encoding="utf-8-sig")
+        print("\nCenso 2022 por município:")
+        print(mun.set_index("nome")[["populacao", "part_superior_25mais", "taxa_graduacao_18a24"]].round(3).to_string())
+        print("\nFormados moradores (Censo 2022) por vínculo de formado na área (RAIS 2022):")
+        print(area[area["ano"] == 2022].set_index("area_nome")[
+            ["formados_residentes_2022", "estoque_superior_principal", "formados_residentes_por_vinculo"]].round(2).to_string())
     ano.to_csv(TRATADOS / "indicadores_ano.csv", index=False, encoding="utf-8-sig")
     area.to_csv(TRATADOS / "indicadores_area_ano.csv", index=False, encoding="utf-8-sig")
 

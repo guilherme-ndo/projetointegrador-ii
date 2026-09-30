@@ -1,0 +1,50 @@
+table fFrequenciaEscolar
+	lineageTag: eee11acf-6d25-531e-bdfb-8903c23fb64e
+
+	column municipio
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 33004901-4205-567d-86b2-b457befdd431
+		summarizeBy: none
+		sourceColumn: municipio
+
+		annotation SummarizationSetBy = User
+
+	column grupo_idade
+		dataType: string
+		lineageTag: 65ea7f72-b8cd-5754-b493-e6fc3071eadd
+		summarizeBy: none
+		sourceColumn: grupo_idade
+
+		annotation SummarizationSetBy = User
+
+	column nivel_frequentado
+		dataType: string
+		lineageTag: e437b441-a5bd-5210-b420-ed315323cc64
+		summarizeBy: none
+		sourceColumn: nivel_frequentado
+
+		annotation SummarizationSetBy = User
+
+	column pessoas
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a92a4fa1-f2bf-53b0-bf0f-3e1c82d94015
+		summarizeBy: none
+		sourceColumn: pessoas
+
+		annotation SummarizationSetBy = User
+
+	partition fFrequenciaEscolar = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "fFrequenciaEscolar.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalho, {{"municipio", Int64.Type}, {"grupo_idade", type text}, {"nivel_frequentado", type text}, {"pessoas", Int64.Type}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

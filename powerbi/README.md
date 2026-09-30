@@ -4,7 +4,7 @@ O painel fica em formato de projeto do Power BI (PBIP): modelo em TMDL e relató
 
 ## Como abrir
 
-1. Rode os scripts de `scripts/` (01 a 05) para gerar os CSVs de `dados_tratados/`. O `fAdmissoes.csv` não vai para o Git; cada integrante gera o seu.
+1. Rode os scripts de `scripts/` (01 a 06) para gerar os CSVs de `dados_tratados/`. O `fAdmissoes.csv` não vai para o Git; cada integrante gera o seu.
 2. Rode `python powerbi/gerar_pbip.py`. Ele recria o projeto com o caminho de `dados_tratados/` desta máquina no parâmetro `PastaDados`.
 3. Abra `powerbi/PI2.pbip` no Power BI Desktop e clique em **Atualizar**. A carga leva cerca de 2 minutos (o CAGED tem 5 milhões de linhas).
 
@@ -22,6 +22,9 @@ Se preferir não rodar o gerador, abra o projeto e mude o parâmetro em **Transf
 | fOfertaEnsino | `fOfertaEnsino.csv` | INEP: cursos, ingressantes, matrículas, concluintes |
 | fAdmissoes | `fAdmissoes.csv` | CAGED: movimentações (admissões = soma de `peso`) |
 | fEstoqueEmprego | `fEstoqueEmprego.csv` | RAIS: vínculos ativos em 31/12 |
+| fPopulacao | `fPopulacao.csv` | IBGE 2022: população por idade e nível de instrução |
+| fFormadosResidentes | `fFormadosResidentes.csv` | IBGE 2022: moradores com superior por área CINE |
+| fFrequenciaEscolar | `fFrequenciaEscolar.csv` | IBGE 2022: quem frequentava escola, por nível |
 | _Medidas | | todas as medidas DAX, em pastas por tema |
 
 As medidas foram conferidas contra `scripts/indicadores.py` (mesmos valores por ano e por área). Diferenças de propósito:
@@ -31,7 +34,7 @@ As medidas foram conferidas contra `scripts/indicadores.py` (mesmos valores por 
 
 ## Páginas
 
-Visão geral, Descompasso, Salários, Oferta de cursos e Emprego (RAIS). Todas têm filtro de ano e de município.
+Visão geral, Descompasso, Salários, Oferta de cursos, Emprego (RAIS) e População (IBGE). Todas têm filtro de município; só a do IBGE não tem filtro de ano (o Censo é de 2022).
 
 ## Editar
 

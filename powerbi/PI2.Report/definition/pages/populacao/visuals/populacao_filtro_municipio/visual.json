@@ -1,6 +1,6 @@
 {
   "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
-  "name": "emprego_filtro_municipio",
+  "name": "populacao_filtro_municipio",
   "position": {
     "x": 1076,
     "y": 8,

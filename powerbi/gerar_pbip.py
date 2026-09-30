@@ -105,6 +105,15 @@ TABELAS = {
         ("ano", "int64", True), ("municipio", "int64", True), ("cbo2002ocupacao", "text", True),
         ("nivel_instrucao", "text", True), ("vinculos", "int64", True), ("rem_validos", "int64", True),
         ("rem_soma", "double", True)], None),
+    "fPopulacao": ("fPopulacao.csv", [
+        ("municipio", "int64", True), ("grupo_idade", "text", False), ("nivel_instrucao", "text", False),
+        ("pessoas", "int64", True)], None),
+    "fFormadosResidentes": ("fFormadosResidentes.csv", [
+        ("municipio", "int64", True), ("area_codigo", "text", True), ("grupo_idade", "text", False),
+        ("pessoas", "int64", True)], None),
+    "fFrequenciaEscolar": ("fFrequenciaEscolar.csv", [
+        ("municipio", "int64", True), ("grupo_idade", "text", False), ("nivel_frequentado", "text", False),
+        ("pessoas", "int64", True)], None),
 }
 
 M_CALENDARIO = (
@@ -187,6 +196,25 @@ MEDIDAS = [
       "RETURN CALCULATE (",
       "    DIVIDE ( SUM ( fEstoqueEmprego[rem_soma] ), SUM ( fEstoqueEmprego[rem_validos] ) ),",
       f"    fEstoqueEmprego[nivel_instrucao] = {MED}, dCalendario[Ano] = UltimoAno", ")"], BRL),
+    ("Censo 2022", "População",
+     'CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "Todas as idades" )', NUM),
+    ("Censo 2022", "Pessoas de 25 anos ou mais com superior",
+     'CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "25 anos ou mais", '
+     'fPopulacao[nivel_instrucao] = "Superior completo" )', NUM),
+    ("Censo 2022", "Participação de superior (25 anos ou mais)",
+     'DIVIDE ( [Pessoas de 25 anos ou mais com superior], CALCULATE ( SUM ( fPopulacao[pessoas] ), '
+     'fPopulacao[grupo_idade] = "25 anos ou mais", fPopulacao[nivel_instrucao] = "Total" ) )', PCT),
+    ("Censo 2022", "Taxa de graduação (18 a 24 anos)",
+     ['DIVIDE (',
+      '    CALCULATE ( SUM ( fFrequenciaEscolar[pessoas] ), fFrequenciaEscolar[grupo_idade] = "18 a 24 anos",',
+      '        fFrequenciaEscolar[nivel_frequentado] = "Superior de graduação" ),',
+      '    CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "18 a 24 anos",',
+      '        fPopulacao[nivel_instrucao] = "Total" )', ')'], PCT),
+    ("Censo 2022", "Formados moradores",
+     'CALCULATE ( SUM ( fFormadosResidentes[pessoas] ), fFormadosResidentes[grupo_idade] = "Total" )', NUM),
+    ("Censo 2022", "Formados moradores por vínculo na área",
+     ["-- Censo 2022 comparado com a RAIS do mesmo ano",
+      "DIVIDE ( [Formados moradores], CALCULATE ( [Vínculos com superior na área], dCalendario[Ano] = 2022 ) )"], IDX),
     ("Estoque", "Prêmio salarial no estoque (média)",
      "DIVIDE ( [Remuneração média (superior)], [Remuneração média (médio)] )", IDX),
 ]
@@ -205,6 +233,10 @@ RELACOES = [
     ("fEstoqueEmprego.cbo2002ocupacao", "dCBO.cbo_codigo"),
     ("fAdmissoes.nivel_instrucao", "dEscolaridade.nivel_instrucao"),
     ("fEstoqueEmprego.nivel_instrucao", "dEscolaridade.nivel_instrucao"),
+    ("fPopulacao.municipio", "dMunicipio.cod_ibge_7"),
+    ("fFrequenciaEscolar.municipio", "dMunicipio.cod_ibge_7"),
+    ("fFormadosResidentes.municipio", "dMunicipio.cod_ibge_7"),
+    ("fFormadosResidentes.area_codigo", "dArea.area_codigo"),
 ]
 
 
@@ -251,7 +283,8 @@ def gerar_modelo():
 
     (definicao / "database.tmdl").write_text("database\n\tcompatibilityLevel: 1600\n", encoding="utf-8")
     ordem = ["_Medidas", "dCalendario", "dMunicipio", "dArea", "dCBO", "dEscolaridade",
-             "fOfertaEnsino", "fAdmissoes", "fEstoqueEmprego"]
+             "fOfertaEnsino", "fAdmissoes", "fEstoqueEmprego", "fPopulacao", "fFormadosResidentes",
+             "fFrequenciaEscolar"]
     modelo = ["model Model", "\tculture: pt-BR", "\tdefaultPowerBIDataSourceVersion: powerBI_V3",
               "\tsourceQueryCulture: pt-BR", "\tdataAccessOptions", "\t\tlegacyRedirects",
               "\t\treturnErrorValuesAsNull", "", 'annotation PBI_QueryOrder = ["PastaDados"]', ""]
@@ -358,14 +391,16 @@ DROPDOWN = {"data": [{"properties": {"mode": literal("'Dropdown'")}}]}
 M = "_Medidas"
 
 
-def cabecalho(prefixo, titulo):
-    return [
+def cabecalho(prefixo, titulo, filtro_ano=True):
+    itens = [
         caixa_texto(f"{prefixo}_titulo", titulo, (24, 14, 840, 52), "16pt"),
-        visual(f"{prefixo}_filtro_ano", "slicer", (880, 8, 180, 64), {"Values": ["dCalendario.Ano"]},
-               objetos=DROPDOWN),
         visual(f"{prefixo}_filtro_municipio", "slicer", (1076, 8, 180, 64), {"Values": ["dMunicipio.Município"]},
                objetos=DROPDOWN),
     ]
+    if filtro_ano:
+        itens.append(visual(f"{prefixo}_filtro_ano", "slicer", (880, 8, 180, 64), {"Values": ["dCalendario.Ano"]},
+                            objetos=DROPDOWN))
+    return itens
 
 
 def cartoes(prefixo, medidas):
@@ -414,6 +449,15 @@ PAGINAS = [
       ("lineChart", "Formados no emprego e sobrequalificação",
        {"Category": ["dCalendario.Ano"],
         "Y": [f"{M}[Participação de formados no emprego]", f"{M}[Sobrequalificação no estoque]"]}, None)]),
+    ("populacao", "População (IBGE)", "População e escolaridade: Censo 2022 (IBGE)",
+     ["População", "Participação de superior (25 anos ou mais)", "Taxa de graduação (18 a 24 anos)",
+      "Formados moradores"],
+     [("clusteredBarChart", "Moradores de 25 anos ou mais com superior completo",
+       {"Category": ["dMunicipio.Município"], "Y": [f"{M}[Participação de superior (25 anos ou mais)]"]},
+       f"{M}[Participação de superior (25 anos ou mais)]"),
+      ("clusteredBarChart", "Formados moradores por vínculo de formado na área (2022)",
+       {"Category": ["dArea.Área (curta)"], "Y": [f"{M}[Formados moradores por vínculo na área]"]},
+       f"{M}[Formados moradores por vínculo na área]")]),
 ]
 
 
@@ -444,7 +488,7 @@ def gerar_relatorio():
         escreve_json(pasta / "page.json", {
             "$schema": f"{SCHEMA}/item/report/definition/page/2.0.0/schema.json",
             "name": nome, "displayName": exibicao, "displayOption": "FitToPage", "height": 720, "width": 1280})
-        visuais = cabecalho(nome, titulo) + cartoes(nome, cards)
+        visuais = cabecalho(nome, titulo, filtro_ano=nome != "populacao") + cartoes(nome, cards)
         for i, (tipo, tit, papeis, ordem) in enumerate(graficos):
             visuais.append(visual(f"{nome}_grafico_{i}", tipo, (ESQ, DIR)[i], papeis, titulo=tit, ordenar=ordem))
         for z, v in enumerate(visuais):

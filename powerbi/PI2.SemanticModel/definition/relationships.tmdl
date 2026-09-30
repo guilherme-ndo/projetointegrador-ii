@@ -45,3 +45,19 @@ relationship fbe1eb23-40f7-5bc3-8694-d60232d2658b
 relationship e6bdd036-a241-56bf-a712-434170a739dd
 	fromColumn: fEstoqueEmprego.nivel_instrucao
 	toColumn: dEscolaridade.nivel_instrucao
+
+relationship eec8bf98-ddbb-534a-812e-ba17edc7fd0e
+	fromColumn: fPopulacao.municipio
+	toColumn: dMunicipio.cod_ibge_7
+
+relationship 82c22d60-ad5d-5d69-a22a-2b52fe9ce22f
+	fromColumn: fFrequenciaEscolar.municipio
+	toColumn: dMunicipio.cod_ibge_7
+
+relationship 8c8877d4-a027-5094-b3b8-aba220a90886
+	fromColumn: fFormadosResidentes.municipio
+	toColumn: dMunicipio.cod_ibge_7
+
+relationship c90fbcf4-f068-5376-8977-412925e666b1
+	fromColumn: fFormadosResidentes.area_codigo
+	toColumn: dArea.area_codigo

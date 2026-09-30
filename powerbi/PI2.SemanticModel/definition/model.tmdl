@@ -17,3 +17,6 @@ ref table dEscolaridade
 ref table fOfertaEnsino
 ref table fAdmissoes
 ref table fEstoqueEmprego
+ref table fPopulacao
+ref table fFormadosResidentes
+ref table fFrequenciaEscolar

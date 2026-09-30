@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "populacao_cartao_2",
+  "position": {
+    "x": 648,
+    "y": 84,
+    "z": 4000,
+    "height": 110,
+    "width": 296,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Taxa de graduação (18 a 24 anos)"
+                }
+              },
+              "queryRef": "_Medidas.Taxa de graduação (18 a 24 anos)",
+              "nativeQueryRef": "Taxa de graduação (18 a 24 anos)"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

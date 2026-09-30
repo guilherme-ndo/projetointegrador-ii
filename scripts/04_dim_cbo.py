@@ -32,6 +32,7 @@ AREA_CURTA = {
     "00": "Programas básicos", "01": "Educação", "02": "Artes e humanidades", "03": "Ciências sociais",
     "04": "Negócios e direito", "05": "Ciências naturais", "06": "Computação e TIC", "07": "Engenharia",
     "08": "Agricultura e veterinária", "09": "Saúde e bem-estar", "10": "Serviços",
+    "11": "Não especificada",
 }
 
 CATEGORIA = {
@@ -46,6 +47,9 @@ CATEGORIA = {
 def carregar_depara():
     dp = pd.read_excel(DEPARA, sheet_name="DePara_CBO_CINE", dtype=str)
     areas = pd.read_excel(DEPARA, sheet_name="CINE_Areas", dtype=str)
+    # O Censo 2022 (IBGE) tem ainda a área 11, para quem não sabe ou tem graduação mal especificada
+    areas = pd.concat([areas, pd.DataFrame([{"area_codigo": "11", "area_nome": "Não sabe ou mal especificada"}])],
+                      ignore_index=True)
     areas["area_curta"] = areas["area_codigo"].map(AREA_CURTA)
     dp = dp.drop(columns="area_nome").merge(areas, on="area_codigo", how="left")
     repetidos = dp["cbo_codigo"][dp["cbo_codigo"].duplicated()]
@@ -77,6 +81,9 @@ def main():
 
     # Dimensão de áreas CINE (para o Power BI)
     areas = pd.read_excel(DEPARA, sheet_name="CINE_Areas", dtype=str)
+    # O Censo 2022 (IBGE) tem ainda a área 11, para quem não sabe ou tem graduação mal especificada
+    areas = pd.concat([areas, pd.DataFrame([{"area_codigo": "11", "area_nome": "Não sabe ou mal especificada"}])],
+                      ignore_index=True)
     areas["area_curta"] = areas["area_codigo"].map(AREA_CURTA)
     areas.to_csv(TRATADOS / "dArea.csv", index=False, encoding="utf-8-sig")
 
