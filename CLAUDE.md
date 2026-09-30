@@ -2,6 +2,7 @@
 
 Curso de Ciência de Dados, Fatec Santana de Parnaíba, 2026.
 Autores: Guilherme Neves Dantas de Oliveira e Luiz Rodolfo Dawoglio.
+Orientador: Prof. Me. Antonio Manuel Marques Matias.
 
 ## Contexto
 Este trabalho continua o PI1 ("Políticas Públicas e a Inclusão no Ensino Superior"). O PI1 concluiu que o gargalo do ensino superior brasileiro migrou do acesso para a permanência. Também mostrou que o diploma reduz o desemprego (3,9% no nível superior contra 8,8% no nível médio, dados de 2023 do Banco Mundial). As considerações finais recomendaram estratégias de transição estudo-trabalho (ODS 8).
@@ -53,8 +54,9 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 - `dados_brutos/`: downloads originais, não versionados.
 - `dados_tratados/`: CSVs filtrados.
 - `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo e utils.
-- `docs/apresentacao_pi2.pptx`: apresentação no modelo da III Mostra Acadêmica (`docs/Apresentacao-Trabalho-Conclusao-de-Curso-Minimalista-Preto-e-Branco.pptx`), preto e branco, fontes do modelo; seções: capa, introdução, justificativa, objetivos, revisão teórica, metodologia (coleta, organização, análise), resultados, conclusão, próximos passos e referências. Atualizar a cada avanço. Orientador na capa: "Prof. Venerson" (completar o nome).
+- `docs/apresentacao_pi2.pptx`: apresentação no modelo da III Mostra Acadêmica (`docs/Apresentacao-Trabalho-Conclusao-de-Curso-Minimalista-Preto-e-Branco.pptx`), preto e branco, fontes do modelo; seções: capa, introdução, justificativa, objetivos, revisão teórica, metodologia (coleta, organização, análise), resultados, conclusão, próximos passos e referências. Atualizar a cada avanço. Fontes: só Montaser Arabic e Montaser Arabic Light. Referências no formato ABNT do PI1.
 - `powerbi/`, `docs/`, `relatorio/`.
+- `dados pi/`: relato técnico do PI1 (docx, pdf, pptx), fonte das referências e números herdados.
 
 ## Próximos passos
 - Feito: scripts 01 a 04 rodados com INEP 2024 e CAGED jan-dez/2024; de-para validado; primeiros resultados na apresentação (slides 9 e 10).
