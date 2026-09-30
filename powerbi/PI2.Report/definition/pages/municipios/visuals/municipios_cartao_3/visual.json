@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "municipios_cartao_3",
+  "position": {
+    "x": 960,
+    "y": 84,
+    "z": 6000,
+    "height": 110,
+    "width": 296,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Prêmio salarial na admissão"
+                }
+              },
+              "queryRef": "_Medidas.Prêmio salarial na admissão",
+              "nativeQueryRef": "Prêmio salarial na admissão"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

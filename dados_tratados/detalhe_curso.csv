@@ -1,0 +1,355 @@
+﻿curso,area,rotulo_cine,instituicoes,ingressantes,matriculas,concluintes,part_ead_concluintes,tem_fatec,concluintes_2020_2024
+GESTÃO DE RECURSOS HUMANOS,"Negócios, administração e direito",Gestão de pessoas,60,3574,5110,1276,0.8510971786833855,True,4924
+ANÁLISE E DESENVOLVIMENTO DE SISTEMAS,Computação e Tecnologias da Informação e Comunicação (TIC),Sistemas de informação,53,4875,7023,1111,0.6885688568856886,True,3267
+PEDAGOGIA,Educação,Pedagogia,63,4453,8782,987,0.9604863221884499,False,6037
+ADMINISTRAÇÃO,"Negócios, administração e direito",Administração,57,4355,7220,840,0.6369047619047619,False,3998
+LOGÍSTICA,"Negócios, administração e direito",Logística,49,2372,3428,791,0.8230088495575221,True,3071
+DIREITO,"Negócios, administração e direito",Direito,7,1697,4250,689,,False,2793
+GESTÃO FINANCEIRA,"Negócios, administração e direito",Gestão financeira,49,1806,2377,538,0.8643122676579925,True,2461
+PSICOLOGIA,"Ciências sociais, comunicação e informação",Psicologia,4,1310,3085,531,,False,1422
+GESTÃO DA TECNOLOGIA DA INFORMAÇÃO,Computação e Tecnologias da Informação e Comunicação (TIC),Gestão da tecnologia da informação,36,1487,2138,410,0.6609756097560976,True,1447
+PROCESSOS GERENCIAIS,"Negócios, administração e direito",Gestão de negócios,43,1176,1877,388,1.0,True,1696
+CIÊNCIAS CONTÁBEIS,"Negócios, administração e direito",Contabilidade,47,1700,3189,347,0.6368876080691642,False,1797
+MARKETING,"Negócios, administração e direito",Marketing,43,1134,1466,330,0.8393939393939394,False,1488
+GESTÃO COMERCIAL,"Negócios, administração e direito",Gestão comercial,37,1372,1773,330,0.9272727272727272,True,1378
+GESTÃO PÚBLICA,"Negócios, administração e direito",Gestão pública,36,619,1060,280,1.0,True,889
+EDUCAÇÃO FÍSICA,Saúde e bem-estar,Educação física,36,1599,2465,257,0.6926070038910506,False,1220
+MEDICINA,Saúde e bem-estar,Medicina,2,257,1324,228,,False,354
+ENFERMAGEM,Saúde e bem-estar,Enfermagem,15,1164,1777,187,0.17647058823529413,False,1074
+COMÉRCIO EXTERIOR,"Negócios, administração e direito",Comércio exterior,25,380,742,181,0.48066298342541436,True,782
+GESTÃO DA QUALIDADE,"Negócios, administração e direito",Gestão da qualidade,28,630,869,176,1.0,False,622
+REDES DE COMPUTADORES,Computação e Tecnologias da Informação e Comunicação (TIC),Redes de computadores,26,427,749,139,0.6187050359712231,True,623
+ENGENHARIA CIVIL,"Engenharia, produção e construção",Engenharia civil,28,572,1042,130,0.35384615384615387,False,826
+SEGURANÇA DA INFORMAÇÃO,Computação e Tecnologias da Informação e Comunicação (TIC),Segurança da informação,20,272,520,106,0.7264150943396226,True,236
+FARMÁCIA,Saúde e bem-estar,Farmácia,25,666,1164,104,0.19230769230769232,False,648
+DESIGN GRÁFICO,Artes e humanidades,Design gráfico,19,358,493,103,0.8932038834951457,False,377
+ODONTOLOGIA,Saúde e bem-estar,Odontologia,2,200,541,101,,False,366
+CIÊNCIAS ECONÔMICAS,"Ciências sociais, comunicação e informação",Economia,25,345,767,96,0.4270833333333333,False,376
+NUTRIÇÃO,Saúde e bem-estar,Nutrição,24,712,935,95,0.6842105263157895,False,667
+MARKETING DIGITAL,"Negócios, administração e direito",Marketing,23,569,611,93,1.0,False,255
+BIOMEDICINA,Saúde e bem-estar,Biomedicina,22,962,1296,88,0.625,False,262
+DESIGN DE MÍDIAS DIGITAIS,Computação e Tecnologias da Informação e Comunicação (TIC),Criação digital,2,96,327,84,,True,216
+CIÊNCIA DA COMPUTAÇÃO,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência da computação,15,537,1017,82,0.5121951219512195,False,262
+GESTÃO DE SEGURANÇA PRIVADA,Serviços,Segurança privada,21,323,384,80,1.0,False,382
+FISIOTERAPIA,Saúde e bem-estar,Fisioterapia,19,502,895,80,0.1375,False,598
+ENGENHARIA DE PRODUÇÃO,"Engenharia, produção e construção",Engenharia de produção,30,369,758,77,0.7272727272727273,False,412
+ENGENHARIA DE COMPUTAÇÃO,"Engenharia, produção e construção",Engenharia de computação,21,246,653,76,0.8947368421052632,False,177
+ENGENHARIA MECÂNICA,"Engenharia, produção e construção",Engenharia mecânica,20,256,506,74,0.28378378378378377,False,301
+HISTÓRIA,Educação,História formação de professor,36,330,551,74,1.0,False,291
+CIÊNCIA DE DADOS,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,15,432,758,69,0.7101449275362319,True,165
+RELAÇÕES INTERNACIONAIS,"Ciências sociais, comunicação e informação",Relações internacionais,15,199,529,67,0.11940298507462686,False,314
+SERVIÇO SOCIAL,Saúde e bem-estar,Serviço social,28,532,775,67,1.0,False,374
+ESTÉTICA E COSMÉTICA,Serviços,Estética e cosmética,22,541,565,67,0.8507462686567164,False,344
+SISTEMAS DE INFORMAÇÃO,Computação e Tecnologias da Informação e Comunicação (TIC),Sistemas de informação,23,381,739,66,0.5909090909090909,False,293
+JOGOS DIGITAIS,Computação e Tecnologias da Informação e Comunicação (TIC),Jogos digitais,20,215,437,61,0.32786885245901637,True,296
+ARQUITETURA E URBANISMO,"Engenharia, produção e construção",Arquitetura e urbanismo,16,358,661,61,0.13114754098360656,False,493
+GESTÃO HOSPITALAR,"Negócios, administração e direito",Gestão hospitalar,26,278,387,57,1.0,False,223
+GESTÃO AMBIENTAL,"Engenharia, produção e construção",Gestão ambiental,30,175,250,52,1.0,False,233
+ENGENHARIA ELÉTRICA,"Engenharia, produção e construção",Engenharia elétrica,22,300,562,49,0.673469387755102,False,270
+ARTES VISUAIS,Educação,Artes visuais formação de professor,21,227,352,48,1.0,False,219
+MATEMÁTICA,Educação,Matemática formação de professor,34,273,423,47,1.0,False,231
+SECRETARIADO,"Negócios, administração e direito",Secretariado,16,130,235,47,0.19148936170212766,True,263
+AUTOMAÇÃO INDUSTRIAL,"Engenharia, produção e construção",Automação industrial,8,243,362,43,0.06976744186046512,True,252
+CIÊNCIAS ATUARIAIS,"Ciências naturais, matemática e estatística",Ciências atuariais,1,83,352,42,,False,267
+SEGURANÇA PÚBLICA,Serviços,Segurança pública,21,130,193,40,1.0,False,177
+DESIGN DE INTERIORES,Artes e humanidades,Design de interiores,21,252,266,40,1.0,False,130
+GASTRONOMIA,Serviços,Gastronomia,20,202,223,40,1.0,False,126
+GEOGRAFIA,Educação,Geografia formação de professor,27,121,219,38,1.0,False,176
+TEOLOGIA,Artes e humanidades,Teologia,22,279,379,37,1.0,False,118
+GESTÃO DA PRODUÇÃO INDUSTRIAL,"Negócios, administração e direito",Gestão da produção,18,168,270,34,1.0,False,110
+CIÊNCIAS BIOLÓGICAS,Educação,Biologia formação de professor,21,266,301,32,1.0,False,143
+EVENTOS,Serviços,Eventos,10,87,144,32,0.34375,True,221
+ENGENHARIA DE CONTROLE E AUTOMAÇÃO,"Engenharia, produção e construção",Engenharia de controle e automação,11,96,213,29,0.2413793103448276,False,208
+RADIOLOGIA,Saúde e bem-estar,Radiologia,16,240,292,27,0.4074074074074074,False,158
+QUÍMICA,Educação,Química formação de professor,18,200,244,26,0.6923076923076923,False,112
+SISTEMAS PARA INTERNET,Computação e Tecnologias da Informação e Comunicação (TIC),Sistemas para internet,19,44,94,26,1.0,False,110
+TECNOLOGIA DA INFORMAÇÃO,Computação e Tecnologias da Informação e Comunicação (TIC),Programas interdisciplinares abrangendo computação e Tecnologias da Informação e Comunicação (TIC),1,381,283,26,1.0,False,26
+LETRAS - PORTUGUÊS E INGLÊS,Educação,Letras português inglês formação de professor,18,204,278,23,1.0,False,124
+LETRAS,Educação,Letras português formação de professor,7,120,312,23,1.0,False,73
+INVESTIGAÇÃO FORENSE E PERÍCIA CRIMINAL,Serviços,Investigação e perícia,8,216,200,22,1.0,False,63
+BANCO DE DADOS,Computação e Tecnologias da Informação e Comunicação (TIC),Banco de dados,13,140,188,22,1.0,False,103
+PSICOPEDAGOGIA,Educação,Psicopedagogia,17,304,317,21,0.9047619047619048,False,36
+BIG DATA E INTELIGÊNCIA ANALÍTICA,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,5,59,100,20,1.0,False,53
+GESTÃO DE TURISMO,Serviços,Turismo,14,78,88,20,1.0,False,60
+LETRAS - LÍNGUA PORTUGUESA,Educação,Letras português formação de professor,7,84,128,19,1.0,False,55
+GESTÃO DE NEGÓCIOS IMOBILIÁRIOS,"Negócios, administração e direito",Negócios imobiliários,18,84,83,16,1.0,False,16
+INVESTIGAÇÃO E PERÍCIA CRIMINAL,Serviços,Investigação e perícia,4,143,107,16,1.0,False,20
+DESIGN DE MODA,Artes e humanidades,Moda,12,133,153,16,1.0,False,58
+SEGURANÇA NO TRABALHO,Serviços,Segurança no trabalho,12,203,181,15,1.0,False,40
+FILOSOFIA,Educação,Filosofia formação de professor,21,97,128,15,1.0,False,64
+GESTÃO DE SERVIÇOS JURÍDICOS,"Negócios, administração e direito",Serviços jurídicos e cartoriais,2,20,49,14,1.0,False,51
+LETRAS - PORTUGUÊS,Educação,Letras português formação de professor,14,91,107,14,1.0,False,46
+LETRAS - INGLÊS,Educação,Letras inglês formação de professor,10,122,183,14,1.0,False,61
+SERVIÇOS JURÍDICOS E NOTARIAIS,"Negócios, administração e direito",Serviços jurídicos e cartoriais,8,40,49,13,1.0,False,18
+EMPREENDEDORISMO,"Negócios, administração e direito",Empreendedorismo,13,98,75,13,1.0,False,53
+GESTÃO DE SAÚDE PÚBLICA,"Negócios, administração e direito",Gestão da saúde,6,33,48,13,1.0,False,19
+ENGENHARIA DE SOFTWARE,Computação e Tecnologias da Informação e Comunicação (TIC),Engenharia de software,19,375,418,13,1.0,False,22
+TRANSPORTE TERRESTRE,Serviços,Transporte terrestre,1,76,126,12,,True,151
+TERAPIAS INTEGRATIVAS E COMPLEMENTARES,Saúde e bem-estar,Práticas integrativas,8,122,124,12,1.0,False,23
+PUBLICIDADE E PROPAGANDA,"Negócios, administração e direito",Publicidade e propaganda,16,325,355,12,0.75,False,75
+MANUTENÇÃO INDUSTRIAL,"Engenharia, produção e construção",Manutenção industrial,2,67,40,11,0.09090909090909091,True,289
+PODOLOGIA,Saúde e bem-estar,Podologia,9,135,136,10,1.0,False,33
+GESTÃO DE SEGUROS,"Negócios, administração e direito",Seguros,1,13,33,10,1.0,False,31
+MÚSICA,Educação,Música formação de professor,8,105,132,10,1.0,False,66
+DEFESA CIBERNÉTICA,Computação e Tecnologias da Informação e Comunicação (TIC),Defesa cibernética,5,41,46,10,1.0,False,29
+SISTEMAS BIOMÉDICOS,"Engenharia, produção e construção",Sistemas biomédicos,2,85,101,9,0.0,True,29
+CIBERSEGURANÇA,Computação e Tecnologias da Informação e Comunicação (TIC),Defesa cibernética,6,65,67,9,1.0,False,11
+GESTÃO DO AGRONEGÓCIO,"Negócios, administração e direito",Gestão do agronegócio,14,33,36,8,1.0,False,11
+CRIMINOLOGIA,"Ciências sociais, comunicação e informação","Programas abrangendo ciências sociais, comunicação e informação em processo de definição da classificação",9,164,159,8,1.0,False,10
+CIÊNCIAS DA COMPUTAÇÃO,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência da computação,6,178,199,8,1.0,False,15
+ENGENHARIA AMBIENTAL,"Engenharia, produção e construção",Engenharia ambiental,11,64,129,8,1.0,False,22
+DESENVOLVIMENTO DE SOFTWARE MULTIPLATAFORMA,Computação e Tecnologias da Informação e Comunicação (TIC),Programas interdisciplinares abrangendo computação e Tecnologias da Informação e Comunicação (TIC),1,87,164,8,,True,17
+FÍSICA,Educação,Física formação de professor,15,35,46,7,1.0,False,22
+FOTOGRAFIA,Artes e humanidades,Fotografia,9,69,61,7,1.0,False,29
+SEGURANÇA NO TRÂNSITO,Serviços,Segurança no trânsito,5,6,21,7,1.0,False,7
+PROPAGANDA E MARKETING,"Negócios, administração e direito",Publicidade e propaganda,1,113,217,7,,False,191
+LETRAS - LIBRAS,Educação,Letras língua brasileira de sinais formação de professor,5,40,58,6,1.0,False,24
+DESENVOLVIMENTO BACK-END,Computação e Tecnologias da Informação e Comunicação (TIC),Sistemas de informação,4,17,22,6,1.0,False,7
+PROCESSOS ESCOLARES,Educação,Processos escolares,5,5,11,6,1.0,False,9
+GERONTOLOGIA,Saúde e bem-estar,Gerontologia,8,39,48,6,1.0,False,15
+SOCIOLOGIA,Educação,Ciências sociais formação de professor,12,30,49,6,1.0,False,22
+SECRETARIADO EXECUTIVO,"Negócios, administração e direito",Secretariado,5,36,53,6,1.0,False,9
+COMPUTAÇÃO EM NUVEM,Computação e Tecnologias da Informação e Comunicação (TIC),Gestão da tecnologia da informação,7,24,30,6,1.0,False,7
+COACHING E DESENVOLVIMENTO HUMANO,"Negócios, administração e direito",Gestão de pessoas,6,36,34,5,1.0,False,28
+COMUNICAÇÃO INSTITUCIONAL,"Negócios, administração e direito",Relações públicas,9,25,37,5,1.0,False,15
+"SERVIÇOS JURÍDICOS, CARTORÁRIOS E NOTARIAIS","Negócios, administração e direito",Serviços jurídicos e cartoriais,4,32,30,5,1.0,False,24
+BIBLIOTECONOMIA,"Ciências sociais, comunicação e informação",Biblioteconomia,8,33,29,5,1.0,False,12
+DESIGN DE GAMES,Artes e humanidades,Animação,4,18,34,5,1.0,False,7
+DESIGN GRÁFICO E DIGITAL,Artes e humanidades,Design gráfico,1,18,28,5,1.0,False,17
+DEVOPS,Computação e Tecnologias da Informação e Comunicação (TIC),Sistemas de informação,3,13,18,5,1.0,False,9
+GESTÃO DE E-COMMERCE,"Negócios, administração e direito",Gestão comercial,4,29,32,5,1.0,False,9
+JORNALISMO,"Ciências sociais, comunicação e informação",Jornalismo,15,141,157,5,0.6,False,26
+GERONTOLOGIA - CUIDADO AO IDOSO,Saúde e bem-estar,Gerontologia,1,2,10,5,1.0,False,14
+"GESTÃO DE SERVIÇOS JURÍDICOS, NOTARIAIS E DE REGISTRO","Negócios, administração e direito",Serviços jurídicos e cartoriais,1,35,22,4,1.0,False,20
+TRADUTOR E INTÉRPRETE,Artes e humanidades,Letras tradutor e intérprete,1,16,32,4,1.0,False,20
+GESTÃO DO TRÂNSITO E MOBILIDADE URBANA,Serviços,Transporte terrestre,1,2,12,4,1.0,False,10
+GESTÃO DE MÍDIAS SOCIAIS,"Negócios, administração e direito",Marketing,4,18,20,4,1.0,False,10
+GERONTOLOGIA - BEM-ESTAR E EDUCAÇÃO,Saúde e bem-estar,Gerontologia,3,7,9,4,1.0,False,8
+COMÉRCIO EXTERIOR E NEGÓCIOS INTERNACIONAIS,"Negócios, administração e direito",Comércio exterior,1,11,23,4,,False,13
+CIÊNCIA POLÍTICA,"Ciências sociais, comunicação e informação",Ciência política,4,11,21,4,1.0,False,11
+DESENVOLVIMENTO MOBILE,Computação e Tecnologias da Informação e Comunicação (TIC),Programas abrangendo Computação e Tecnologias da Informação e Comunicação (TIC) em processo de definição da classificação,6,14,19,4,1.0,False,7
+CIÊNCIAS DE DADOS,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,1,48,47,4,1.0,False,6
+INTERNET DAS COISAS E COMPUTAÇÃO EM NUVEM,Computação e Tecnologias da Informação e Comunicação (TIC),Internet das coisas,2,5,14,3,1.0,False,6
+GESTÃO DE NEGÓCIOS DIGITAIS,"Negócios, administração e direito",Empreendedorismo,4,13,26,3,1.0,False,10
+GESTÃO DE PRODUÇÃO INDUSTRIAL,"Negócios, administração e direito",Gestão da produção,3,12,17,3,1.0,False,5
+TURISMO,Serviços,Turismo,2,8,13,3,1.0,False,4
+CIÊNCIAS DE DADOS E ANÁLISE DE COMPORTAMENTO,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,1,13,9,3,1.0,False,5
+DESIGN DE ANIMAÇÃO,Artes e humanidades,Animação,7,31,60,3,1.0,False,8
+SEGURANÇA CIBERNÉTICA,Computação e Tecnologias da Informação e Comunicação (TIC),Defesa cibernética,3,22,26,3,1.0,False,3
+RELAÇÕES PÚBLICAS,"Negócios, administração e direito",Relações públicas,8,55,68,3,1.0,False,3
+LETRAS - PORTUGUÊS E ESPANHOL,Educação,Letras português espanhol formação de professor,5,24,29,3,1.0,False,22
+PEDAGOGIA EM EDUCAÇÃO PROFISSIONAL E TECNOLÓGICA,Educação,Pedagogia,1,53,38,3,1.0,False,41
+GESTÃO ESTRATÉGICA EMPRESARIAL,"Negócios, administração e direito",Gestão estratégica,1,19,17,3,1.0,False,7
+PRÁTICAS INTEGRATIVAS E COMPLEMENTARES EM SAÚDE,Saúde e bem-estar,Práticas integrativas,1,4,13,3,1.0,False,3
+GESTÃO DE MÍDIAS DIGITAIS,"Negócios, administração e direito",Marketing,3,6,6,2,1.0,False,5
+GESTÃO DESPORTIVA E DE LAZER,Serviços,Gestão desportiva e de lazer,4,6,7,2,1.0,False,10
+GESTÃO DE SERVIÇOS JURÍDICOS E NOTARIAIS,"Negócios, administração e direito",Serviços jurídicos e cartoriais,2,11,28,2,1.0,False,28
+INTELIGÊNCIA DE MERCADO E ANÁLISE DE DADOS,Computação e Tecnologias da Informação e Comunicação (TIC),Banco de dados,4,23,17,2,1.0,False,4
+GESTÃO DE SERVIÇOS JUDICIAIS E NOTARIAIS,"Negócios, administração e direito",Serviços jurídicos e cartoriais,5,14,14,2,1.0,False,2
+GESTÃO DE COOPERATIVAS,"Negócios, administração e direito",Gestão de cooperativas,5,4,4,2,1.0,False,3
+SERVIÇOS NOTARIAIS E REGISTRAIS,"Negócios, administração e direito",Serviços jurídicos e cartoriais,2,1,5,2,1.0,False,5
+PRODUÇÃO AUDIOVISUAL,Artes e humanidades,Produção audiovisual,8,45,40,2,1.0,False,33
+MARKETING DIGITAL E DATA SCIENCE,"Negócios, administração e direito",Marketing,1,16,29,2,1.0,False,3
+MECATRÔNICA AUTOMOTIVA,"Engenharia, produção e construção",Sistemas automotivos,1,5,10,2,1.0,False,2
+EMPREENDEDORISMO E INOVAÇÃO,"Negócios, administração e direito",Empreendedorismo,1,0,5,2,1.0,False,2
+GESTÃO DE PRODUTO,"Negócios, administração e direito","Programas interdisciplinares abrangendo negócios, administração e direito",3,15,17,2,1.0,False,3
+GESTÃO DA SEGURANÇA E DEFESA CIBERNÉTICA,Computação e Tecnologias da Informação e Comunicação (TIC),Defesa cibernética,1,8,11,2,1.0,False,10
+LETRAS - LIBRAS - LÍNGUA PORTUGUESA,Educação,Letras português língua brasileira de sinais formação de professor,3,11,26,2,1.0,False,3
+GESTÃO DA INOVAÇÃO,"Negócios, administração e direito",Empreendedorismo,3,12,15,2,1.0,False,3
+DESENVOLVIMENTO PARA WEB,Computação e Tecnologias da Informação e Comunicação (TIC),Sistemas para internet,1,25,17,2,1.0,False,7
+COMPUTAÇÃO,Educação,Computação formação de professor,3,5,5,2,1.0,False,7
+"BLOCKCHAIN, CRIPTOMOEDAS E FINANÇAS NA ERA DIGITAL","Negócios, administração e direito",Gestão financeira,4,13,17,2,1.0,False,6
+CIÊNCIAS SOCIAIS,Educação,Ciências sociais formação de professor,10,30,39,2,1.0,False,21
+COMUNICAÇÃO SOCIAL - PUBLICIDADE E PROPAGANDA,"Negócios, administração e direito",Publicidade e propaganda,3,64,87,2,0.0,False,30
+SOCIAL MEDIA,"Ciências sociais, comunicação e informação","Programas interdisciplinares abrangendo ciências sociais, comunicação e informação",2,23,23,2,1.0,False,2
+ÓPTICA E OPTOMETRIA,Saúde e bem-estar,Optometria,2,27,48,2,1.0,False,2
+GESTÃO DA INOVAÇÃO E EMPREENDEDORISMO DIGITAL,"Negócios, administração e direito",Gestão de negócios,3,15,25,2,1.0,False,9
+DESIGN DE PRODUTO,Artes e humanidades,Design de produto,8,23,25,1,1.0,False,10
+CIÊNCIAS DA NATUREZA,"Ciências naturais, matemática e estatística","Programas interdisciplinares abrangendo ciências naturais, matemática e estatística",2,4,5,1,1.0,False,1
+SEGURANÇA ALIMENTAR,"Engenharia, produção e construção",Alimentos,1,8,13,1,1.0,False,3
+CIÊNCIAS POLÍTICAS,"Ciências sociais, comunicação e informação",Ciência política,5,21,17,1,1.0,False,1
+ARQUITETURA DE DADOS,Computação e Tecnologias da Informação e Comunicação (TIC),Banco de dados,3,10,10,1,1.0,False,1
+SANEAMENTO AMBIENTAL,"Engenharia, produção e construção",Saneamento ambiental,3,4,10,1,1.0,False,6
+CIÊNCIAS HUMANAS,"Ciências sociais, comunicação e informação","Programas interdisciplinares abrangendo ciências sociais, comunicação e informação",2,5,7,1,1.0,False,2
+BIOLOGIA,Educação,Biologia formação de professor,2,3,3,1,1.0,False,7
+CIÊNCIAS EXATAS,"Ciências naturais, matemática e estatística","Programas interdisciplinares abrangendo ciências naturais, matemática e estatística",3,2,3,1,1.0,False,3
+DESENVOLVIMENTO FULL STACK,Computação e Tecnologias da Informação e Comunicação (TIC),Engenharia de software,5,20,18,1,1.0,False,1
+DESENVOLVIMENTO WEB,Computação e Tecnologias da Informação e Comunicação (TIC),Sistemas para internet,2,6,4,1,1.0,False,1
+DESIGN,Artes e humanidades,Design,2,19,44,1,1.0,False,1
+PRODUÇÃO CULTURAL,Artes e humanidades,Produção cultural,3,12,19,1,1.0,False,3
+PRODUÇÃO DE CONTEÚDO DIGITAL,"Negócios, administração e direito",Marketing,3,6,5,1,1.0,False,1
+PRODUÇÃO PUBLICITÁRIA,"Negócios, administração e direito",Publicidade e propaganda,3,3,6,1,1.0,False,1
+MEDIAÇÃO,"Negócios, administração e direito",Mediação,10,21,24,1,1.0,False,8
+ENGENHARIA QUÍMICA,"Engenharia, produção e construção",Engenharia química,2,11,27,1,1.0,False,5
+EDUCAÇÃO ESPECIAL,Educação,Educação especial formação de professor,12,67,57,1,1.0,False,6
+EDUCAÇÃO SOCIAL,Educação,Programas interdisciplinares abrangendo educação,1,5,6,1,1.0,False,1
+PROCESSOS QUÍMICOS,"Ciências naturais, matemática e estatística",Química industrial e tecnológica,2,17,26,1,1.0,False,4
+DESPACHANTE DOCUMENTALISTA,"Negócios, administração e direito",Gestão de serviços,2,8,19,1,1.0,False,1
+DESIGN DIGITAL,Artes e humanidades,Design gráfico,1,11,15,1,,False,13
+DESIGN MUSICAL,Artes e humanidades,Música,1,12,8,1,1.0,False,1
+EMPREENDEDORISMO E NOVOS NEGÓCIOS,"Negócios, administração e direito",Empreendedorismo,4,20,17,1,1.0,False,14
+ENERGIAS RENOVÁVEIS,"Engenharia, produção e construção",Energias renováveis,3,8,10,1,1.0,False,2
+ENGENHARIA INDUSTRIAL MECÂNICA,"Engenharia, produção e construção",Engenharia mecânica,1,2,3,1,1.0,False,2
+LETRAS - PORTUGUÊS E JAPONÊS,Educação,Letras português japonês formação de professor,2,9,10,1,1.0,False,1
+MÍDIAS SOCIAIS DIGITAIS,Artes e humanidades,Produção multimídia,2,9,8,1,1.0,False,1
+GESTÃO DE ESPORTE E ALTO RENDIMENTO,Serviços,Gestão desportiva e de lazer,1,2,4,1,1.0,False,1
+INTERNET DAS COISAS,Computação e Tecnologias da Informação e Comunicação (TIC),Internet das coisas,4,3,4,1,1.0,False,6
+LETRAS - ALEMÃO,Educação,Letras alemão formação de professor,1,0,2,1,1.0,False,1
+INTELIGÊNCIA ARTIFICIAL,Computação e Tecnologias da Informação e Comunicação (TIC),Inteligência artificial,3,16,13,1,1.0,False,2
+INFORMÁTICA,Educação,Computação formação de professor,1,4,6,1,1.0,False,2
+GESTÃO DO E-COMMERCE E SISTEMAS LOGÍSTICOS,"Negócios, administração e direito","Programas interdisciplinares abrangendo negócios, administração e direito",1,7,11,1,1.0,False,6
+GESTÃO DE NEGÓCIOS,"Negócios, administração e direito",Gestão de negócios,1,6,8,1,1.0,False,1
+HOTELARIA,Serviços,Hotelaria,4,17,20,1,1.0,False,14
+VAREJO DIGITAL,"Negócios, administração e direito",Gestão comercial,2,0,3,1,1.0,False,1
+TECNOLOGIAS EDUCACIONAIS,Computação e Tecnologias da Informação e Comunicação (TIC),Programas interdisciplinares abrangendo computação e Tecnologias da Informação e Comunicação (TIC),4,3,2,1,1.0,False,5
+TEOLOGIA: DOUTRINA CATÓLICA,Artes e humanidades,Teologia,1,10,19,1,1.0,False,9
+AGRONOMIA,"Agricultura, silvicultura, pesca e veterinária",Agronomia,11,33,30,1,1.0,False,1
+ADMINISTRAÇÃO PÚBLICA,"Negócios, administração e direito",Administração pública,11,54,51,1,1.0,False,3
+ACOMPANHAMENTO DO TRANSTORNO DO ESPECTRO AUTISTA,Educação,Programas interdisciplinares abrangendo educação,2,44,23,0,,False,0
+ACUPUNTURA,Saúde e bem-estar,Práticas integrativas,1,8,8,0,,False,0
+ADMINISTRAÇÃO RURAL,"Negócios, administração e direito",Gestão do agronegócio,1,0,1,0,,False,0
+AGENTE COMUNITÁRIO,Saúde e bem-estar,Saúde pública,1,12,12,0,,False,0
+AGENTE COMUNITÁRIO DE SAÚDE,Saúde e bem-estar,Saúde coletiva,1,1,1,0,,False,0
+AGENTE COMUNITÁRIO DE SAÚDE E ENDEMIAS,Saúde e bem-estar,Saúde coletiva,1,3,5,0,,False,0
+AGRICULTURA,"Agricultura, silvicultura, pesca e veterinária",Agronomia,1,1,0,0,,False,0
+ALIMENTOS,"Engenharia, produção e construção",Alimentos,1,17,13,0,,False,0
+ANDRAGOGIA,Educação,Programas abrangendo educação em processo de definição da classificação,1,0,0,0,,False,0
+ANTROPOLOGIA,"Ciências sociais, comunicação e informação",Antropologia,1,3,7,0,,False,0
+ANÁLISE DE DADOS DE ALTA PERFORMANCE,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,1,3,3,0,,False,0
+ANÁLISES CLÍNICAS,Saúde e bem-estar,Análises clínicas e toxicológicas,1,7,5,0,,False,0
+TECNOLOGIA EM AGROTECNOLOGIA,"Agricultura, silvicultura, pesca e veterinária",Agropecuária,1,1,1,0,,False,0
+TECNOLOGIA EM INTELIGÊNCIA ARTIFICIAL,Computação e Tecnologias da Informação e Comunicação (TIC),Inteligência artificial,1,15,15,0,,False,0
+TERAPIA OCUPACIONAL,Saúde e bem-estar,Terapia ocupacional,7,129,170,0,,False,0
+TRADUÇÃO,Artes e humanidades,Letras tradutor e intérprete,1,0,0,0,,False,0
+TRICOLOGIA E CIÊNCIA COSMÉTICA,Serviços,Estética e cosmética,1,7,7,0,,False,0
+TÉCNICAS PARA ACOMPANHAMENTO TERAPÊUTICO,Saúde e bem-estar,Programas interdisciplinares abrangendo saúde e bem-estar,1,1,2,0,,False,0
+ZOOTECNIA,"Agricultura, silvicultura, pesca e veterinária",Zootecnia,3,15,11,0,,False,0
+GESTÃO DE SERVIÇOS PENAIS,Serviços,Serviços penais,1,1,0,0,,False,0
+GESTÃO DE STARTUPS E EMPREENDEDORISMO DIGITAL,"Negócios, administração e direito",Empreendedorismo,1,0,0,0,,False,0
+GESTÃO DE TRÂNSITO,Serviços,Transporte terrestre,2,2,3,0,,False,0
+GESTÃO DE VAREJO,"Negócios, administração e direito",Gestão comercial,1,0,0,0,,False,0
+GESTÃO DE VENDAS,"Negócios, administração e direito",Gestão comercial,1,4,0,0,,False,0
+GESTÃO DO ESPORTE,Serviços,Gestão desportiva e de lazer,1,1,1,0,,False,0
+GESTÃO E EMPREENDEDORISMO,Educação,Ensino profissionalizante em área específica formação de professor,4,24,16,0,,False,0
+GESTÃO EM VIGILÂNCIA EM SAÚDE,"Negócios, administração e direito",Gestão da saúde,1,0,0,0,,False,0
+GESTÃO EMPREENDEDORA DE SERVIÇOS,"Negócios, administração e direito",Gestão de serviços,1,0,0,0,,False,0
+GESTÃO FISCAL E TRIBUTÁRIA,"Negócios, administração e direito",Gestão fiscal e tributária,1,4,6,0,,False,0
+"GESTÃO GLOBAL TRADING: NEGÓCIOS, LOGÍSTICA E FINANÇAS GLOBAIS","Negócios, administração e direito",Comércio exterior,1,4,4,0,,False,0
+GESTÃO PORTUÁRIA,Serviços,Gestão portuária,4,5,5,0,,False,1
+INFLUENCIADOR DIGITAL,Artes e humanidades,Produção multimídia,1,2,1,0,,False,0
+INSTRUMENTAÇÃO CIRÚRGICA,Saúde e bem-estar,Enfermagem,2,19,19,0,,False,0
+INTELIGÊNCIA ARTIFICIAL E MACHINE LEARNING,Computação e Tecnologias da Informação e Comunicação (TIC),Inteligência artificial,2,21,11,0,,False,0
+INTELIGÊNCIA DE MERCADO,"Negócios, administração e direito","Programas interdisciplinares abrangendo negócios, administração e direito",1,1,0,0,,False,0
+GESTÃO DE MARKETING EM MÍDIAS DIGITAIS,"Negócios, administração e direito",Marketing,1,1,1,0,,False,0
+GESTÃO DE PARTIDOS POLÍTICOS,"Ciências sociais, comunicação e informação","Programas interdisciplinares abrangendo ciências sociais, comunicação e informação",1,1,1,0,,False,0
+GESTÃO DE PROCESSOS EDUCACIONAIS,Educação,Processos escolares,1,0,1,0,,False,0
+GESTÃO DE RESÍDUOS DE SERVIÇOS DE SAÚDE,"Engenharia, produção e construção",Gestão de resíduos,1,0,0,0,,False,1
+INTERDISCIPLINAR EM HUMANIDADES,"Ciências sociais, comunicação e informação","Programas interdisciplinares abrangendo ciências sociais, comunicação e informação",1,1,1,0,,False,0
+INTERDISCIPLINAR EM SAÚDE,Saúde e bem-estar,Programas interdisciplinares abrangendo saúde e bem-estar,1,1,1,0,,False,0
+INVESTIGAÇÃO E PERÍCIA,Serviços,Investigação e perícia,2,0,0,0,,False,0
+INVESTIGAÇÃO E PERÍCIA JUDICIAL,Serviços,Investigação e perícia,1,1,0,0,,False,0
+INVESTIGAÇÃO PROFISSIONAL,Serviços,Investigação e perícia,1,1,2,0,,False,6
+JORNALISMO DIGITAL,"Ciências sociais, comunicação e informação",Jornalismo,1,2,3,0,,False,0
+LETRAS - ESPANHOL,Educação,Letras espanhol formação de professor,5,9,10,0,,False,4
+GESTÃO DA SAÚDE PÚBLICA,"Negócios, administração e direito",Gestão da saúde,1,1,1,0,,False,0
+GESTÃO DAS ORGANIZAÇÕES DO TERCEIRO SETOR,"Negócios, administração e direito",Gestão de cooperativas,2,8,8,0,,False,5
+GESTÃO DE AGRONEGÓCIOS,"Negócios, administração e direito",Gestão do agronegócio,1,1,0,0,,False,0
+GESTÃO DE CLÍNICAS E CONSULTÓRIOS,"Negócios, administração e direito",Gestão hospitalar,1,2,2,0,,False,0
+GESTÃO DE EVENTOS,Serviços,Eventos,1,1,2,0,,False,0
+GESTÃO DE FARMÁCIA,"Negócios, administração e direito",Gestão de negócios,2,7,2,0,,False,0
+GESTÃO DE INVENTÁRIO EXTRAJUDICIAL,"Negócios, administração e direito","Programas interdisciplinares abrangendo negócios, administração e direito",1,0,0,0,,False,0
+GESTÃO DE INVESTIMENTOS,"Negócios, administração e direito",Gestão financeira,1,1,0,0,,False,0
+GESTÃO DE INVESTIMENTOS E MERCADO FINANCEIRO,"Negócios, administração e direito",Gestão financeira,2,15,14,0,,False,0
+GESTÃO DE LOJAS E PONTOS DE VENDAS,"Negócios, administração e direito",Marketing,1,0,2,0,,False,1
+FORMAÇÃO DE DOCENTES PARA A EDUCAÇÃO BÁSICA,Educação,Formação pedagógica de professor para a educação básica,1,0,0,0,,False,1
+FORMAÇÃO PEDAGÓGICA PARA GRADUADOS NÃO LICENCIADOS,Educação,Formação pedagógica de professor para a educação básica,1,2,2,0,,False,0
+GEOPROCESSAMENTO,"Ciências naturais, matemática e estatística",Geoprocessamento,1,0,0,0,,False,0
+GESTÃO DA PRODUÇÃO,"Negócios, administração e direito",Gestão da produção,1,7,4,0,,False,0
+LETRAS - LÍNGUA INGLESA,Educação,Letras inglês formação de professor,1,1,2,0,,False,0
+LETRAS - LÍNGUA PORTUGUESA E LIBRAS,Educação,Letras português língua brasileira de sinais formação de professor,3,8,13,0,,False,0
+LETRAS - LÍNGUA PORTUGUESA E LÍNGUA INGLESA,Educação,Letras português inglês formação de professor,2,7,4,0,,False,10
+LETRAS - PORTUGUÊS E FRANCÊS,Educação,Letras português francês formação de professor,1,1,1,0,,False,0
+LETRAS - PORTUGUÊS E INGLÊS E RESPECTIVAS LITERATURAS,Educação,Letras português inglês formação de professor,1,8,10,0,,False,5
+LETRAS - PORTUGUÊS-INGLÊS,Educação,Letras português inglês formação de professor,1,0,0,0,,False,0
+LICENCIATURA EM EDUCAÇÃO ESPECIAL,Educação,Educação especial formação de professor,1,3,3,0,,False,0
+ENGENHARIA MECATRÔNICA,"Engenharia, produção e construção",Engenharia mecatrônica,4,9,13,0,,False,0
+ESCRITA CRIATIVA,Artes e humanidades,Letras escrita criativa,1,2,2,0,,False,0
+ESTATÍSTICA,"Ciências naturais, matemática e estatística",Estatística,3,17,17,0,,False,2
+EXPERIÊNCIA DO USUÁRIO E MODELAGEM DE PROJETOS INOVADORES,Computação e Tecnologias da Informação e Comunicação (TIC),Programas interdisciplinares abrangendo computação e Tecnologias da Informação e Comunicação (TIC),2,4,4,0,,False,0
+FABRICAÇÃO MECÂNICA,"Engenharia, produção e construção",Fabricação mecânica,1,1,1,0,,False,0
+FONOAUDIOLOGIA,Saúde e bem-estar,Fonoaudiologia,3,5,33,0,,False,0
+MASSOTERAPIA,Saúde e bem-estar,Práticas integrativas,2,16,13,0,,False,0
+MECATRÔNICA INDUSTRIAL,"Engenharia, produção e construção",Mecatrônica industrial,2,1,3,0,,False,0
+"MEDIAÇÃO, CONCILIAÇÃO E ARBITRAGEM","Negócios, administração e direito",Mediação,2,5,3,0,,False,0
+MODA,Artes e humanidades,Moda,1,7,13,0,,False,0
+MUSEOLOGIA,"Ciências sociais, comunicação e informação",Museologia,2,1,3,0,,False,0
+NATUROLOGIA,Saúde e bem-estar,Práticas integrativas,2,6,6,0,,False,0
+ENGENHARIA AGRONÔMICA,"Agricultura, silvicultura, pesca e veterinária",Agronomia,2,17,18,0,,False,0
+ENGENHARIA AMBIENTAL E SANITÁRIA,"Engenharia, produção e construção",Engenharia ambiental e sanitária,7,18,20,0,,False,0
+ENGENHARIA BIOMÉDICA,"Engenharia, produção e construção",Engenharia biomédica,1,3,2,0,,False,0
+ENGENHARIA DE ALIMENTOS,"Engenharia, produção e construção",Engenharia de alimentos,1,0,1,0,,False,0
+ENGENHARIA DE DESIGN DIGITAL,Artes e humanidades,Design gráfico,2,1,1,0,,False,0
+ENGENHARIA DE MANUTENÇÃO E DIAGNÓSTICO INDUSTRIAL,"Engenharia, produção e construção",Engenharia mecânica,1,1,1,0,,False,0
+ENGENHARIA DE SEGURANÇA CIBERNÉTICA,Computação e Tecnologias da Informação e Comunicação (TIC),Defesa cibernética,1,1,1,0,,False,0
+DESIGN DIGITAL E USER EXPERIENCE,Artes e humanidades,Design gráfico,1,4,4,0,,False,0
+DESIGN EDITORIAL,Artes e humanidades,Design gráfico,1,0,0,0,,False,0
+E-COMMERCE,"Negócios, administração e direito",Gestão comercial,1,1,1,0,,False,0
+EDUCADOR SOCIAL,Educação,Programas interdisciplinares abrangendo educação,2,3,4,0,,False,4
+EMBELEZAMENTO E IMAGEM PESSOAL,Serviços,Estética e cosmética,1,1,0,0,,False,0
+NEGÓCIOS E CUSTOMER EXPERIENCE,"Negócios, administração e direito",Gestão comercial,1,12,7,0,,False,0
+OFTÁLMICA,Saúde e bem-estar,Oftálmica,1,4,11,0,,False,0
+PAISAGISMO E JARDINAGEM,"Engenharia, produção e construção",Arquitetura e urbanismo,1,7,7,0,,False,0
+PERÍCIA JUDICIAL E EXTRAJUDICIAL,Serviços,Investigação e perícia,2,6,8,0,,False,0
+PROCESSOS CERVEJEIROS,"Engenharia, produção e construção",Produção de cerveja,1,1,1,0,,False,0
+PROCESSOS METALÚRGICOS,"Engenharia, produção e construção",Processos metalúrgicos,1,28,35,0,,False,55
+PRODUÇÃO CERVEJEIRA,"Engenharia, produção e construção",Produção de cerveja,3,4,4,0,,False,4
+DEFESA MÉDICA HOSPITALAR,"Negócios, administração e direito",Gestão da saúde,1,1,1,0,,False,0
+DESENVOLVIMENTO DE APLICATIVOS MÓVEIS,Computação e Tecnologias da Informação e Comunicação (TIC),Programas abrangendo Computação e Tecnologias da Informação e Comunicação (TIC) em processo de definição da classificação,2,4,2,0,,False,0
+DESIGN DE EXPERIÊNCIA,"Negócios, administração e direito","Programas interdisciplinares abrangendo negócios, administração e direito",1,5,4,0,,False,0
+PRODUÇÃO DE CERVEJA,"Engenharia, produção e construção",Produção de cerveja,2,2,2,0,,False,0
+PRODUÇÃO MULTIMÍDIA,Artes e humanidades,Produção multimídia,2,3,6,0,,False,0
+PRODUÇÃO MULTIMÍDIA EM REALIDADE AUMENTADA,Artes e humanidades,Produção multimídia,2,1,3,0,,False,0
+PSICANÁLISE,"Ciências sociais, comunicação e informação","Programas abrangendo ciências sociais, comunicação e informação em processo de definição da classificação",4,119,102,0,,False,0
+PSICOMOTRICIDADE,Saúde e bem-estar,Educação física,2,8,7,0,,False,0
+PUBLICIDADE E PROPAGANDA - MARKETING,"Negócios, administração e direito",Publicidade e propaganda,3,45,40,0,,False,0
+QUALIDADE DE VIDA NA CONTEMPORANEIDADE,Saúde e bem-estar,Programas interdisciplinares abrangendo saúde e bem-estar,1,0,0,0,,False,0
+QUIROPRAXIA,Saúde e bem-estar,Práticas integrativas,1,5,3,0,,False,0
+COMUNICAÇÃO DIGITAL E REDES SOCIAIS,"Ciências sociais, comunicação e informação","Rádio, TV e internet",1,2,2,0,,False,0
+COMUNICAÇÃO E MARKETING,"Negócios, administração e direito",Marketing,1,13,13,0,,False,0
+"CONCILIAÇÃO, MEDIAÇÃO E ARBITRAGEM","Negócios, administração e direito",Mediação,1,1,1,0,,False,0
+CONSELHEIRO TUTELAR,Saúde e bem-estar,Programas interdisciplinares abrangendo saúde e bem-estar,1,5,1,0,,False,0
+CONSTRUÇÃO DE EDIFÍCIOS,"Engenharia, produção e construção",Construção de edifícios,1,5,6,0,,False,3
+CONTROLE DE OBRAS,"Engenharia, produção e construção",Controle de obras,1,0,1,0,,False,0
+COZINHA CONTEMPORÂNEA,Serviços,Gastronomia,3,5,5,0,,False,1
+DANÇA,Educação,Dança formação de professor,2,10,7,0,,False,0
+DATA SCIENCE,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,1,1,2,0,,False,0
+CIÊNCIAS DA RELIGIÃO,Educação,Ensino religioso formação de professor,3,4,6,0,,False,0
+CIÊNCIAS DO FUTURO,"Negócios, administração e direito",Administração,1,2,2,0,,False,0
+COACH DIGITAL,"Negócios, administração e direito",Gestão de pessoas,1,0,1,0,,False,0
+COACHING E MENTORING,"Negócios, administração e direito",Gestão de pessoas,2,5,4,0,,False,1
+COMPUTAÇÃO E INFORMÁTICA,Educação,Computação formação de professor,1,1,1,0,,False,0
+"RECRUTAMENTO, SELEÇÃO E DESENVOLVIMENTO DE PESSOAS","Ciências sociais, comunicação e informação",Psicologia,1,1,0,0,,False,0
+RÁDIO E TV,"Ciências sociais, comunicação e informação","Rádio, TV e internet",1,7,10,0,,False,0
+SEGURANÇA DO TRABALHO,Serviços,Segurança no trabalho,3,64,41,0,,False,0
+CINEMA E AUDIOVISUAL,Artes e humanidades,Cinema e audiovisual,1,12,7,0,,False,0
+CIÊNCIA  DE DADOS E BIG DATA,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,1,2,3,0,,False,0
+CIÊNCIA DA CRIATIVIDADE,"Negócios, administração e direito","Programas interdisciplinares abrangendo negócios, administração e direito",2,2,1,0,,False,0
+CIÊNCIA DA FELICIDADE,Saúde e bem-estar,Programas interdisciplinares abrangendo saúde e bem-estar,2,13,18,0,,False,3
+CIÊNCIA DA RELIGIÃO,Educação,Ensino religioso formação de professor,1,1,1,0,,False,0
+CIÊNCIA DE DADOS E INTELIGÊNCIA ARTIFICIAL,Computação e Tecnologias da Informação e Comunicação (TIC),Ciência de dados,1,3,3,0,,False,0
+CIÊNCIA ECONÔMICA,"Ciências sociais, comunicação e informação",Economia,2,4,2,0,,False,0
+CIÊNCIAS AERONÁUTICAS,Serviços,Ciências aeronáuticas,1,7,11,0,,False,3
+ARQUIVOLOGIA,"Ciências sociais, comunicação e informação",Arquivologia,2,8,13,0,,False,0
+ARTES,Educação,Artes formação de professor,5,42,27,0,,False,0
+ASSESSORIA EXECUTIVA DIGITAL,"Negócios, administração e direito","Programas interdisciplinares abrangendo negócios, administração e direito",1,0,2,0,,False,1
+AUDITORIA EM SAÚDE,"Negócios, administração e direito",Gestão da saúde,1,2,3,0,,False,0
+AUTOMAÇÃO RESIDENCIAL E PREDIAL,"Engenharia, produção e construção","Programas interdisciplinares abrangendo engenharia, produção e construção",1,10,3,0,,False,0
+BEM-ESTAR ANIMAL,Saúde e bem-estar,Programas interdisciplinares abrangendo saúde e bem-estar,1,3,1,0,,False,0
+BLOCKCHAIN E CRIPTOGRAFIA DIGITAL,Computação e Tecnologias da Informação e Comunicação (TIC),Programas interdisciplinares abrangendo computação e Tecnologias da Informação e Comunicação (TIC),2,3,2,0,,False,1
+SEGURANÇA PRIVADA,Serviços,Segurança privada,3,13,15,0,,False,12
+SERVIÇOS JUDICIAIS,"Negócios, administração e direito",Serviços jurídicos e cartoriais,3,23,25,0,,False,4
+SERVIÇOS PENAIS,Serviços,Serviços penais,6,6,6,0,,False,2
+SERVIÇOS PREVIDENCIÁRIOS,"Negócios, administração e direito",Gestão de serviços,1,0,1,0,,False,0
+SERVIÇOS REGISTRAIS E NOTARIAIS,"Negócios, administração e direito",Serviços jurídicos e cartoriais,1,7,8,0,,False,0
+TEATRO,Educação,Teatro formação de professor,2,13,13,0,,False,0
+ABI - EDUCAÇÃO FÍSICA,Programas básicos,ABI Saúde e bem-estar,5,315,416,0,,False,0

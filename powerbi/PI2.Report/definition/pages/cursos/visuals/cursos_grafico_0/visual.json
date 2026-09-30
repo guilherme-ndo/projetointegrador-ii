@@ -1,0 +1,119 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "cursos_grafico_0",
+  "position": {
+    "x": 24,
+    "y": 210,
+    "z": 7000,
+    "height": 490,
+    "width": 608,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fOfertaEnsino"
+                    }
+                  },
+                  "Property": "Instituição"
+                }
+              },
+              "queryRef": "fOfertaEnsino.Instituição",
+              "nativeQueryRef": "Instituição"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "fOfertaEnsino"
+                    }
+                  },
+                  "Property": "Curso"
+                }
+              },
+              "queryRef": "fOfertaEnsino.Curso",
+              "nativeQueryRef": "Curso"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Ingressantes"
+                }
+              },
+              "queryRef": "_Medidas.Ingressantes",
+              "nativeQueryRef": "Ingressantes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Concluintes"
+                }
+              },
+              "queryRef": "_Medidas.Concluintes",
+              "nativeQueryRef": "Concluintes"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "_Medidas"
+                  }
+                },
+                "Property": "Concluintes"
+              }
+            },
+            "direction": "Descending"
+          }
+        ]
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Cursos por instituição'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

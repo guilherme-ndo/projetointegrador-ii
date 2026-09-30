@@ -57,6 +57,22 @@ table fOfertaEnsino
 
 		annotation SummarizationSetBy = User
 
+	column 'Instituição'
+		dataType: string
+		lineageTag: a6f7180d-0b88-5116-a376-71960a13c714
+		summarizeBy: none
+		sourceColumn: Instituição
+
+		annotation SummarizationSetBy = User
+
+	column 'É Fatec'
+		dataType: boolean
+		lineageTag: c042b71f-7eb7-5dd8-9401-530f5b38083a
+		summarizeBy: none
+		sourceColumn: É Fatec
+
+		annotation SummarizationSetBy = User
+
 	column CO_CINE_AREA_GERAL
 		dataType: string
 		isHidden
@@ -138,9 +154,9 @@ table fOfertaEnsino
 				let
 				    Fonte = Csv.Document(File.Contents(PastaDados & "fOfertaEnsino.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
 				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
-				    Colunas = Table.SelectColumns(Cabecalho, {"NU_ANO_CENSO", "CO_MUNICIPIO", "CO_IES", "NO_CURSO", "CO_CURSO", "NO_CINE_ROTULO", "CO_CINE_AREA_GERAL", "TP_GRAU_ACADEMICO", "QT_VG_TOTAL", "QT_ING", "QT_MAT", "QT_CONC", "rede", "modalidade"}),
-				    Tipos = Table.TransformColumnTypes(Colunas, {{"NU_ANO_CENSO", Int64.Type}, {"CO_MUNICIPIO", Int64.Type}, {"CO_IES", Int64.Type}, {"NO_CURSO", type text}, {"CO_CURSO", Int64.Type}, {"NO_CINE_ROTULO", type text}, {"CO_CINE_AREA_GERAL", type text}, {"TP_GRAU_ACADEMICO", Int64.Type}, {"QT_VG_TOTAL", Int64.Type}, {"QT_ING", Int64.Type}, {"QT_MAT", Int64.Type}, {"QT_CONC", Int64.Type}, {"rede", type text}, {"modalidade", type text}}, "en-US"),
-				    Nomes = Table.RenameColumns(Tipos, {{"NO_CURSO", "Curso"}, {"NO_CINE_ROTULO", "Rótulo CINE"}, {"rede", "Rede"}, {"modalidade", "Modalidade"}})
+				    Colunas = Table.SelectColumns(Cabecalho, {"NU_ANO_CENSO", "CO_MUNICIPIO", "CO_IES", "curso", "CO_CURSO", "NO_CINE_ROTULO", "NO_IES", "fatec", "CO_CINE_AREA_GERAL", "TP_GRAU_ACADEMICO", "QT_VG_TOTAL", "QT_ING", "QT_MAT", "QT_CONC", "rede", "modalidade"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"NU_ANO_CENSO", Int64.Type}, {"CO_MUNICIPIO", Int64.Type}, {"CO_IES", Int64.Type}, {"curso", type text}, {"CO_CURSO", Int64.Type}, {"NO_CINE_ROTULO", type text}, {"NO_IES", type text}, {"fatec", type logical}, {"CO_CINE_AREA_GERAL", type text}, {"TP_GRAU_ACADEMICO", Int64.Type}, {"QT_VG_TOTAL", Int64.Type}, {"QT_ING", Int64.Type}, {"QT_MAT", Int64.Type}, {"QT_CONC", Int64.Type}, {"rede", type text}, {"modalidade", type text}}, "en-US"),
+				    Nomes = Table.RenameColumns(Tipos, {{"curso", "Curso"}, {"NO_CINE_ROTULO", "Rótulo CINE"}, {"rede", "Rede"}, {"modalidade", "Modalidade"}, {"NO_IES", "Instituição"}, {"fatec", "É Fatec"}})
 				in
 				    Nomes
 

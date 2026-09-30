@@ -71,8 +71,8 @@ def csv_m(arquivo, tipos, colunas=None, renomear=None):
 RENOMEAR = {
     "dMunicipio": {"nome": "Município"},
     "dArea": {"area_nome": "Área", "area_curta": "Área (curta)"},
-    "fOfertaEnsino": {"NO_CURSO": "Curso", "NO_CINE_ROTULO": "Rótulo CINE", "rede": "Rede",
-                      "modalidade": "Modalidade"},
+    "fOfertaEnsino": {"curso": "Curso", "NO_CINE_ROTULO": "Rótulo CINE", "rede": "Rede",
+                      "modalidade": "Modalidade", "NO_IES": "Instituição", "fatec": "É Fatec"},
     "dCBO": {"cbo_descricao": "Ocupação", "categoria_ocupacao": "Categoria da ocupação",
              "tipo_vinculo": "Vínculo com a área"},
 }
@@ -92,7 +92,8 @@ TABELAS = {
                           ("tipo_vinculo", "text", False), ("confianca", "text", True)], None),
     "fOfertaEnsino": ("fOfertaEnsino.csv", [
         ("NU_ANO_CENSO", "int64", True), ("CO_MUNICIPIO", "int64", True), ("CO_IES", "int64", True),
-        ("NO_CURSO", "text", False), ("CO_CURSO", "int64", True), ("NO_CINE_ROTULO", "text", False),
+        ("curso", "text", False), ("CO_CURSO", "int64", True), ("NO_CINE_ROTULO", "text", False),
+        ("NO_IES", "text", False), ("fatec", "boolean", False),
         ("CO_CINE_AREA_GERAL", "text", True), ("TP_GRAU_ACADEMICO", "int64", True),
         ("QT_VG_TOTAL", "int64", True), ("QT_ING", "int64", True), ("QT_MAT", "int64", True),
         ("QT_CONC", "int64", True), ("rede", "text", False), ("modalidade", "text", False)], "sel"),
@@ -393,7 +394,7 @@ M = "_Medidas"
 
 def cabecalho(prefixo, titulo, filtro_ano=True):
     itens = [
-        caixa_texto(f"{prefixo}_titulo", titulo, (24, 14, 840, 52), "16pt"),
+        caixa_texto(f"{prefixo}_titulo", titulo, (24, 14, 650 if prefixo == "cursos" else 840, 52), "16pt"),
         visual(f"{prefixo}_filtro_municipio", "slicer", (1076, 8, 180, 64), {"Values": ["dMunicipio.Município"]},
                objetos=DROPDOWN),
     ]
@@ -449,6 +450,22 @@ PAGINAS = [
       ("lineChart", "Formados no emprego e sobrequalificação",
        {"Category": ["dCalendario.Ano"],
         "Y": [f"{M}[Participação de formados no emprego]", f"{M}[Sobrequalificação no estoque]"]}, None)]),
+    ("municipios", "Municípios", "Quem forma e quem contrata: comparação entre municípios",
+     ["Concluintes", "Admissões com superior", "Sobrequalificação nas admissões", "Prêmio salarial na admissão"],
+     [("clusteredBarChart", "Concluintes e admissões de formados por município",
+       {"Category": ["dMunicipio.Município"], "Y": [f"{M}[Concluintes]", f"{M}[Admissões com superior]"]},
+       f"{M}[Admissões com superior]"),
+      ("tableEx", "Indicadores por município",
+       {"Values": ["dMunicipio.Município", f"{M}[Participação de formados nas admissões]",
+                   f"{M}[Sobrequalificação nas admissões]", f"{M}[Prêmio salarial na admissão]",
+                   f"{M}[Participação de formados no emprego]"]}, None)]),
+    ("cursos", "Cursos", "Cursos da região (INEP): use o filtro É Fatec",
+     ["Ingressantes", "Concluintes", "Matrículas", "Participação EaD nos concluintes"],
+     [("tableEx", "Cursos por instituição",
+       {"Values": ["fOfertaEnsino.Instituição", "fOfertaEnsino.Curso", f"{M}[Ingressantes]", f"{M}[Concluintes]"]},
+       f"{M}[Concluintes]"),
+      ("clusteredBarChart", "Concluintes por área",
+       {"Category": ["dArea.Área (curta)"], "Y": [f"{M}[Concluintes]"]}, f"{M}[Concluintes]")]),
     ("populacao", "População (IBGE)", "População e escolaridade: Censo 2022 (IBGE)",
      ["População", "Participação de superior (25 anos ou mais)", "Taxa de graduação (18 a 24 anos)",
       "Formados moradores"],
@@ -491,6 +508,9 @@ def gerar_relatorio():
         visuais = cabecalho(nome, titulo, filtro_ano=nome != "populacao") + cartoes(nome, cards)
         for i, (tipo, tit, papeis, ordem) in enumerate(graficos):
             visuais.append(visual(f"{nome}_grafico_{i}", tipo, (ESQ, DIR)[i], papeis, titulo=tit, ordenar=ordem))
+        if nome == "cursos":
+            visuais.append(visual(f"{nome}_filtro_fatec", "slicer", (684, 8, 180, 64),
+                                  {"Values": ["fOfertaEnsino.É Fatec"]}, objetos=DROPDOWN))
         for z, v in enumerate(visuais):
             v["position"]["z"] = z * 1000
             v["position"]["tabOrder"] = z * 1000

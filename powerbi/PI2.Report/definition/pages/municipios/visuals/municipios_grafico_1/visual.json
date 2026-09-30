@@ -1,0 +1,116 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "municipios_grafico_1",
+  "position": {
+    "x": 648,
+    "y": 210,
+    "z": 8000,
+    "height": 490,
+    "width": 608,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dMunicipio"
+                    }
+                  },
+                  "Property": "Município"
+                }
+              },
+              "queryRef": "dMunicipio.Município",
+              "nativeQueryRef": "Município"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Participação de formados nas admissões"
+                }
+              },
+              "queryRef": "_Medidas.Participação de formados nas admissões",
+              "nativeQueryRef": "Participação de formados nas admissões"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Sobrequalificação nas admissões"
+                }
+              },
+              "queryRef": "_Medidas.Sobrequalificação nas admissões",
+              "nativeQueryRef": "Sobrequalificação nas admissões"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Prêmio salarial na admissão"
+                }
+              },
+              "queryRef": "_Medidas.Prêmio salarial na admissão",
+              "nativeQueryRef": "Prêmio salarial na admissão"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Participação de formados no emprego"
+                }
+              },
+              "queryRef": "_Medidas.Participação de formados no emprego",
+              "nativeQueryRef": "Participação de formados no emprego"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Indicadores por município'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

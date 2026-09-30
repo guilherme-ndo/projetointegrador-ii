@@ -7,6 +7,8 @@ Antes de rodar:
   2. Extraia e copie o arquivo de cursos (nome parecido com
      MICRODADOS_CADASTRO_CURSOS_2023.CSV) para dados_brutos/inep/.
   3. Pode colocar vários anos na pasta; o script junta todos.
+  4. Copie também o arquivo de instituições (MICRODADOS_ED_SUP_IES_<ano>.CSV ou
+     MICRODADOS_CADASTRO_IES_<ano>.CSV) para trazer o nome da instituição.
 
 Saída: dados_tratados/fOfertaEnsino.csv
 Uso:   python scripts/02_censo_superior.py
@@ -42,9 +44,20 @@ def ler_arquivo(arq, codigos):
     return pd.concat(pedacos, ignore_index=True)
 
 
+def carregar_ies():
+    """Nome, sigla e mantenedora de cada instituição (o mais recente de cada código)."""
+    arquivos = sorted(p for p in PASTA.glob("*") if p.suffix.lower() == ".csv" and "IES" in p.name.upper())
+    if not arquivos:
+        return pd.DataFrame(columns=["CO_IES", "NO_IES", "SG_IES", "NO_MANTENEDORA"])
+    partes = [pd.read_csv(a, sep=";", encoding="latin-1", dtype=str,
+                          usecols=lambda c: c in ("CO_IES", "NO_IES", "SG_IES", "NO_MANTENEDORA"))
+              for a in arquivos]
+    return pd.concat(partes).drop_duplicates("CO_IES", keep="last")
+
+
 def main():
     arquivos = sorted(
-        p for p in PASTA.glob("*") if p.suffix.lower() == ".csv" and "CURSO" in p.name.upper()
+        p for p in PASTA.glob("*") if p.suffix.lower() == ".csv" and "CURSOS" in p.name.upper()
     )
     if not arquivos:
         raise FileNotFoundError(f"Nenhum arquivo de cursos em {PASTA}")
@@ -58,6 +71,11 @@ def main():
         partes.append(df)
 
     df = pd.concat(partes, ignore_index=True)
+    df["curso"] = df["NO_CURSO"].str.strip().str.upper()  # a grafia mudou entre os anos
+    if "CO_CINE_ROTULO" in df:
+        df["CO_CINE_ROTULO"] = df["CO_CINE_ROTULO"].str.strip('" ')  # vem entre aspas no arquivo do INEP
+    df = df.merge(carregar_ies(), on="CO_IES", how="left")
+    df["fatec"] = df["NO_MANTENEDORA"].str.contains("PAULA SOUZA", case=False, na=False)
 
     # Recorte temporal: descarta anos anteriores a ANO_INICIAL
     df["NU_ANO_CENSO"] = df["NU_ANO_CENSO"].astype(int)

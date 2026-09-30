@@ -54,7 +54,7 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 - `dados_brutos/`: downloads originais, não versionados.
 - `dados_tratados/`: CSVs filtrados.
 - `powerbi/`: projeto PBIP do painel e gerador.
-- `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo, 05_rais, 06_ibge, indicadores e utils (utils guarda também NIVEL_INSTRUCAO, comum a CAGED e RAIS).
+- `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo, 05_rais, 06_ibge, 07_detalhe, indicadores e utils (utils guarda também NIVEL_INSTRUCAO, comum a CAGED e RAIS).
 - `dados_tratados/indicadores_ano.csv` e `indicadores_area_ano.csv`: indicadores calculados em Python, para conferir as medidas DAX.
 - `docs/apresentacao_pi2.pptx`: apresentação no modelo da III Mostra Acadêmica (`docs/Apresentacao-Trabalho-Conclusao-de-Curso-Minimalista-Preto-e-Branco.pptx`), preto e branco, fontes do modelo; seções: capa, introdução, justificativa, objetivos, revisão teórica, metodologia (coleta, organização, análise), resultados, conclusão, próximos passos e referências. Atualizar a cada avanço. Fontes: só Montaser Arabic e Montaser Arabic Light. Referências no formato ABNT do PI1.
 - `powerbi/`, `docs/`, `relatorio/`.
@@ -68,7 +68,9 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 - Feito: painel Power BI em formato PBIP (`powerbi/`), gerado por `powerbi/gerar_pbip.py` (modelo TMDL + relatório PBIR, 5 páginas). Medidas DAX conferidas contra `indicadores.py`. Detalhes em `powerbi/README.md`. Se editar o painel no Desktop, não rodar o gerador de novo (sobrescreve).
 - Teste do painel sem clicar na tela: abrir o .pbip, atualizar e consultar DAX pela instância local do Analysis Services do Power BI Desktop (porta em `%USERPROFILE%/Microsoft/Power BI Desktop Store App/AnalysisServicesWorkspaces/*/Data/msmdsrv.port.txt`, DLL `Microsoft.PowerBI.AdomdClient.dll`).
 - Feito: IBGE Censo 2022 (script 06, API do SIDRA; tabelas 9514, 10059, 10061 e 10064). A 10064 traz moradores formados por área CINE (mesmos códigos do INEP; tem também a área 11, não sabe ou mal especificada). Achados: 21% dos moradores de 25+ têm superior (10% Itapevi a 33% Santana de Parnaíba); 15% dos jovens de 18-24 cursam graduação; Computação e TIC é a única área com menos moradores formados (21,7 mil) que vínculos de formados na área (30,3 mil, RAIS 2022).
-- As três bases exigidas estão integradas (INEP, MTE e IBGE). Próximos: detalhar por município e curso (Fatec), publicar o painel, guia para as escolas e relatório.
+- As três bases exigidas estão integradas (INEP, MTE e IBGE).
+- Feito: detalhamento por município e curso (script 07). Fatecs da região: Osasco (CO_IES 15709), Barueri (15757), Carapicuíba (16395), Santana de Parnaíba (20478) e polos EaD da Fatec São Paulo (34); identificadas pela mantenedora Paula Souza. Ligação curso -> ocupações em `docs/curso_ocupacao_fatec.csv` (proposta minha, a validar com as Fatecs); resumo em `docs/cursos_fatec.md`. A concorrência entre cursos fica no nível da área CINE (índice), porque os campos detalhados da CINE não acompanham as ocupações. Achados: Barueri faz 64% das admissões de formados e 16% dos concluintes; Osasco forma 47% e contrata 20% (mercado é regional); ocupações de TI contratam ~8 mil formados/ano com salário mediano ~R$ 9 mil, mas caíram ~15% desde 2021 enquanto concluintes de TI dobraram.
+- Próximos: publicar o painel, validar com o professor e as Fatecs, guia para as escolas e relatório.
 - Primeiro fazer um fluxo completo no Power BI com uma área, um ano e um município, depois escalar.
 
 ## Convenções

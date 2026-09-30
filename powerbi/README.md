@@ -34,7 +34,7 @@ As medidas foram conferidas contra `scripts/indicadores.py` (mesmos valores por 
 
 ## Páginas
 
-Visão geral, Descompasso, Salários, Oferta de cursos, Emprego (RAIS) e População (IBGE). Todas têm filtro de município; só a do IBGE não tem filtro de ano (o Censo é de 2022).
+Visão geral, Descompasso, Salários, Oferta de cursos, Emprego (RAIS), Municípios, Cursos (com filtro É Fatec) e População (IBGE). Todas têm filtro de município; só a do IBGE não tem filtro de ano (o Censo é de 2022).
 
 ## Editar
 

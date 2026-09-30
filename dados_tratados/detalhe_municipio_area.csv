@@ -1,0 +1,86 @@
+﻿municipio,area_codigo,concluintes,admissoes_superior_area,indice_descompasso,area_curta
+Barueri,00,0.0,,,Programas básicos
+Barueri,01,266.0,411.0,1.5451127819548873,Educação
+Barueri,02,66.0,251.0,3.803030303030303,Artes e humanidades
+Barueri,03,14.0,701.0,,Ciências sociais
+Barueri,04,1186.0,9290.0,7.833052276559865,Negócios e direito
+Barueri,05,3.0,257.0,,Ciências naturais
+Barueri,06,428.0,9267.0,21.651869158878505,Computação e TIC
+Barueri,07,76.0,1027.0,13.513157894736842,Engenharia
+Barueri,08,0.0,21.0,,Agricultura e veterinária
+Barueri,09,106.0,1597.0,15.066037735849056,Saúde e bem-estar
+Barueri,10,95.0,,,Serviços
+Cajamar,00,0.0,,,Programas básicos
+Cajamar,01,56.0,146.0,2.607142857142857,Educação
+Cajamar,02,13.0,12.0,,Artes e humanidades
+Cajamar,03,1.0,27.0,,Ciências sociais
+Cajamar,04,208.0,584.0,2.8076923076923075,Negócios e direito
+Cajamar,05,2.0,4.0,,Ciências naturais
+Cajamar,06,35.0,38.0,,Computação e TIC
+Cajamar,07,15.0,64.0,,Engenharia
+Cajamar,08,0.0,,,Agricultura e veterinária
+Cajamar,09,15.0,142.0,,Saúde e bem-estar
+Cajamar,10,14.0,,,Serviços
+Carapicuíba,00,0.0,,,Programas básicos
+Carapicuíba,01,184.0,183.0,0.9945652173913043,Educação
+Carapicuíba,02,34.0,4.0,,Artes e humanidades
+Carapicuíba,03,73.0,28.0,0.3835616438356164,Ciências sociais
+Carapicuíba,04,968.0,233.0,0.24070247933884298,Negócios e direito
+Carapicuíba,05,1.0,,,Ciências naturais
+Carapicuíba,06,353.0,25.0,0.0708215297450425,Computação e TIC
+Carapicuíba,07,77.0,18.0,0.23376623376623376,Engenharia
+Carapicuíba,08,0.0,,,Agricultura e veterinária
+Carapicuíba,09,140.0,264.0,1.8857142857142857,Saúde e bem-estar
+Carapicuíba,10,57.0,,,Serviços
+Itapevi,00,0.0,,,Programas básicos
+Itapevi,01,166.0,80.0,0.4819277108433735,Educação
+Itapevi,02,22.0,14.0,,Artes e humanidades
+Itapevi,03,1.0,20.0,,Ciências sociais
+Itapevi,04,374.0,426.0,1.13903743315508,Negócios e direito
+Itapevi,05,1.0,9.0,,Ciências naturais
+Itapevi,06,102.0,50.0,0.49019607843137253,Computação e TIC
+Itapevi,07,17.0,43.0,,Engenharia
+Itapevi,08,0.0,2.0,,Agricultura e veterinária
+Itapevi,09,26.0,220.0,,Saúde e bem-estar
+Itapevi,10,35.0,,,Serviços
+Jandira,00,0.0,,,Programas básicos
+Jandira,01,96.0,87.0,0.90625,Educação
+Jandira,02,7.0,5.0,,Artes e humanidades
+Jandira,03,3.0,14.0,,Ciências sociais
+Jandira,04,237.0,194.0,0.8185654008438819,Negócios e direito
+Jandira,05,2.0,10.0,,Ciências naturais
+Jandira,06,68.0,11.0,0.16176470588235295,Computação e TIC
+Jandira,07,19.0,14.0,,Engenharia
+Jandira,09,33.0,36.0,,Saúde e bem-estar
+Jandira,10,13.0,,,Serviços
+Osasco,00,0.0,,,Programas básicos
+Osasco,01,609.0,1046.0,1.7175697865353037,Educação
+Osasco,02,91.0,196.0,2.1538461538461537,Artes e humanidades
+Osasco,03,510.0,101.0,0.1980392156862745,Ciências sociais
+Osasco,04,2988.0,4100.0,1.3721552878179384,Negócios e direito
+Osasco,05,62.0,365.0,5.887096774193548,Ciências naturais
+Osasco,06,963.0,1065.0,1.1059190031152648,Computação e TIC
+Osasco,07,298.0,88.0,0.2953020134228188,Engenharia
+Osasco,08,1.0,2.0,,Agricultura e veterinária
+Osasco,09,726.0,680.0,0.9366391184573003,Saúde e bem-estar
+Osasco,10,132.0,,,Serviços
+Pirapora do Bom Jesus,01,1.0,43.0,,Educação
+Pirapora do Bom Jesus,02,0.0,,,Artes e humanidades
+Pirapora do Bom Jesus,03,0.0,,,Ciências sociais
+Pirapora do Bom Jesus,04,2.0,7.0,,Negócios e direito
+Pirapora do Bom Jesus,05,0.0,,,Ciências naturais
+Pirapora do Bom Jesus,06,0.0,2.0,,Computação e TIC
+Pirapora do Bom Jesus,07,0.0,3.0,,Engenharia
+Pirapora do Bom Jesus,09,0.0,3.0,,Saúde e bem-estar
+Pirapora do Bom Jesus,10,0.0,,,Serviços
+Santana de Parnaíba,00,0.0,,,Programas básicos
+Santana de Parnaíba,01,71.0,409.0,5.76056338028169,Educação
+Santana de Parnaíba,02,9.0,16.0,,Artes e humanidades
+Santana de Parnaíba,03,121.0,45.0,0.371900826446281,Ciências sociais
+Santana de Parnaíba,04,623.0,712.0,1.1428571428571428,Negócios e direito
+Santana de Parnaíba,05,1.0,53.0,,Ciências naturais
+Santana de Parnaíba,06,367.0,351.0,0.9564032697547684,Computação e TIC
+Santana de Parnaíba,07,124.0,37.0,0.29838709677419356,Engenharia
+Santana de Parnaíba,08,,1.0,,Agricultura e veterinária
+Santana de Parnaíba,09,172.0,160.0,0.9302325581395349,Saúde e bem-estar
+Santana de Parnaíba,10,16.0,,,Serviços
