@@ -1,0 +1,32 @@
+table dEscolaridade
+	lineageTag: f62613a8-d40d-5e13-85c2-a80a0ce3d916
+
+	column nivel_instrucao
+		dataType: string
+		lineageTag: fe21ffe7-3e7c-527d-9dbe-7f4e48943522
+		summarizeBy: none
+		sourceColumn: nivel_instrucao
+
+		annotation SummarizationSetBy = User
+
+	column ordem
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 14a5a45f-8988-58f1-9c84-57fb2afb96b5
+		summarizeBy: none
+		sourceColumn: ordem
+
+		annotation SummarizationSetBy = User
+
+	partition dEscolaridade = m
+		mode: import
+		source =
+				let
+				    Tabela = #table(type table [nivel_instrucao = text, ordem = Int64.Type], {
+				        {"Abaixo do médio", 1}, {"Médio completo", 2}, {"Superior incompleto", 3},
+				        {"Superior completo ou mais", 4}, {"Não identificado", 5}})
+				in
+				    Tabela
+
+	annotation PBI_ResultType = Table

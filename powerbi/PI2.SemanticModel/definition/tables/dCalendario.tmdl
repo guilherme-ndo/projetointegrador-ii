@@ -1,0 +1,22 @@
+table dCalendario
+	lineageTag: 74708c91-1961-5b9d-b8b1-214cedc1a20c
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 06bb889e-bcdc-5314-92f1-8d78c2e2c35d
+		summarizeBy: none
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = User
+
+	partition dCalendario = m
+		mode: import
+		source =
+				let
+				    Anos = {2020..2024},
+				    Tabela = Table.FromList(Anos, Splitter.SplitByNothing(), type table [Ano = Int64.Type])
+				in
+				    Tabela
+
+	annotation PBI_ResultType = Table

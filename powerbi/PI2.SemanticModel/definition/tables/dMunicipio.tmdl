@@ -1,0 +1,50 @@
+table dMunicipio
+	lineageTag: 5e50cc79-14a3-5037-b254-4bde448a6cb0
+
+	column cod_ibge_7
+		dataType: int64
+		formatString: 0
+		lineageTag: c826aa60-d3ee-5b80-8342-27406ea1555c
+		summarizeBy: none
+		sourceColumn: cod_ibge_7
+
+		annotation SummarizationSetBy = User
+
+	column cod_ibge_6
+		dataType: int64
+		formatString: 0
+		lineageTag: bf325b0d-b2ab-5f48-9bd5-6d88197e9ada
+		summarizeBy: none
+		sourceColumn: cod_ibge_6
+
+		annotation SummarizationSetBy = User
+
+	column 'Município'
+		dataType: string
+		lineageTag: 7e7689eb-281a-59d1-94ae-2767ed2f0aa9
+		summarizeBy: none
+		sourceColumn: Município
+
+		annotation SummarizationSetBy = User
+
+	column uf
+		dataType: string
+		isHidden
+		lineageTag: 8aa98a00-337e-5484-9163-fb2c4d6247cf
+		summarizeBy: none
+		sourceColumn: uf
+
+		annotation SummarizationSetBy = User
+
+	partition dMunicipio = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "dMunicipio.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalho, {{"cod_ibge_7", Int64.Type}, {"cod_ibge_6", Int64.Type}, {"nome", type text}, {"uf", type text}}, "en-US"),
+				    Nomes = Table.RenameColumns(Tipos, {{"nome", "Município"}})
+				in
+				    Nomes
+
+	annotation PBI_ResultType = Table

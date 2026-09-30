@@ -1,0 +1,47 @@
+relationship 06af62f9-1481-5320-902d-d9acbbafb419
+	fromColumn: fOfertaEnsino.CO_MUNICIPIO
+	toColumn: dMunicipio.cod_ibge_7
+
+relationship 88c23a84-84e4-5ce4-9a4d-a42471f061b6
+	fromColumn: fAdmissoes.municipio
+	toColumn: dMunicipio.cod_ibge_6
+
+relationship e2dc1482-b9d8-560f-8e37-f3290c263fdf
+	fromColumn: fEstoqueEmprego.municipio
+	toColumn: dMunicipio.cod_ibge_6
+
+relationship 9a97b303-0538-5452-8323-916728e9cabd
+	fromColumn: fOfertaEnsino.NU_ANO_CENSO
+	toColumn: dCalendario.Ano
+
+relationship f25081aa-4eb4-5d1c-bc9f-d42fee2ceb06
+	fromColumn: fAdmissoes.ano
+	toColumn: dCalendario.Ano
+
+relationship c25d2eaa-76c0-5aa5-9533-e67732f94c00
+	fromColumn: fEstoqueEmprego.ano
+	toColumn: dCalendario.Ano
+
+relationship 61579458-3cf5-5265-a48f-08c8f3f8d0ce
+	fromColumn: fOfertaEnsino.CO_CINE_AREA_GERAL
+	toColumn: dArea.area_codigo
+
+relationship bb018f28-3a87-5c72-bfda-0455ce418d0a
+	fromColumn: dCBO.area_codigo
+	toColumn: dArea.area_codigo
+
+relationship 4210d4b9-cfed-5853-82b9-96e9976f7fa6
+	fromColumn: fAdmissoes.cbo2002ocupacao
+	toColumn: dCBO.cbo_codigo
+
+relationship f4297649-70da-5b48-a82c-50f425b7524d
+	fromColumn: fEstoqueEmprego.cbo2002ocupacao
+	toColumn: dCBO.cbo_codigo
+
+relationship fbe1eb23-40f7-5bc3-8694-d60232d2658b
+	fromColumn: fAdmissoes.nivel_instrucao
+	toColumn: dEscolaridade.nivel_instrucao
+
+relationship e6bdd036-a241-56bf-a712-434170a739dd
+	fromColumn: fEstoqueEmprego.nivel_instrucao
+	toColumn: dEscolaridade.nivel_instrucao

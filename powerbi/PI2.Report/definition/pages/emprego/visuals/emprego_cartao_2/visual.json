@@ -1,0 +1,38 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "emprego_cartao_2",
+  "position": {
+    "x": 648,
+    "y": 84,
+    "z": 5000,
+    "height": 110,
+    "width": 296,
+    "tabOrder": 5000
+  },
+  "visual": {
+    "visualType": "card",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Sobrequalificação no estoque"
+                }
+              },
+              "queryRef": "_Medidas.Sobrequalificação no estoque",
+              "nativeQueryRef": "Sobrequalificação no estoque"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

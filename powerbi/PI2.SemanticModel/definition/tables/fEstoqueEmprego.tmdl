@@ -1,0 +1,82 @@
+table fEstoqueEmprego
+	lineageTag: d9ec7709-eb5a-5593-8a69-73885337fd67
+
+	column ano
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 913364a9-6c2b-5961-83b9-b765206c95f8
+		summarizeBy: none
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = User
+
+	column municipio
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 9bd6c275-6333-53d5-9c0d-f800fbbb8d07
+		summarizeBy: none
+		sourceColumn: municipio
+
+		annotation SummarizationSetBy = User
+
+	column cbo2002ocupacao
+		dataType: string
+		isHidden
+		lineageTag: 13c3ca5a-d2aa-5098-82a1-3e4ef642f9b4
+		summarizeBy: none
+		sourceColumn: cbo2002ocupacao
+
+		annotation SummarizationSetBy = User
+
+	column nivel_instrucao
+		dataType: string
+		isHidden
+		lineageTag: a808a6f9-1ac5-5fdf-8a4f-b7845274aa09
+		summarizeBy: none
+		sourceColumn: nivel_instrucao
+
+		annotation SummarizationSetBy = User
+
+	column vinculos
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 8e93ba35-6570-5e99-b08d-2896112fd6f1
+		summarizeBy: none
+		sourceColumn: vinculos
+
+		annotation SummarizationSetBy = User
+
+	column rem_validos
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: acd6696d-4d18-535a-96e4-79c9fda82833
+		summarizeBy: none
+		sourceColumn: rem_validos
+
+		annotation SummarizationSetBy = User
+
+	column rem_soma
+		dataType: double
+		isHidden
+		formatString: 0
+		lineageTag: 68f3bc30-7958-528b-a960-2bd1f49c35c2
+		summarizeBy: none
+		sourceColumn: rem_soma
+
+		annotation SummarizationSetBy = User
+
+	partition fEstoqueEmprego = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "fEstoqueEmprego.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalho, {{"ano", Int64.Type}, {"municipio", Int64.Type}, {"cbo2002ocupacao", type text}, {"nivel_instrucao", type text}, {"vinculos", Int64.Type}, {"rem_validos", Int64.Type}, {"rem_soma", type number}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

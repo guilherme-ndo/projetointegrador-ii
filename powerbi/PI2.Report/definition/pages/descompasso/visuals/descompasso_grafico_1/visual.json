@@ -1,0 +1,102 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "name": "descompasso_grafico_1",
+  "position": {
+    "x": 648,
+    "y": 210,
+    "z": 8000,
+    "height": 490,
+    "width": 608,
+    "tabOrder": 8000
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "dArea"
+                    }
+                  },
+                  "Property": "Área (curta)"
+                }
+              },
+              "queryRef": "dArea.Área (curta)",
+              "nativeQueryRef": "Área (curta)"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Concluintes"
+                }
+              },
+              "queryRef": "_Medidas.Concluintes",
+              "nativeQueryRef": "Concluintes"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Admissões com superior na área"
+                }
+              },
+              "queryRef": "_Medidas.Admissões com superior na área",
+              "nativeQueryRef": "Admissões com superior na área"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "_Medidas"
+                    }
+                  },
+                  "Property": "Índice de descompasso"
+                }
+              },
+              "queryRef": "_Medidas.Índice de descompasso",
+              "nativeQueryRef": "Índice de descompasso"
+            }
+          ]
+        }
+      }
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'Detalhe por área'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

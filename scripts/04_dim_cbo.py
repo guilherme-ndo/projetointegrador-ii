@@ -17,7 +17,7 @@ Antes de rodar:
     aba cbo2002ocupação, com a lista de ocupações)
   - dados_tratados/fAdmissoes.csv (opcional, para o relatório de cobertura)
 
-Saída: dados_tratados/dCBO.csv e docs/cobertura_depara.csv
+Saída: dados_tratados/dCBO.csv, dados_tratados/dArea.csv e docs/cobertura_depara.csv
 Uso:   python scripts/04_dim_cbo.py
 """
 import pandas as pd
@@ -26,6 +26,13 @@ from utils import BRUTOS, RAIZ, TRATADOS
 
 DEPARA = RAIZ / "docs" / "depara_cine_cbo.xlsx"
 LAYOUT = BRUTOS / "caged" / "layout_novo_caged_movimentacao.xlsx"
+
+# Nomes curtos das áreas CINE, para gráficos
+AREA_CURTA = {
+    "00": "Programas básicos", "01": "Educação", "02": "Artes e humanidades", "03": "Ciências sociais",
+    "04": "Negócios e direito", "05": "Ciências naturais", "06": "Computação e TIC", "07": "Engenharia",
+    "08": "Agricultura e veterinária", "09": "Saúde e bem-estar", "10": "Serviços",
+}
 
 CATEGORIA = {
     "0": "Forças armadas",
@@ -39,6 +46,7 @@ CATEGORIA = {
 def carregar_depara():
     dp = pd.read_excel(DEPARA, sheet_name="DePara_CBO_CINE", dtype=str)
     areas = pd.read_excel(DEPARA, sheet_name="CINE_Areas", dtype=str)
+    areas["area_curta"] = areas["area_codigo"].map(AREA_CURTA)
     dp = dp.drop(columns="area_nome").merge(areas, on="area_codigo", how="left")
     repetidos = dp["cbo_codigo"][dp["cbo_codigo"].duplicated()]
     if len(repetidos):
@@ -66,6 +74,11 @@ def main():
     campos = ["area_codigo", "area_nome", "tipo_vinculo", "confianca"]
     cbo = cbo.join(dp[campos], on="chave_depara")
     cbo["area_nome"] = cbo["area_nome"].fillna("Sem área")
+
+    # Dimensão de áreas CINE (para o Power BI)
+    areas = pd.read_excel(DEPARA, sheet_name="CINE_Areas", dtype=str)
+    areas["area_curta"] = areas["area_codigo"].map(AREA_CURTA)
+    areas.to_csv(TRATADOS / "dArea.csv", index=False, encoding="utf-8-sig")
 
     saida = TRATADOS / "dCBO.csv"
     cbo.to_csv(saida, index=False, encoding="utf-8-sig")

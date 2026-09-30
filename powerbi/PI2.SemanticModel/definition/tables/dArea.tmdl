@@ -1,0 +1,39 @@
+table dArea
+	lineageTag: 9a37de72-69ef-54eb-b404-6e676f93a10a
+
+	column area_codigo
+		dataType: string
+		lineageTag: 82bd4853-cf1d-5ea8-88da-661cde483528
+		summarizeBy: none
+		sourceColumn: area_codigo
+
+		annotation SummarizationSetBy = User
+
+	column 'Área'
+		dataType: string
+		lineageTag: ada948dd-a62b-54e0-9ef3-169ac9243fab
+		summarizeBy: none
+		sourceColumn: Área
+
+		annotation SummarizationSetBy = User
+
+	column 'Área (curta)'
+		dataType: string
+		lineageTag: 9d0917cf-9f0e-595b-9b2c-14b18b0db975
+		summarizeBy: none
+		sourceColumn: Área (curta)
+
+		annotation SummarizationSetBy = User
+
+	partition dArea = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "dArea.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalho, {{"area_codigo", type text}, {"area_nome", type text}, {"area_curta", type text}}, "en-US"),
+				    Nomes = Table.RenameColumns(Tipos, {{"area_nome", "Área"}, {"area_curta", "Área (curta)"}})
+				in
+				    Nomes
+
+	annotation PBI_ResultType = Table

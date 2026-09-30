@@ -1,0 +1,147 @@
+table fOfertaEnsino
+	lineageTag: ad283706-83c0-5c67-8e32-d96244b8438b
+
+	column NU_ANO_CENSO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5af9b20d-cbd6-5b0d-b50e-6fa636431afe
+		summarizeBy: none
+		sourceColumn: NU_ANO_CENSO
+
+		annotation SummarizationSetBy = User
+
+	column CO_MUNICIPIO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: b44a947c-eb86-55c9-bd8c-f46bb0cf5023
+		summarizeBy: none
+		sourceColumn: CO_MUNICIPIO
+
+		annotation SummarizationSetBy = User
+
+	column CO_IES
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: a39ee99f-a2e6-53ef-a03c-05b5b70ba9fb
+		summarizeBy: none
+		sourceColumn: CO_IES
+
+		annotation SummarizationSetBy = User
+
+	column Curso
+		dataType: string
+		lineageTag: b63b7a83-a24d-5355-b5c0-f7d537f25056
+		summarizeBy: none
+		sourceColumn: Curso
+
+		annotation SummarizationSetBy = User
+
+	column CO_CURSO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: ee6f6a5c-8ccb-5a5d-9bb0-874b833b404e
+		summarizeBy: none
+		sourceColumn: CO_CURSO
+
+		annotation SummarizationSetBy = User
+
+	column 'Rótulo CINE'
+		dataType: string
+		lineageTag: c291abfe-5818-5424-b79b-0d01764a6bc3
+		summarizeBy: none
+		sourceColumn: Rótulo CINE
+
+		annotation SummarizationSetBy = User
+
+	column CO_CINE_AREA_GERAL
+		dataType: string
+		isHidden
+		lineageTag: 1dcc2434-5c81-51e6-aea5-e4ccce7ad47e
+		summarizeBy: none
+		sourceColumn: CO_CINE_AREA_GERAL
+
+		annotation SummarizationSetBy = User
+
+	column TP_GRAU_ACADEMICO
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2ea69404-ab27-5687-a709-6f53b63fd072
+		summarizeBy: none
+		sourceColumn: TP_GRAU_ACADEMICO
+
+		annotation SummarizationSetBy = User
+
+	column QT_VG_TOTAL
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5149a10f-cd78-5692-bae2-43e94cd3b885
+		summarizeBy: none
+		sourceColumn: QT_VG_TOTAL
+
+		annotation SummarizationSetBy = User
+
+	column QT_ING
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 145b3ddb-618a-59b0-add7-4b6b4e6ef59d
+		summarizeBy: none
+		sourceColumn: QT_ING
+
+		annotation SummarizationSetBy = User
+
+	column QT_MAT
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: cc5b1cba-dd32-59d9-acdc-e75db6349068
+		summarizeBy: none
+		sourceColumn: QT_MAT
+
+		annotation SummarizationSetBy = User
+
+	column QT_CONC
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 132638f9-7dd5-5dd7-ac34-f275f975dcc7
+		summarizeBy: none
+		sourceColumn: QT_CONC
+
+		annotation SummarizationSetBy = User
+
+	column Rede
+		dataType: string
+		lineageTag: cddad9bb-6306-5228-836f-2172a7b824d7
+		summarizeBy: none
+		sourceColumn: Rede
+
+		annotation SummarizationSetBy = User
+
+	column Modalidade
+		dataType: string
+		lineageTag: e6ec88ce-d1ba-5fa8-b3c6-38ef99812c9a
+		summarizeBy: none
+		sourceColumn: Modalidade
+
+		annotation SummarizationSetBy = User
+
+	partition fOfertaEnsino = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "fOfertaEnsino.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalho, {"NU_ANO_CENSO", "CO_MUNICIPIO", "CO_IES", "NO_CURSO", "CO_CURSO", "NO_CINE_ROTULO", "CO_CINE_AREA_GERAL", "TP_GRAU_ACADEMICO", "QT_VG_TOTAL", "QT_ING", "QT_MAT", "QT_CONC", "rede", "modalidade"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"NU_ANO_CENSO", Int64.Type}, {"CO_MUNICIPIO", Int64.Type}, {"CO_IES", Int64.Type}, {"NO_CURSO", type text}, {"CO_CURSO", Int64.Type}, {"NO_CINE_ROTULO", type text}, {"CO_CINE_AREA_GERAL", type text}, {"TP_GRAU_ACADEMICO", Int64.Type}, {"QT_VG_TOTAL", Int64.Type}, {"QT_ING", Int64.Type}, {"QT_MAT", Int64.Type}, {"QT_CONC", Int64.Type}, {"rede", type text}, {"modalidade", type text}}, "en-US"),
+				    Nomes = Table.RenameColumns(Tipos, {{"NO_CURSO", "Curso"}, {"NO_CINE_ROTULO", "Rótulo CINE"}, {"rede", "Rede"}, {"modalidade", "Modalidade"}})
+				in
+				    Nomes
+
+	annotation PBI_ResultType = Table

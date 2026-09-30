@@ -1,0 +1,127 @@
+table fAdmissoes
+	lineageTag: 3f0d5c8c-d9fa-56f7-a9fd-a5ab34bae3bb
+
+	column ano
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7266e0d8-2870-544f-9b91-36841219b71d
+		summarizeBy: none
+		sourceColumn: ano
+
+		annotation SummarizationSetBy = User
+
+	column mes
+		dataType: int64
+		formatString: 0
+		lineageTag: 40a319be-bc99-5c47-ac77-0b6a8ac0b579
+		summarizeBy: none
+		sourceColumn: mes
+
+		annotation SummarizationSetBy = User
+
+	column municipio
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 7375987c-9193-54ff-ba2a-1dba3e60658e
+		summarizeBy: none
+		sourceColumn: municipio
+
+		annotation SummarizationSetBy = User
+
+	column cbo2002ocupacao
+		dataType: string
+		isHidden
+		lineageTag: 96e04566-294d-5fd8-a8c2-c671f338128b
+		summarizeBy: none
+		sourceColumn: cbo2002ocupacao
+
+		annotation SummarizationSetBy = User
+
+	column nivel_instrucao
+		dataType: string
+		isHidden
+		lineageTag: ff34a140-9f65-55f2-a7cc-3d3cfab15868
+		summarizeBy: none
+		sourceColumn: nivel_instrucao
+
+		annotation SummarizationSetBy = User
+
+	column movimento
+		dataType: string
+		lineageTag: 9b050a29-e2eb-5e03-9221-35ddd7fed56e
+		summarizeBy: none
+		sourceColumn: movimento
+
+		annotation SummarizationSetBy = User
+
+	column peso
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5c083bd3-4dee-527a-b553-30394f355a22
+		summarizeBy: none
+		sourceColumn: peso
+
+		annotation SummarizationSetBy = User
+
+	column salario
+		dataType: double
+		isHidden
+		formatString: 0
+		lineageTag: 38b61a19-7879-5ad3-8c01-d48cb9e11e9b
+		summarizeBy: none
+		sourceColumn: salario
+
+		annotation SummarizationSetBy = User
+
+	column salario_comparavel
+		dataType: boolean
+		isHidden
+		lineageTag: a75cbeca-b18d-5a44-a708-d313804955de
+		summarizeBy: none
+		sourceColumn: salario_comparavel
+
+		annotation SummarizationSetBy = User
+
+	column idade
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 5abf728b-d78a-584c-a8aa-293971d80791
+		summarizeBy: none
+		sourceColumn: idade
+
+		annotation SummarizationSetBy = User
+
+	column sexo
+		dataType: int64
+		isHidden
+		formatString: 0
+		lineageTag: 2a755325-803d-5903-93af-417ef3d80b87
+		summarizeBy: none
+		sourceColumn: sexo
+
+		annotation SummarizationSetBy = User
+
+	column secao
+		dataType: string
+		lineageTag: aa4fabea-2ed1-5d4a-a3db-97bc85c24e32
+		summarizeBy: none
+		sourceColumn: secao
+
+		annotation SummarizationSetBy = User
+
+	partition fAdmissoes = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "fAdmissoes.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Colunas = Table.SelectColumns(Cabecalho, {"ano", "mes", "municipio", "cbo2002ocupacao", "nivel_instrucao", "movimento", "peso", "salario", "salario_comparavel", "idade", "sexo", "secao"}),
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"ano", Int64.Type}, {"mes", Int64.Type}, {"municipio", Int64.Type}, {"cbo2002ocupacao", type text}, {"nivel_instrucao", type text}, {"movimento", type text}, {"peso", Int64.Type}, {"salario", type number}, {"salario_comparavel", type logical}, {"idade", Int64.Type}, {"sexo", Int64.Type}, {"secao", type text}}, "en-US")
+				in
+				    Tipos
+
+	annotation PBI_ResultType = Table

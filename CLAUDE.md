@@ -53,6 +53,7 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 ## Estrutura do repositório
 - `dados_brutos/`: downloads originais, não versionados.
 - `dados_tratados/`: CSVs filtrados.
+- `powerbi/`: projeto PBIP do painel e gerador.
 - `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo, 05_rais, indicadores e utils (utils guarda também NIVEL_INSTRUCAO, comum a CAGED e RAIS).
 - `dados_tratados/indicadores_ano.csv` e `indicadores_area_ano.csv`: indicadores calculados em Python, para conferir as medidas DAX.
 - `docs/apresentacao_pi2.pptx`: apresentação no modelo da III Mostra Acadêmica (`docs/Apresentacao-Trabalho-Conclusao-de-Curso-Minimalista-Preto-e-Branco.pptx`), preto e branco, fontes do modelo; seções: capa, introdução, justificativa, objetivos, revisão teórica, metodologia (coleta, organização, análise), resultados, conclusão, próximos passos e referências. Atualizar a cada avanço. Fontes: só Montaser Arabic e Montaser Arabic Light. Referências no formato ABNT do PI1.
@@ -64,6 +65,8 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 - Achados 2020-2024: índice de Computação/TIC caiu de 11,5 (2021) para 4,7 (concluintes da área 907 para 2.316); prêmio salarial caiu de 2,7x (2021) para 2,1x; sobrequalificação subiu de 30% para 34% (pico de 37% em 2023); EaD passou de 39% para 67% dos concluintes. 2020 tem admissões baixas (pandemia).
 - `fAdmissoes.csv` com 5 anos tem cerca de 430 MB; o script 03 converte tipos mês a mês para caber na memória.
 - Feito: RAIS 2020-2024 (script 05), vínculos ativos em 31/12, agregados por ano, município, CBO e grau. Achados: formados são 34% do estoque em 2024 (25% em 2020); sobrequalificação no estoque 16% (contra 34% nas admissões); prêmio salarial no estoque 2,6x (2,1x na admissão). Limitação: RAIS 2022 parece subdeclarada (formados +37% de 2022 para 2023, contra 10-14% nos outros anos), provável transição para o eSocial.
+- Feito: painel Power BI em formato PBIP (`powerbi/`), gerado por `powerbi/gerar_pbip.py` (modelo TMDL + relatório PBIR, 5 páginas). Medidas DAX conferidas contra `indicadores.py`. Detalhes em `powerbi/README.md`. Se editar o painel no Desktop, não rodar o gerador de novo (sobrescreve).
+- Teste do painel sem clicar na tela: abrir o .pbip, atualizar e consultar DAX pela instância local do Analysis Services do Power BI Desktop (porta em `%USERPROFILE%/Microsoft/Power BI Desktop Store App/AnalysisServicesWorkspaces/*/Data/msmdsrv.port.txt`, DLL `Microsoft.PowerBI.AdomdClient.dll`).
 - Script 06 para o IBGE.
 - Primeiro fazer um fluxo completo no Power BI com uma área, um ano e um município, depois escalar.
 

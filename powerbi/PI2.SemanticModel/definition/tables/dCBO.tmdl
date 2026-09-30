@@ -1,0 +1,83 @@
+table dCBO
+	lineageTag: 14db6188-57d2-5ed2-a12b-7b29f59196e5
+
+	column cbo_codigo
+		dataType: string
+		lineageTag: e5b9f25b-2b9f-5db6-bf61-9819f166b7de
+		summarizeBy: none
+		sourceColumn: cbo_codigo
+
+		annotation SummarizationSetBy = User
+
+	column 'Ocupação'
+		dataType: string
+		lineageTag: 3b29d644-e8f5-5cbd-b69e-3075122dc30f
+		summarizeBy: none
+		sourceColumn: Ocupação
+
+		annotation SummarizationSetBy = User
+
+	column 'Categoria da ocupação'
+		dataType: string
+		lineageTag: 61656131-e1d0-56ae-996d-9e8ae0b5eca7
+		summarizeBy: none
+		sourceColumn: Categoria da ocupação
+
+		annotation SummarizationSetBy = User
+
+	column chave_depara
+		dataType: string
+		isHidden
+		lineageTag: aa22117c-b38f-5daa-810c-a1a37d82cb31
+		summarizeBy: none
+		sourceColumn: chave_depara
+
+		annotation SummarizationSetBy = User
+
+	column area_codigo
+		dataType: string
+		isHidden
+		lineageTag: c1579bae-d3f2-5e93-905d-3d39fc93c17f
+		summarizeBy: none
+		sourceColumn: area_codigo
+
+		annotation SummarizationSetBy = User
+
+	column area_nome
+		dataType: string
+		isHidden
+		lineageTag: cd2708de-c599-5fb5-b044-7872aef7ae02
+		summarizeBy: none
+		sourceColumn: area_nome
+
+		annotation SummarizationSetBy = User
+
+	column 'Vínculo com a área'
+		dataType: string
+		lineageTag: a0151591-7e14-5267-88cd-5091e4c462d5
+		summarizeBy: none
+		sourceColumn: Vínculo com a área
+
+		annotation SummarizationSetBy = User
+
+	column confianca
+		dataType: string
+		isHidden
+		lineageTag: b2b86214-834d-592d-99c2-580a7ea79c09
+		summarizeBy: none
+		sourceColumn: confianca
+
+		annotation SummarizationSetBy = User
+
+	partition dCBO = m
+		mode: import
+		source =
+				let
+				    Fonte = Csv.Document(File.Contents(PastaDados & "dCBO.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Tipos = Table.TransformColumnTypes(Cabecalho, {{"cbo_codigo", type text}, {"cbo_descricao", type text}, {"categoria_ocupacao", type text}, {"chave_depara", type text}, {"area_codigo", type text}, {"area_nome", type text}, {"tipo_vinculo", type text}, {"confianca", type text}}, "en-US"),
+				    Nomes = Table.RenameColumns(Tipos, {{"cbo_descricao", "Ocupação"}, {"categoria_ocupacao", "Categoria da ocupação"}, {"tipo_vinculo", "Vínculo com a área"}})
+				in
+				    Nomes
+
+	annotation PBI_ResultType = Table

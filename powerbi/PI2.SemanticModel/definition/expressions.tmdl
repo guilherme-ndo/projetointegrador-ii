@@ -1,0 +1,4 @@
+expression PastaDados = "D:\projetos\projetointegrador-ii\dados_tratados\" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 6ee83792-2182-5ad9-bc51-d9f464c4a97a
+
+	annotation PBI_ResultType = Text

@@ -1,0 +1,173 @@
+table _Medidas
+	lineageTag: 0b53e4eb-4f59-517b-98a6-3ffe5e8d95be
+
+	measure Concluintes = SUM ( fOfertaEnsino[QT_CONC] )
+		formatString: #,0
+		displayFolder: Oferta
+		lineageTag: b8574747-4340-5715-8ce1-397d9e754b36
+
+	measure Ingressantes = SUM ( fOfertaEnsino[QT_ING] )
+		formatString: #,0
+		displayFolder: Oferta
+		lineageTag: f5b19825-9bd0-5758-86be-7a29a9ae5c83
+
+	measure 'Matrículas' = SUM ( fOfertaEnsino[QT_MAT] )
+		formatString: #,0
+		displayFolder: Oferta
+		lineageTag: 898ccda8-9f72-5346-8a1c-6d716ed4d54d
+
+	measure Vagas = SUM ( fOfertaEnsino[QT_VG_TOTAL] )
+		formatString: #,0
+		displayFolder: Oferta
+		lineageTag: 3506d63b-b55b-594d-a113-48b5824a17a2
+
+	measure 'Participação privada' = DIVIDE ( CALCULATE ( [Matrículas], fOfertaEnsino[Rede] = "Privada" ), [Matrículas] )
+		formatString: 0.0%
+		displayFolder: Oferta
+		lineageTag: c1f7aa75-b66e-58ea-8c8c-e055a5444321
+
+	measure 'Participação EaD nos concluintes' = DIVIDE ( CALCULATE ( [Concluintes], fOfertaEnsino[Modalidade] = "EaD" ), [Concluintes] )
+		formatString: 0.0%
+		displayFolder: Oferta
+		lineageTag: 6eac8bc3-3386-5f1c-8868-237f7a3992c9
+
+	measure 'Taxa de conclusão (defasagem 3 anos)' =
+			VAR AnoAtual = SELECTEDVALUE ( dCalendario[Ano] )
+			VAR IngressantesAntes = CALCULATE ( [Ingressantes], dCalendario[Ano] = AnoAtual - 3 )
+			RETURN DIVIDE ( [Concluintes], IngressantesAntes )
+		formatString: 0.0%
+		displayFolder: Oferta
+		lineageTag: 4ed278fd-349f-5d8c-8e86-4ac99d786a12
+
+	measure 'Admissões' = CALCULATE ( SUM ( fAdmissoes[peso] ), fAdmissoes[movimento] = "Admissão" )
+		formatString: #,0
+		displayFolder: Admissões
+		lineageTag: 7d2ac524-7633-5cae-856a-beff639e4ab6
+
+	measure 'Admissões com superior' = CALCULATE ( [Admissões], fAdmissoes[nivel_instrucao] = "Superior completo ou mais" )
+		formatString: #,0
+		displayFolder: Admissões
+		lineageTag: 9b493d51-14bc-5f23-801a-1b476f24be3a
+
+	measure 'Admissões com superior na área' = CALCULATE ( [Admissões com superior], dCBO[Vínculo com a área] = "Principal" )
+		formatString: #,0
+		displayFolder: Admissões
+		lineageTag: 33d5b9db-e531-5a69-90e2-57ee484933c4
+
+	measure 'Participação de formados nas admissões' = DIVIDE ( [Admissões com superior], [Admissões] )
+		formatString: 0.0%
+		displayFolder: Admissões
+		lineageTag: b3cda5cb-b84f-5db6-a8e7-f37ce3a0b8b0
+
+	measure 'Sobrequalificação nas admissões' = DIVIDE ( CALCULATE ( [Admissões com superior], dCBO[Categoria da ocupação] = "Nível médio ou operacional" ), [Admissões com superior] )
+		formatString: 0.0%
+		displayFolder: Admissões
+		lineageTag: 6cfc4acd-86e6-5001-8808-800ff1b8987e
+
+	measure 'Índice de descompasso' =
+			-- Em branco quando a área tem menos de 50 concluintes no recorte (amostra pequena)
+			IF ( [Concluintes] >= 50, DIVIDE ( [Admissões com superior na área], [Concluintes] ) )
+		formatString: 0.00
+		displayFolder: Descompasso
+		lineageTag: 864ea56b-4b27-527f-b732-bdc9c1bde053
+
+	measure 'Salário mediano de admissão (superior)' =
+			CALCULATE (
+			    MEDIAN ( fAdmissoes[salario] ),
+			    fAdmissoes[movimento] = "Admissão",
+			    fAdmissoes[peso] = 1,
+			    fAdmissoes[salario_comparavel] = TRUE (),
+			    fAdmissoes[nivel_instrucao] = "Superior completo ou mais"
+			)
+		formatString: R$ #,0
+		displayFolder: Salários
+		lineageTag: 62f936a3-71f9-5892-963d-80c96af75e15
+
+	measure 'Salário mediano de admissão (médio)' =
+			CALCULATE (
+			    MEDIAN ( fAdmissoes[salario] ),
+			    fAdmissoes[movimento] = "Admissão",
+			    fAdmissoes[peso] = 1,
+			    fAdmissoes[salario_comparavel] = TRUE (),
+			    fAdmissoes[nivel_instrucao] = "Médio completo"
+			)
+		formatString: R$ #,0
+		displayFolder: Salários
+		lineageTag: 5235ba7e-4e3f-5039-97b1-a12fdbd7cbf2
+
+	measure 'Prêmio salarial na admissão' = DIVIDE ( [Salário mediano de admissão (superior)], [Salário mediano de admissão (médio)] )
+		formatString: 0.00
+		displayFolder: Salários
+		lineageTag: 271e0e09-f68d-51cb-bc11-94a6d806dec5
+
+	measure 'Vínculos ativos' =
+			-- Estoque: usa o último ano do filtro (somar anos de estoque não faz sentido)
+			VAR UltimoAno = MAX ( dCalendario[Ano] )
+			RETURN CALCULATE ( SUM ( fEstoqueEmprego[vinculos] ), dCalendario[Ano] = UltimoAno )
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: 48458125-05db-5efa-bea2-4df93cc5ab8d
+
+	measure 'Vínculos com superior' = CALCULATE ( [Vínculos ativos], fEstoqueEmprego[nivel_instrucao] = "Superior completo ou mais" )
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: 90788502-63be-5c97-8284-1938c9f6cfda
+
+	measure 'Vínculos com superior na área' = CALCULATE ( [Vínculos com superior], dCBO[Vínculo com a área] = "Principal" )
+		formatString: #,0
+		displayFolder: Estoque
+		lineageTag: a9866abd-8913-5307-9da3-62dbb5e9db85
+
+	measure 'Participação de formados no emprego' = DIVIDE ( [Vínculos com superior], [Vínculos ativos] )
+		formatString: 0.0%
+		displayFolder: Estoque
+		lineageTag: 6b8b5c81-3baf-5dea-a45e-31ec595eaedb
+
+	measure 'Sobrequalificação no estoque' = DIVIDE ( CALCULATE ( [Vínculos com superior], dCBO[Categoria da ocupação] = "Nível médio ou operacional" ), [Vínculos com superior] )
+		formatString: 0.0%
+		displayFolder: Estoque
+		lineageTag: 5f5a4985-228f-5179-8008-b3cb41361237
+
+	measure 'Remuneração média (superior)' =
+			VAR UltimoAno = MAX ( dCalendario[Ano] )
+			RETURN CALCULATE (
+			    DIVIDE ( SUM ( fEstoqueEmprego[rem_soma] ), SUM ( fEstoqueEmprego[rem_validos] ) ),
+			    fEstoqueEmprego[nivel_instrucao] = "Superior completo ou mais", dCalendario[Ano] = UltimoAno
+			)
+		formatString: R$ #,0
+		displayFolder: Estoque
+		lineageTag: 93fb6bfe-81eb-57d3-b15b-1d214575cd5b
+
+	measure 'Remuneração média (médio)' =
+			VAR UltimoAno = MAX ( dCalendario[Ano] )
+			RETURN CALCULATE (
+			    DIVIDE ( SUM ( fEstoqueEmprego[rem_soma] ), SUM ( fEstoqueEmprego[rem_validos] ) ),
+			    fEstoqueEmprego[nivel_instrucao] = "Médio completo", dCalendario[Ano] = UltimoAno
+			)
+		formatString: R$ #,0
+		displayFolder: Estoque
+		lineageTag: d1362c38-03f8-5be5-8acb-1ad91478633f
+
+	measure 'Prêmio salarial no estoque (média)' = DIVIDE ( [Remuneração média (superior)], [Remuneração média (médio)] )
+		formatString: 0.00
+		displayFolder: Estoque
+		lineageTag: 5f9abc60-3eed-5a44-9eed-abee9acfa43c
+
+	column Coluna
+		dataType: string
+		isHidden
+		lineageTag: 10c96c96-87f5-52e1-abe3-331be375c736
+		summarizeBy: none
+		sourceColumn: Coluna
+
+		annotation SummarizationSetBy = User
+
+	partition _Medidas = m
+		mode: import
+		source =
+				let
+				    Tabela = #table(type table [Coluna = text], {})
+				in
+				    Tabela
+
+	annotation PBI_ResultType = Table

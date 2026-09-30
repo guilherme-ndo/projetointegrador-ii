@@ -228,3 +228,7 @@ dados_tratados/fAdmissoes.csv
 # Power BI temporário
 *.pbix.bak
 ~$*
+
+# Power BI: cache e configurações locais do projeto PBIP
+powerbi/**/.pbi/localSettings.json
+powerbi/**/.pbi/cache.abf

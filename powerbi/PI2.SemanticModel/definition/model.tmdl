@@ -1,0 +1,19 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["PastaDados"]
+
+ref table _Medidas
+ref table dCalendario
+ref table dMunicipio
+ref table dArea
+ref table dCBO
+ref table dEscolaridade
+ref table fOfertaEnsino
+ref table fAdmissoes
+ref table fEstoqueEmprego
