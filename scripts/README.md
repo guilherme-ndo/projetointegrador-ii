@@ -3,6 +3,8 @@
 Rodar sempre a partir da raiz do repositório, na ordem:
 
 ```bash
+python -m venv .venv                  # uma vez só
+.venv\Scripts\activate                # Windows (Linux/Mac: source .venv/bin/activate)
 pip install -r requirements.txt
 python scripts/01_dim_municipio.py    # códigos IBGE (precisa de internet)
 python scripts/02_censo_superior.py   # INEP: arquivos em dados_brutos/inep/

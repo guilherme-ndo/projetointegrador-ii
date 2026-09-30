@@ -61,7 +61,7 @@ def main():
 
     # Recorte temporal: descarta anos anteriores a ANO_INICIAL
     df["NU_ANO_CENSO"] = df["NU_ANO_CENSO"].astype(int)
-    antigos = sorted(df.loc[df["NU_ANO_CENSO"] < ANO_INICIAL, "NU_ANO_CENSO"].unique())
+    antigos = sorted(int(a) for a in df.loc[df["NU_ANO_CENSO"] < ANO_INICIAL, "NU_ANO_CENSO"].unique())
     if antigos:
         print(f"Ignorando anos fora do recorte: {antigos}")
         df = df[df["NU_ANO_CENSO"] >= ANO_INICIAL]
