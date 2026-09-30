@@ -10,6 +10,7 @@ python scripts/01_dim_municipio.py    # códigos IBGE (precisa de internet)
 python scripts/02_censo_superior.py   # INEP: arquivos em dados_brutos/inep/
 python scripts/03_caged.py            # CAGED: arquivos em dados_brutos/caged/
 python scripts/04_dim_cbo.py          # dCBO: cascata do de-para em todas as ocupações
+python scripts/indicadores.py         # indicadores por ano e por área (conferência do Power BI)
 ```
 
 | Script | Entrada | Saída |
@@ -18,6 +19,7 @@ python scripts/04_dim_cbo.py          # dCBO: cascata do de-para em todas as ocu
 | `02_censo_superior.py` | `dados_brutos/inep/*CURSOS*.CSV` | `dados_tratados/fOfertaEnsino.csv` |
 | `03_caged.py` | `dados_brutos/caged/CAGEDMOV*.txt` ou `.7z` | `dados_tratados/fAdmissoes.csv` |
 | `04_dim_cbo.py` | `docs/depara_cine_cbo.xlsx` e layout do CAGED | `dados_tratados/dCBO.csv`, `docs/cobertura_depara.csv` |
+| `indicadores.py` | saídas de 02, 03 e 04 | `dados_tratados/indicadores_ano.csv`, `dados_tratados/indicadores_area_ano.csv` |
 
 Municípios do recorte e ano inicial ficam em `utils.py` (`MUNICIPIOS_RECORTE`, `ANO_INICIAL`).
 

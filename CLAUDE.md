@@ -53,14 +53,16 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 ## Estrutura do repositório
 - `dados_brutos/`: downloads originais, não versionados.
 - `dados_tratados/`: CSVs filtrados.
-- `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo e utils.
+- `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo, indicadores e utils.
+- `dados_tratados/indicadores_ano.csv` e `indicadores_area_ano.csv`: indicadores calculados em Python, para conferir as medidas DAX.
 - `docs/apresentacao_pi2.pptx`: apresentação no modelo da III Mostra Acadêmica (`docs/Apresentacao-Trabalho-Conclusao-de-Curso-Minimalista-Preto-e-Branco.pptx`), preto e branco, fontes do modelo; seções: capa, introdução, justificativa, objetivos, revisão teórica, metodologia (coleta, organização, análise), resultados, conclusão, próximos passos e referências. Atualizar a cada avanço. Fontes: só Montaser Arabic e Montaser Arabic Light. Referências no formato ABNT do PI1.
 - `powerbi/`, `docs/`, `relatorio/`.
 - `dados pi/`: relato técnico do PI1 (docx, pdf, pptx), fonte das referências e números herdados.
 
 ## Próximos passos
-- Feito: scripts 01 a 04 rodados com INEP 2024 e CAGED jan-dez/2024; de-para validado; primeiros resultados na apresentação (slides 9 e 10).
-- Baixar INEP e CAGED de 2020 a 2023 e repetir (tendência do índice).
+- Feito: scripts 01 a 04 e indicadores rodados com INEP 2020-2024 e CAGED jan/2020-dez/2024 (60 meses); de-para validado; apresentação com resultados de 2024 e evolução 2020-2024.
+- Achados 2020-2024: índice de Computação/TIC caiu de 11,5 (2021) para 4,7 (concluintes da área 907 para 2.316); prêmio salarial caiu de 2,7x (2021) para 2,1x; sobrequalificação subiu de 30% para 34% (pico de 37% em 2023); EaD passou de 39% para 67% dos concluintes. 2020 tem admissões baixas (pandemia).
+- `fAdmissoes.csv` com 5 anos tem cerca de 430 MB; o script 03 converte tipos mês a mês para caber na memória.
 - Script 05 para a RAIS e script 06 para o IBGE.
 - Primeiro fazer um fluxo completo no Power BI com uma área, um ano e um município, depois escalar.
 

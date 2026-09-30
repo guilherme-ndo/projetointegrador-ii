@@ -78,6 +78,38 @@ def ler_mes(arq, codigos, encoding="utf-8"):
     return pd.concat(pedacos, ignore_index=True)
 
 
+def tratar(df):
+    """Tipos e colunas derivadas de um mês. Feito arquivo a arquivo para caber na memória."""
+    num = lambda col: pd.to_numeric(df[col], errors="coerce")  # noqa: E731
+    df["municipio"] = num("municipio").astype("int32")
+    df["saldomovimentacao"] = num("saldomovimentacao").astype("Int8")
+    df["salario"] = pd.to_numeric(df["salario"].str.replace(",", "."), errors="coerce").astype("float32")
+    df["ano"] = df["competenciamov"].str[:4].astype("int16")
+    df["mes"] = df["competenciamov"].str[4:6].astype("int8")
+    df["movimento"] = df["saldomovimentacao"].map({1: "Admissão", -1: "Desligamento"})
+    df["cbo2002ocupacao"] = df["cbo2002ocupacao"].str.zfill(6)
+    df["peso"] = df["peso"].astype("int8")
+    for col in ("graudeinstrucao", "idade", "sexo", "tipomovimentacao",
+                "indtrabintermitente", "indtrabparcial", "unidadesalariocodigo"):
+        if col in df:
+            df[col] = num(col).astype("Int16")
+    if "horascontratuais" in df:  # tem casas decimais em alguns meses (ex.: 43,45)
+        df["horascontratuais"] = num("horascontratuais").astype("float32")
+
+    # Nível de instrução agrupado (base da dEscolaridade e do prêmio salarial)
+    df["nivel_instrucao"] = df["graudeinstrucao"].map(NIVEL_INSTRUCAO).fillna("Não identificado")
+
+    # Salário comparável: mensal, sem intermitente e positivo.
+    # Use só as linhas com salario_comparavel = True no prêmio salarial.
+    comparavel = df["salario"] > 0
+    if "unidadesalariocodigo" in df:
+        comparavel &= (df["unidadesalariocodigo"] == UNIDADE_MENSAL).fillna(False)
+    if "indtrabintermitente" in df:
+        comparavel &= (df["indtrabintermitente"] != 1).fillna(True)
+    df["salario_comparavel"] = comparavel
+    return df.drop(columns="competenciamov")
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--tipos", nargs="+", default=["MOV"], choices=["MOV", "FOR", "EXC"],
@@ -105,33 +137,12 @@ def main():
         df["arquivo_origem"] = arq.stem
         df["peso"] = -1 if arq.name.upper().startswith("CAGEDEXC") else 1
         print(f"{arq.name}: {len(df)} movimentações no recorte")
-        partes.append(df)
+        partes.append(tratar(df))
 
     df = pd.concat(partes, ignore_index=True)
-
-    # Tipos e colunas derivadas para o Power BI
-    df["municipio"] = df["municipio"].astype(int)
-    df["saldomovimentacao"] = pd.to_numeric(df["saldomovimentacao"], errors="coerce")
-    df["salario"] = pd.to_numeric(df["salario"].str.replace(",", "."), errors="coerce")
-    df["ano"] = df["competenciamov"].str[:4].astype(int)
-    df["mes"] = df["competenciamov"].str[4:6].astype(int)
-    df["movimento"] = df["saldomovimentacao"].map({1: "Admissão", -1: "Desligamento"})
-    df["cbo2002ocupacao"] = df["cbo2002ocupacao"].str.zfill(6)
-    for n in (4, 3, 2, 1):  # chaves para a busca em cascata do de-para
-        df[f"cbo_{n}"] = df["cbo2002ocupacao"].str[:n]
-
-    # Nível de instrução agrupado (base da dEscolaridade e do prêmio salarial)
-    grau = pd.to_numeric(df["graudeinstrucao"], errors="coerce")
-    df["nivel_instrucao"] = grau.map(NIVEL_INSTRUCAO).fillna("Não identificado")
-
-    # Salário comparável: mensal, sem intermitente e positivo.
-    # Use só as linhas com salario_comparavel = True no prêmio salarial.
-    comparavel = df["salario"] > 0
-    if "unidadesalariocodigo" in df:
-        comparavel &= pd.to_numeric(df["unidadesalariocodigo"], errors="coerce") == UNIDADE_MENSAL
-    if "indtrabintermitente" in df:
-        comparavel &= pd.to_numeric(df["indtrabintermitente"], errors="coerce") != 1
-    df["salario_comparavel"] = comparavel
+    for col in ("movimento", "nivel_instrucao", "arquivo_origem", "cbo2002ocupacao", "secao", "subclasse"):
+        if col in df:
+            df[col] = df[col].astype("category")
 
     saida = TRATADOS / "fAdmissoes.csv"
     df.to_csv(saida, index=False, encoding="utf-8-sig")
