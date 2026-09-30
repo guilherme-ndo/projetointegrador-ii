@@ -38,24 +38,28 @@ O PI2 leva essa análise para a escala regional. A pergunta central é: os curso
 - Prêmio salarial: salário de admissão com nível superior ÷ salário de admissão com nível médio.
 - Taxa de conclusão local: concluintes ÷ ingressantes, com defasagem pela duração do curso.
 - Participação privada: matrículas na rede privada ÷ total de matrículas.
+- Sobrequalificação: admissões com superior em ocupações dos grandes grupos 4 a 9 da CBO ÷ total de admissões com superior.
+- O índice de descompasso fica acima de 1 em todas as áreas (admissões incluem rotatividade e formados de fora), então a leitura é comparativa entre áreas.
+- Prêmio salarial usa mediana e só linhas com `salario_comparavel = True`.
 
 ## Modelo de dados (Power BI, esquema estrela)
 - Dimensões: dMunicipio (códigos de 7 e 6 dígitos), dCalendario, dArea (CINE), dCBO (de-para), dEscolaridade.
 - Fatos: fOfertaEnsino (INEP), fAdmissoes (CAGED), fEstoqueEmprego (RAIS), fPopulacao (IBGE).
 
 ## Tabela de-para CINE x CBO
-Fica em `docs/depara_cine_cbo.xlsx`. É um rascunho com 52 ocupações, das quais 18 estão marcadas como "Verificar". A busca é feita em cascata pelos primeiros 4, 3, 2 e 1 dígitos da CBO. Cada ocupação tem uma área principal, e essa simplificação deve aparecer como limitação no relatório.
+Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INEP 2024: 79 linhas, nenhuma "Verificar", coluna `fonte` com a evidência. A área de cada ocupação foi decidida pelo nome do curso no INEP (ex.: Logística em 04, Educação Física bacharelado em 09). A busca em cascata (4, 3, 2 e 1 dígitos) roda no script 04, que gera `dados_tratados/dCBO.csv` com todas as ocupações e a coluna `categoria_ocupacao` (pelo grande grupo da CBO). Ocupações de nível médio (grupos 4 a 9) ficam sem área de propósito. Cobertura: 99% das admissões de formados em cargos de nível superior, técnico ou dirigente. Cada ocupação tem uma área principal, e essa simplificação deve aparecer como limitação no relatório. `docs/cobertura_depara.csv` lista as CBOs por admissões de formados.
 
 ## Estrutura do repositório
 - `dados_brutos/`: downloads originais, não versionados.
 - `dados_tratados/`: CSVs filtrados.
-- `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged e utils.
+- `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo e utils.
+- `docs/apresentacao_pi2.pptx`: apresentação de andamento; atualizar a cada avanço (slides de resultados, de-para e cronograma).
 - `powerbi/`, `docs/`, `relatorio/`.
 
 ## Próximos passos
-- Rodar os scripts 01 a 03 com dados reais, começando por um ano do INEP e um mês do CAGED.
-- Script 04 para a RAIS e script 05 para o IBGE.
-- Validar o de-para priorizando as CBOs que aparecem no CAGED filtrado.
+- Feito: scripts 01 a 04 rodados com INEP 2024 e CAGED jan-dez/2024; de-para validado; primeiros resultados na apresentação (slides 9 e 10).
+- Baixar INEP e CAGED de 2020 a 2023 e repetir (tendência do índice).
+- Script 05 para a RAIS e script 06 para o IBGE.
 - Primeiro fazer um fluxo completo no Power BI com uma área, um ano e um município, depois escalar.
 
 ## Convenções
