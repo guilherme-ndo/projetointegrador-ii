@@ -22,8 +22,9 @@ O PI2 leva essa análise para a escala regional. A pergunta central é: os curso
 - INEP, Censo da Educação Superior (arquivo de cursos): chave `CO_MUNICIPIO` com 7 dígitos e área `CO_CINE_AREA_GERAL` com 2 dígitos.
 - MTE, Novo CAGED e RAIS (portal PDET): o município tem 6 dígitos e a ocupação vem em CBO 2002 com 6 dígitos.
 - IBGE, Censo 2022 (SIDRA): município com 7 dígitos.
-- Limitação a confirmar no dicionário do INEP: cursos EaD podem vir com o `CO_MUNICIPIO` da sede da instituição (ou vazio), não do polo. Nesse caso, concluintes EaD da região ficam fora da contagem e o índice de descompasso sobe.
-- CAGED: exclusões (EXC) entram com `peso = -1`; admissões = `SUM(peso)`. Nível superior = graus 9, 10, 11 e 80.
+- INEP: `CO_MUNICIPIO` é o município do local de oferta; cursos EaD aparecem por município do polo (conferido em 2024: só 473 concluintes EaD no Brasil sem município). EaD é cerca de 2/3 dos concluintes da região em 2024.
+- CAGED: exclusões (EXC) entram com `peso = -1`; admissões = `SUM(peso)`. Nível superior = graus 9, 10, 11 e 80; `unidadesalariocodigo = 5` é mensal; `indtrabintermitente = 1` é intermitente (conferido no layout do PDET).
+- Dicionários ficam em `dados_brutos/inep/dicionario_educacao_superior_2024.xlsx` e `dados_brutos/caged/layout_novo_caged_movimentacao.xlsx`.
 
 ## Perguntas de pesquisa
 1. Quais áreas formam mais concluintes na região?

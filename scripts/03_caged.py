@@ -37,7 +37,7 @@ COLUNAS = [
     "unidadesalariocodigo",
 ]
 
-# Grau de instrução do Novo CAGED agrupado em níveis (confirmar no dicionário)
+# Grau de instrução do Novo CAGED agrupado em níveis (layout do PDET)
 NIVEL_INSTRUCAO = {
     **{c: "Abaixo do médio" for c in range(1, 7)},
     7: "Médio completo",
@@ -48,7 +48,7 @@ NIVEL_INSTRUCAO = {
     80: "Superior completo ou mais",  # pós-graduação completa
 }
 
-UNIDADE_MENSAL = 5  # unidadesalariocodigo = mês (confirmar no dicionário)
+UNIDADE_MENSAL = 5  # unidadesalariocodigo = mês (layout do PDET)
 
 
 def extrair_7z():
