@@ -222,6 +222,10 @@ dados_brutos/
 *.zip
 *.7z
 
+# Tratados grandes (CAGED e RAIS passam de 100 MB; regerar com os scripts)
+dados_tratados/fAdmissoes.csv
+dados_tratados/fEstoqueEmprego.csv
+
 # Power BI temporário
 *.pbix.bak
 ~$*

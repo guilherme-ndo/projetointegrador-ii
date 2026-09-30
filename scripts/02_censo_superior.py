@@ -13,7 +13,7 @@ Uso:   python scripts/02_censo_superior.py
 """
 import pandas as pd
 
-from utils import BRUTOS, TRATADOS, carregar_municipios
+from utils import ANO_INICIAL, BRUTOS, TRATADOS, carregar_municipios
 
 PASTA = BRUTOS / "inep"
 
@@ -58,6 +58,13 @@ def main():
         partes.append(df)
 
     df = pd.concat(partes, ignore_index=True)
+
+    # Recorte temporal: descarta anos anteriores a ANO_INICIAL
+    df["NU_ANO_CENSO"] = df["NU_ANO_CENSO"].astype(int)
+    antigos = sorted(df.loc[df["NU_ANO_CENSO"] < ANO_INICIAL, "NU_ANO_CENSO"].unique())
+    if antigos:
+        print(f"Ignorando anos fora do recorte: {antigos}")
+        df = df[df["NU_ANO_CENSO"] >= ANO_INICIAL]
 
     # Tipos e padronizações para o Power BI
     df["CO_MUNICIPIO"] = df["CO_MUNICIPIO"].astype(int)

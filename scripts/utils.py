@@ -19,6 +19,9 @@ MUNICIPIOS_RECORTE = [
     "Pirapora do Bom Jesus",
 ]
 
+# Início do recorte temporal (o Novo CAGED começa em jan/2020)
+ANO_INICIAL = 2020
+
 
 def normalizar(texto: str) -> str:
     """Remove acentos, espaços e deixa minúsculo. Ex.: 'Competênciamov ' -> 'competenciamov'."""
