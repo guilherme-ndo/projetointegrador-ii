@@ -16,7 +16,9 @@ PDET, saldo = MOV + FOR - EXC. Por isso cada linha recebe a coluna "peso"
 (+1 para MOV/FOR, -1 para EXC). No Power BI, conte admissões com SUM(peso),
 não com COUNTROWS.
 
-Saída: dados_tratados/fAdmissoes.csv
+Saídas: dados_tratados/fAdmissoes.csv (tudo, fora do Git) e
+        dados_tratados/fAdmissoes.parquet (só admissões, vai para o Git; é o que os
+        outros scripts e o Power BI leem)
 Uso:   python scripts/03_caged.py
        python scripts/03_caged.py --tipos MOV FOR EXC    (série completa)
 """
@@ -24,7 +26,7 @@ import argparse
 
 import pandas as pd
 
-from utils import BRUTOS, NIVEL_INSTRUCAO, TRATADOS, carregar_municipios, normalizar
+from utils import BRUTOS, NIVEL_INSTRUCAO, TRATADOS, carregar_municipios, normalizar, salvar_admissoes_parquet
 
 PASTA = BRUTOS / "caged"
 
@@ -135,6 +137,8 @@ def main():
 
     saida = TRATADOS / "fAdmissoes.csv"
     df.to_csv(saida, index=False, encoding="utf-8-sig")
+    pq = salvar_admissoes_parquet(df)
+    print(f"Admissões em Parquet: {pq} ({pq.stat().st_size / 1e6:.0f} MB)")
 
     print("\nMovimentações por ano (soma de peso, já descontadas as exclusões):")
     print(df.pivot_table(index="ano", columns="movimento", values="peso",

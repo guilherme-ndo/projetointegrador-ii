@@ -42,6 +42,36 @@ def normalizar(texto: str) -> str:
     return texto.strip().lower().replace(" ", "")
 
 
+# Admissões do CAGED em Parquet: só admissões e só as colunas usadas nas análises e no
+# Power BI. Fica pequeno o bastante para ir ao GitHub (o CSV completo passa de 400 MB).
+ARQ_ADMISSOES = TRATADOS / "fAdmissoes.parquet"
+COLUNAS_ADMISSOES = ["ano", "mes", "municipio", "cbo2002ocupacao", "nivel_instrucao", "movimento", "peso",
+                     "salario", "salario_comparavel", "idade", "sexo", "secao"]
+
+
+def salvar_admissoes_parquet(df):
+    import pandas as pd
+
+    adm = df.loc[df["movimento"] == "Admissão", COLUNAS_ADMISSOES].copy()
+    for col in ("cbo2002ocupacao", "nivel_instrucao", "movimento", "secao"):
+        adm[col] = adm[col].astype(str).astype("category")
+    for col, tipo in (("ano", "int16"), ("mes", "int8"), ("municipio", "int32"), ("peso", "int8")):
+        adm[col] = pd.to_numeric(adm[col]).astype(tipo)
+    adm["salario"] = pd.to_numeric(adm["salario"]).astype("float32")
+    adm["salario_comparavel"] = adm["salario_comparavel"].astype(str).eq("True")
+    adm.to_parquet(ARQ_ADMISSOES, index=False, compression="zstd")
+    return ARQ_ADMISSOES
+
+
+def ler_admissoes(colunas=None):
+    """Lê as admissões do CAGED (Parquet gerado pelo script 03)."""
+    import pandas as pd
+
+    if not ARQ_ADMISSOES.exists():
+        raise FileNotFoundError("Rode primeiro: python scripts/03_caged.py")
+    return pd.read_parquet(ARQ_ADMISSOES, columns=colunas)
+
+
 def carregar_municipios():
     """Lê dMunicipio.csv gerado pelo script 01. Retorna o DataFrame."""
     import pandas as pd

@@ -48,11 +48,14 @@ def texto_m(valor):
 
 def csv_m(arquivo, tipos, colunas=None, renomear=None):
     """Partição M que lê um CSV de dados_tratados com tipos em cultura en-US."""
-    passos = [
-        f"Fonte = Csv.Document(File.Contents(PastaDados & {texto_m(arquivo)}), "
-        "[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv])",
-        "Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true])",
-    ]
+    if arquivo.endswith(".parquet"):
+        passos = [f"Cabecalho = Parquet.Document(File.Contents(PastaDados & {texto_m(arquivo)}))"]
+    else:
+        passos = [
+            f"Fonte = Csv.Document(File.Contents(PastaDados & {texto_m(arquivo)}), "
+            "[Delimiter=\",\", Encoding=65001, QuoteStyle=QuoteStyle.Csv])",
+            "Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true])",
+        ]
     anterior = "Cabecalho"
     if colunas:
         passos.append(f"Colunas = Table.SelectColumns(Cabecalho, {{{', '.join(texto_m(c) for c in colunas)}}})")
@@ -97,11 +100,11 @@ TABELAS = {
         ("CO_CINE_AREA_GERAL", "text", True), ("TP_GRAU_ACADEMICO", "int64", True),
         ("QT_VG_TOTAL", "int64", True), ("QT_ING", "int64", True), ("QT_MAT", "int64", True),
         ("QT_CONC", "int64", True), ("rede", "text", False), ("modalidade", "text", False)], "sel"),
-    "fAdmissoes": ("fAdmissoes.csv", [
+    "fAdmissoes": ("fAdmissoes.parquet", [
         ("ano", "int64", True), ("mes", "int64", False), ("municipio", "int64", True),
         ("cbo2002ocupacao", "text", True), ("nivel_instrucao", "text", True), ("movimento", "text", False),
         ("peso", "int64", True), ("salario", "double", True), ("salario_comparavel", "boolean", True),
-        ("idade", "int64", True), ("sexo", "int64", True), ("secao", "text", False)], "sel"),
+        ("idade", "double", True), ("sexo", "int64", True), ("secao", "text", False)], "sel"),
     "fEstoqueEmprego": ("fEstoqueEmprego.csv", [
         ("ano", "int64", True), ("municipio", "int64", True), ("cbo2002ocupacao", "text", True),
         ("nivel_instrucao", "text", True), ("vinculos", "int64", True), ("rem_validos", "int64", True),

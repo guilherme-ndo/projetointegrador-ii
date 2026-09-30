@@ -2,13 +2,19 @@
 
 O painel fica em formato de projeto do Power BI (PBIP): modelo em TMDL e relatório em PBIR, tudo em texto versionado no Git.
 
-## Como abrir
+## Como abrir em outro computador (ex.: laptop)
 
-1. Rode os scripts de `scripts/` (01 a 06) para gerar os CSVs de `dados_tratados/`. O `fAdmissoes.csv` não vai para o Git; cada integrante gera o seu.
-2. Rode `python powerbi/gerar_pbip.py`. Ele recria o projeto com o caminho de `dados_tratados/` desta máquina no parâmetro `PastaDados`.
-3. Abra `powerbi/PI2.pbip` no Power BI Desktop e clique em **Atualizar**. A carga leva cerca de 2 minutos (o CAGED tem 5 milhões de linhas).
+Todos os dados que o painel usa estão no GitHub (as admissões do CAGED vão em `fAdmissoes.parquet`, com 11 MB). Não precisa rodar nenhum script.
 
-Se preferir não rodar o gerador, abra o projeto e mude o parâmetro em **Transformar dados > Gerenciar parâmetros > PastaDados** (o caminho precisa terminar com `\`).
+1. Baixe o repositório: `git clone https://github.com/guilherme-ndo/projetointegrador-ii.git` ou, no GitHub, **Code > Download ZIP** (e descompacte).
+2. Abra `powerbi/PI2.pbip` no Power BI Desktop (só existe para Windows).
+3. Em **Página Inicial > Transformar dados > Editar parâmetros**, troque `PastaDados` pelo caminho da pasta `dados_tratados` do laptop, terminando com `\` (ex.: `C:\Users\voce\projetointegrador-ii\dados_tratados\`).
+4. Clique em **Aplicar alterações** (ou **Atualizar**). A carga leva cerca de 1 minuto.
+5. Salve (Ctrl+S). O Power BI guarda uma cópia dos dados em `.pbi/cache.abf`; nas próximas vezes o painel abre já com dados, sem precisar atualizar.
+
+Se o computador tiver Python, o passo 3 pode ser trocado por `python powerbi/gerar_pbip.py`, que grava o caminho certo sozinho (mas sobrescreve mudanças feitas à mão no Desktop).
+
+Plano B para apresentar: exporte o painel em PDF (**Arquivo > Exportar > Exportar para PDF**) e leve o arquivo.
 
 ## Modelo (esquema estrela)
 
@@ -20,7 +26,7 @@ Se preferir não rodar o gerador, abra o projeto e mude o parâmetro em **Transf
 | dCBO | `dCBO.csv` | ocupação, área (de-para) e categoria; filtra por área as admissões e o estoque |
 | dEscolaridade | gerada | nível de instrução |
 | fOfertaEnsino | `fOfertaEnsino.csv` | INEP: cursos, ingressantes, matrículas, concluintes |
-| fAdmissoes | `fAdmissoes.csv` | CAGED: movimentações (admissões = soma de `peso`) |
+| fAdmissoes | `fAdmissoes.parquet` | CAGED: admissões (soma de `peso`; exclusões entram com -1) |
 | fEstoqueEmprego | `fEstoqueEmprego.csv` | RAIS: vínculos ativos em 31/12 |
 | fPopulacao | `fPopulacao.csv` | IBGE 2022: população por idade e nível de instrução |
 | fFormadosResidentes | `fFormadosResidentes.csv` | IBGE 2022: moradores com superior por área CINE |

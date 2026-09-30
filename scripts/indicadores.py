@@ -13,7 +13,7 @@ Uso: python scripts/indicadores.py
 """
 import pandas as pd
 
-from utils import TRATADOS
+from utils import TRATADOS, ler_admissoes
 
 DEFASAGEM_CONCLUSAO = 3  # anos entre ingresso e conclusão (aproximação: bacharelados e tecnólogos misturados)
 SUPERIOR, MEDIO = "Superior completo ou mais", "Médio completo"
@@ -24,8 +24,7 @@ def carregar():
     cbo = pd.read_csv(TRATADOS / "dCBO.csv", dtype=str,
                       usecols=["cbo_codigo", "categoria_ocupacao", "area_codigo", "tipo_vinculo"])
     colunas = ["ano", "cbo2002ocupacao", "movimento", "nivel_instrucao", "peso", "salario", "salario_comparavel"]
-    adm = pd.read_csv(TRATADOS / "fAdmissoes.csv", usecols=colunas,
-                      dtype={"cbo2002ocupacao": str, "movimento": "category", "nivel_instrucao": "category"})
+    adm = ler_admissoes(colunas).astype({"cbo2002ocupacao": str, "peso": int})
     adm = adm[adm["movimento"] == "Admissão"]
     adm = adm.merge(cbo, left_on="cbo2002ocupacao", right_on="cbo_codigo", how="left")
     estoque = None

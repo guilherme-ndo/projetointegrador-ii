@@ -86,7 +86,7 @@ table fAdmissoes
 		annotation SummarizationSetBy = User
 
 	column idade
-		dataType: int64
+		dataType: double
 		isHidden
 		formatString: 0
 		lineageTag: 5abf728b-d78a-584c-a8aa-293971d80791
@@ -117,10 +117,9 @@ table fAdmissoes
 		mode: import
 		source =
 				let
-				    Fonte = Csv.Document(File.Contents(PastaDados & "fAdmissoes.csv"), [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
-				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
+				    Cabecalho = Parquet.Document(File.Contents(PastaDados & "fAdmissoes.parquet")),
 				    Colunas = Table.SelectColumns(Cabecalho, {"ano", "mes", "municipio", "cbo2002ocupacao", "nivel_instrucao", "movimento", "peso", "salario", "salario_comparavel", "idade", "sexo", "secao"}),
-				    Tipos = Table.TransformColumnTypes(Colunas, {{"ano", Int64.Type}, {"mes", Int64.Type}, {"municipio", Int64.Type}, {"cbo2002ocupacao", type text}, {"nivel_instrucao", type text}, {"movimento", type text}, {"peso", Int64.Type}, {"salario", type number}, {"salario_comparavel", type logical}, {"idade", Int64.Type}, {"sexo", Int64.Type}, {"secao", type text}}, "en-US")
+				    Tipos = Table.TransformColumnTypes(Colunas, {{"ano", Int64.Type}, {"mes", Int64.Type}, {"municipio", Int64.Type}, {"cbo2002ocupacao", type text}, {"nivel_instrucao", type text}, {"movimento", type text}, {"peso", Int64.Type}, {"salario", type number}, {"salario_comparavel", type logical}, {"idade", type number}, {"sexo", Int64.Type}, {"secao", type text}}, "en-US")
 				in
 				    Tipos
 

@@ -15,14 +15,14 @@ Antes de rodar:
   - docs/depara_cine_cbo.xlsx (versionado)
   - dados_brutos/caged/layout_novo_caged_movimentacao.xlsx (layout do PDET,
     aba cbo2002ocupação, com a lista de ocupações)
-  - dados_tratados/fAdmissoes.csv (opcional, para o relatório de cobertura)
+  - dados_tratados/fAdmissoes.parquet (opcional, para o relatório de cobertura)
 
 Saída: dados_tratados/dCBO.csv, dados_tratados/dArea.csv e docs/cobertura_depara.csv
 Uso:   python scripts/04_dim_cbo.py
 """
 import pandas as pd
 
-from utils import BRUTOS, RAIZ, TRATADOS
+from utils import ARQ_ADMISSOES, BRUTOS, RAIZ, TRATADOS, ler_admissoes
 
 DEPARA = RAIZ / "docs" / "depara_cine_cbo.xlsx"
 LAYOUT = BRUTOS / "caged" / "layout_novo_caged_movimentacao.xlsx"
@@ -92,12 +92,10 @@ def main():
     print(f"{len(cbo)} ocupações, {cbo['area_codigo'].notna().sum()} com área. Salvo em {saida}")
 
     # Cobertura: quanto das admissões de formados o de-para alcança
-    arq = TRATADOS / "fAdmissoes.csv"
-    if not arq.exists():
+    if not ARQ_ADMISSOES.exists():
         return
-    adm = pd.read_csv(arq, dtype=str, usecols=["cbo2002ocupacao", "movimento", "nivel_instrucao", "peso"])
-    adm = adm[(adm["movimento"] == "Admissão") & (adm["nivel_instrucao"] == "Superior completo ou mais")]
-    adm["peso"] = adm["peso"].astype(int)
+    adm = ler_admissoes(["cbo2002ocupacao", "nivel_instrucao", "peso"])
+    adm = adm[adm["nivel_instrucao"] == "Superior completo ou mais"].astype({"cbo2002ocupacao": str, "peso": int})
     rank = (adm.groupby("cbo2002ocupacao")["peso"].sum().rename("admissoes_superior")
             .reset_index().rename(columns={"cbo2002ocupacao": "cbo_codigo"})
             .merge(cbo, on="cbo_codigo", how="left")

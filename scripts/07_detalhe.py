@@ -20,7 +20,7 @@ Uso: python scripts/07_detalhe.py
 """
 import pandas as pd
 
-from utils import RAIZ, TRATADOS
+from utils import RAIZ, TRATADOS, ler_admissoes
 
 ANO = 2024
 SUP, MED = "Superior completo ou mais", "Médio completo"
@@ -32,10 +32,8 @@ NOME_FATEC = {"15709": "Fatec Osasco", "15757": "Fatec Barueri", "16395": "Fatec
 def carregar():
     oferta = pd.read_csv(TRATADOS / "fOfertaEnsino.csv", dtype={"CO_CINE_AREA_GERAL": str, "CO_IES": str})
     cbo = pd.read_csv(TRATADOS / "dCBO.csv", dtype=str)
-    adm = pd.read_csv(TRATADOS / "fAdmissoes.csv",
-                      usecols=["ano", "municipio", "cbo2002ocupacao", "movimento", "nivel_instrucao", "peso",
-                               "salario", "salario_comparavel"],
-                      dtype={"cbo2002ocupacao": str, "movimento": "category", "nivel_instrucao": "category"})
+    adm = ler_admissoes(["ano", "municipio", "cbo2002ocupacao", "movimento", "nivel_instrucao", "peso",
+                         "salario", "salario_comparavel"]).astype({"cbo2002ocupacao": str, "peso": int})
     adm = adm[adm["movimento"] == "Admissão"].merge(
         cbo[["cbo_codigo", "categoria_ocupacao", "area_codigo", "tipo_vinculo"]],
         left_on="cbo2002ocupacao", right_on="cbo_codigo", how="left")

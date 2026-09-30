@@ -76,4 +76,4 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 ## Convenções
 - Código e comentários em português.
 - Scripts rodam a partir da raiz do repositório.
-- Arquivos maiores que 100 MB não vão para o GitHub.
+- Arquivos maiores que 100 MB não vão para o GitHub. O CAGED completo (`fAdmissoes.csv`, 430 MB) fica local; análises e Power BI leem `fAdmissoes.parquet` (só admissões, 11 MB, versionado), para o repositório funcionar em qualquer máquina (ex.: laptop para apresentar).
