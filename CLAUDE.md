@@ -53,7 +53,7 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 - `dados_brutos/`: downloads originais, não versionados.
 - `dados_tratados/`: CSVs filtrados.
 - `scripts/`: 01_dim_municipio, 02_censo_superior, 03_caged, 04_dim_cbo e utils.
-- `docs/apresentacao_pi2.pptx`: apresentação de andamento; atualizar a cada avanço (slides de resultados, de-para e cronograma).
+- `docs/apresentacao_pi2.pptx`: apresentação no modelo da III Mostra Acadêmica (`docs/Apresentacao-Trabalho-Conclusao-de-Curso-Minimalista-Preto-e-Branco.pptx`), preto e branco, fontes do modelo; seções: capa, introdução, justificativa, objetivos, revisão teórica, metodologia (coleta, organização, análise), resultados, conclusão, próximos passos e referências. Atualizar a cada avanço. Orientador na capa: "Prof. Venerson" (completar o nome).
 - `powerbi/`, `docs/`, `relatorio/`.
 
 ## Próximos passos
