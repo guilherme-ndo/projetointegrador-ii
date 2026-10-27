@@ -48,3 +48,4 @@ table fFrequenciaEscolar
 				    Tipos
 
 	annotation PBI_ResultType = Table
+

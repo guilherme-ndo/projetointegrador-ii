@@ -49,3 +49,4 @@ table fFormadosResidentes
 				    Tipos
 
 	annotation PBI_ResultType = Table
+

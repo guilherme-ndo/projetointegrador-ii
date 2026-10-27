@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "populacao_grafico_0",
   "position": {
     "x": 24,
@@ -92,5 +92,37 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "e563c19cd6a2e9789de3",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dMunicipio"
+              }
+            },
+            "Property": "Município"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "6cf53b9de45a8001ca5c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Participação de superior (25 anos ou mais)"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

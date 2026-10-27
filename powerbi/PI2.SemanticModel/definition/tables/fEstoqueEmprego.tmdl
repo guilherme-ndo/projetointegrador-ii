@@ -69,6 +69,14 @@ table fEstoqueEmprego
 
 		annotation SummarizationSetBy = User
 
+	column graudeinstrucao
+		dataType: string
+		lineageTag: f43edba2-d020-47e2-9408-8ad143027a00
+		summarizeBy: none
+		sourceColumn: graudeinstrucao
+
+		annotation SummarizationSetBy = Automatic
+
 	partition fEstoqueEmprego = m
 		mode: import
 		source =
@@ -80,3 +88,4 @@ table fEstoqueEmprego
 				    Tipos
 
 	annotation PBI_ResultType = Table
+

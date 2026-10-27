@@ -35,7 +35,8 @@ O PI2 leva essa análise para a escala regional. A pergunta central é: os curso
 5. A oferta é pública ou privada, e qual a taxa de conclusão?
 
 ## Métricas principais
-- Índice de descompasso: admissões com nível superior na área ÷ concluintes na área.
+- Comparação só com as Fatecs da região (decisão de 27/10/2026): concluintes, ingressantes e matrículas vêm só das 5 Fatecs (`SO_FATEC = True` em `scripts/utils.py`, filtro `fatec = true` no Power Query de fOfertaEnsino); admissões e estoque continuam sendo o mercado todo. `fOfertaEnsino.csv` guarda todas as instituições (os brutos do INEP não estão nesta máquina).
+- Índice de descompasso: admissões com nível superior na área ÷ concluintes das Fatecs na área. Só existe nas áreas com curso de Fatec: 04, 06 e 07 (a 10, Serviços, tem curso, mas no de-para só ocupações secundárias, que o índice não conta).
 - Prêmio salarial: salário de admissão com nível superior ÷ salário de admissão com nível médio.
 - Taxa de conclusão local: concluintes ÷ ingressantes, com defasagem pela duração do curso.
 - Participação privada: matrículas na rede privada ÷ total de matrículas.
@@ -70,6 +71,9 @@ Fica em `docs/depara_cine_cbo.xlsx`. Validada em 30/09/2026 com CAGED 2024 e INE
 - Feito: IBGE Censo 2022 (script 06, API do SIDRA; tabelas 9514, 10059, 10061 e 10064). A 10064 traz moradores formados por área CINE (mesmos códigos do INEP; tem também a área 11, não sabe ou mal especificada). Achados: 21% dos moradores de 25+ têm superior (10% Itapevi a 33% Santana de Parnaíba); 15% dos jovens de 18-24 cursam graduação; Computação e TIC é a única área com menos moradores formados (21,7 mil) que vínculos de formados na área (30,3 mil, RAIS 2022).
 - As três bases exigidas estão integradas (INEP, MTE e IBGE).
 - Feito: detalhamento por município e curso (script 07). Fatecs da região: Osasco (CO_IES 15709), Barueri (15757), Carapicuíba (16395), Santana de Parnaíba (20478) e polos EaD da Fatec São Paulo (34); identificadas pela mantenedora Paula Souza. Ligação curso -> ocupações em `docs/curso_ocupacao_fatec.csv` (proposta minha, a validar com as Fatecs); resumo em `docs/cursos_fatec.md`. A concorrência entre cursos fica no nível da área CINE (índice), porque os campos detalhados da CINE não acompanham as ocupações. Achados: Barueri faz 64% das admissões de formados e 16% dos concluintes; Osasco forma 47% e contrata 20% (mercado é regional); ocupações de TI contratam ~8 mil formados/ano com salário mediano ~R$ 9 mil, mas caíram ~15% desde 2021 enquanto concluintes de TI dobraram.
+- Feito (27/10/2026): oferta só com as Fatecs nos scripts, no painel e na apresentação (slides 2, 4, 9, 10, 11, 12, 15, 16 e 17). Achados: Fatecs formam 813 concluintes em 2024 (6% da região; 16% em Computação e TIC); índice 2024: Negócios 43, TIC 30, Engenharia 22; concluintes de TI das Fatecs +51% de 2021 a 2024 com contratações da área -12%.
+- Feito (27/10/2026): relato técnico em `relatorio/relato_pi2.docx`, montado sobre o docx do PI1 (capa, cabeçalho da 3ª Mostra, estilos). Figuras geradas por `relatorio/figuras.py`. Referências teóricas novas: Carvalho e Reis (Ipea, TD 3025, 2024) e Silva e Monte (Rev. Econ. Contemporânea, 2024), ambas conferidas.
+- Feito (27/10/2026): apresentação com 23 slides, um slide por figura do relato (figuras de `relatorio/figuras/`), textos no estilo do relato e notas do apresentador com o parágrafo correspondente do relato; referências iguais às do relato, em dois slides.
 - Próximos: publicar o painel, validar com o professor e as Fatecs, guia para as escolas e relatório.
 - Primeiro fazer um fluxo completo no Power BI com uma área, um ano e um município, depois escalar.
 

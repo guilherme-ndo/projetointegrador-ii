@@ -9,7 +9,7 @@ table dArea
 
 		annotation SummarizationSetBy = User
 
-	column 'Área'
+	column Área
 		dataType: string
 		lineageTag: ada948dd-a62b-54e0-9ef3-169ac9243fab
 		summarizeBy: none
@@ -37,3 +37,4 @@ table dArea
 				    Nomes
 
 	annotation PBI_ResultType = Table
+

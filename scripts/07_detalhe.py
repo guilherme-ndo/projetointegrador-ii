@@ -6,7 +6,7 @@ Rode depois dos scripts 02 a 06.
 Saídas:
   dados_tratados/detalhe_municipio.csv       indicadores de 2024 por município (+ região)
   dados_tratados/detalhe_municipio_area.csv  concluintes x admissões por município e área (2024)
-  dados_tratados/detalhe_curso.csv           cursos da região em 2024 (todas as instituições)
+  dados_tratados/detalhe_curso.csv           cursos da região em 2024
   dados_tratados/detalhe_fatec.csv           cursos das Fatecs x ocupações que contratam
   docs/cursos_fatec.md                       resumo legível dos cursos da Fatec
 
@@ -16,21 +16,25 @@ A ligação curso -> ocupações da Fatec fica em docs/curso_ocupacao_fatec.csv
 e os campos detalhados da CINE não acompanham essa divisão (ex.: ADS em 0613,
 Ciência de Dados e Jogos Digitais em 0681).
 
+A oferta é só das Fatecs quando utils.SO_FATEC = True (concluintes, índice e
+participações comparam as Fatecs com o mercado todo da região).
+
 Uso: python scripts/07_detalhe.py
 """
 import pandas as pd
 
-from utils import RAIZ, TRATADOS, ler_admissoes
+from utils import RAIZ, SO_FATEC, TRATADOS, ler_admissoes, ler_oferta
 
 ANO = 2024
 SUP, MED = "Superior completo ou mais", "Médio completo"
+ESCOPO = "nas Fatecs da região" if SO_FATEC else "na região (todas as instituições)"
 MIN_CONCLUINTES = 50  # abaixo disso o índice fica em branco (amostra pequena)
 NOME_FATEC = {"15709": "Fatec Osasco", "15757": "Fatec Barueri", "16395": "Fatec Carapicuíba",
               "20478": "Fatec Santana de Parnaíba", "34": "Fatec São Paulo (polos EaD)"}
 
 
 def carregar():
-    oferta = pd.read_csv(TRATADOS / "fOfertaEnsino.csv", dtype={"CO_CINE_AREA_GERAL": str, "CO_IES": str})
+    oferta = ler_oferta()
     cbo = pd.read_csv(TRATADOS / "dCBO.csv", dtype=str)
     adm = ler_admissoes(["ano", "municipio", "cbo2002ocupacao", "movimento", "nivel_instrucao", "peso",
                          "salario", "salario_comparavel"]).astype({"cbo2002ocupacao": str, "peso": int})
@@ -49,6 +53,11 @@ def mediana_salario(df, nivel):
     return ok["salario"].median()
 
 
+def razao(a, b):
+    """a ÷ b, vazio quando b = 0 (município sem oferta)."""
+    return a / b if b else float("nan")
+
+
 def por_municipio(oferta, adm, est, mun):
     of = oferta[oferta["NU_ANO_CENSO"] == ANO]
     ad = adm[adm["ano"] == ANO]
@@ -65,8 +74,8 @@ def por_municipio(oferta, adm, est, mun):
             "municipio": nome,
             "concluintes": o["QT_CONC"].sum(),
             "matriculas": o["QT_MAT"].sum(),
-            "part_privada_matriculas": o.loc[o["rede"] == "Privada", "QT_MAT"].sum() / o["QT_MAT"].sum(),
-            "part_ead_concluintes": o.loc[o["modalidade"] == "EaD", "QT_CONC"].sum() / o["QT_CONC"].sum(),
+            "part_privada_matriculas": razao(o.loc[o["rede"] == "Privada", "QT_MAT"].sum(), o["QT_MAT"].sum()),
+            "part_ead_concluintes": razao(o.loc[o["modalidade"] == "EaD", "QT_CONC"].sum(), o["QT_CONC"].sum()),
             "admissoes": a["peso"].sum(),
             "admissoes_superior": sup["peso"].sum(),
             "part_superior_admissoes": sup["peso"].sum() / a["peso"].sum(),
@@ -197,8 +206,8 @@ def markdown(fat):
         "(`docs/curso_ocupacao_fatec.csv`, proposta a revisar). Cursos que levam às mesmas ocupações "
         "(ex.: ADS, Jogos Digitais e Sistemas para Internet) mostram os mesmos números.",
         "- **Crescimento**: de 2021 a 2024 (2020 teve admissões baixas por causa da pandemia).",
-        "- **Índice da área**: admissões de formados na área ÷ concluintes da área na região em 2024. É a medida de "
-        "concorrência: todos os cursos da área disputam as mesmas vagas.",
+        f"- **Índice da área**: admissões de formados na área ÷ concluintes da área {ESCOPO} em {ANO}. É a medida "
+        "de concorrência: todos os cursos da área disputam as mesmas vagas.",
         "- **Conclusão aprox.**: concluintes de 2023-2024 ÷ ingressantes de 2020-2021.",
         "",
         "| Fatec | Curso | Ingr. 2024 | Concl. 2024 | Conclusão aprox. | Admissões de formados 2024 | "

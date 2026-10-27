@@ -19,7 +19,7 @@ table dMunicipio
 
 		annotation SummarizationSetBy = User
 
-	column 'Município'
+	column Município
 		dataType: string
 		lineageTag: 7e7689eb-281a-59d1-94ae-2767ed2f0aa9
 		summarizeBy: none
@@ -48,3 +48,4 @@ table dMunicipio
 				    Nomes
 
 	annotation PBI_ResultType = Table
+

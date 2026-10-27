@@ -48,3 +48,4 @@ table fPopulacao
 				    Tipos
 
 	annotation PBI_ResultType = Table
+

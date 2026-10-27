@@ -22,6 +22,11 @@ MUNICIPIOS_RECORTE = [
 # Início do recorte temporal (o Novo CAGED começa em jan/2020)
 ANO_INICIAL = 2020
 
+# Oferta de ensino considerada nas análises: só as Fatecs da região (mantenedora Paula Souza,
+# coluna `fatec` do script 02). fOfertaEnsino.csv continua com todas as instituições;
+# o filtro é feito na leitura (ler_oferta) e no Power Query do painel.
+SO_FATEC = True
+
 # Grau de instrução agrupado em níveis. Mesmos códigos no Novo CAGED e na RAIS
 # (a RAIS não tem o 80). Conferido nos layouts do PDET.
 NIVEL_INSTRUCAO = {
@@ -70,6 +75,14 @@ def ler_admissoes(colunas=None):
     if not ARQ_ADMISSOES.exists():
         raise FileNotFoundError("Rode primeiro: python scripts/03_caged.py")
     return pd.read_parquet(ARQ_ADMISSOES, columns=colunas)
+
+
+def ler_oferta(so_fatec=SO_FATEC):
+    """Lê fOfertaEnsino.csv (script 02). Com so_fatec, mantém só os cursos das Fatecs."""
+    import pandas as pd
+
+    oferta = pd.read_csv(TRATADOS / "fOfertaEnsino.csv", dtype={"CO_CINE_AREA_GERAL": str, "CO_IES": str})
+    return oferta[oferta["fatec"]] if so_fatec else oferta
 
 
 def carregar_municipios():

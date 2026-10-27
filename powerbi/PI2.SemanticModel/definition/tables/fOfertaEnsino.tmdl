@@ -57,7 +57,7 @@ table fOfertaEnsino
 
 		annotation SummarizationSetBy = User
 
-	column 'Instituição'
+	column Instituição
 		dataType: string
 		lineageTag: a6f7180d-0b88-5116-a376-71960a13c714
 		summarizeBy: none
@@ -156,8 +156,10 @@ table fOfertaEnsino
 				    Cabecalho = Table.PromoteHeaders(Fonte, [PromoteAllScalars=true]),
 				    Colunas = Table.SelectColumns(Cabecalho, {"NU_ANO_CENSO", "CO_MUNICIPIO", "CO_IES", "curso", "CO_CURSO", "NO_CINE_ROTULO", "NO_IES", "fatec", "CO_CINE_AREA_GERAL", "TP_GRAU_ACADEMICO", "QT_VG_TOTAL", "QT_ING", "QT_MAT", "QT_CONC", "rede", "modalidade"}),
 				    Tipos = Table.TransformColumnTypes(Colunas, {{"NU_ANO_CENSO", Int64.Type}, {"CO_MUNICIPIO", Int64.Type}, {"CO_IES", Int64.Type}, {"curso", type text}, {"CO_CURSO", Int64.Type}, {"NO_CINE_ROTULO", type text}, {"NO_IES", type text}, {"fatec", type logical}, {"CO_CINE_AREA_GERAL", type text}, {"TP_GRAU_ACADEMICO", Int64.Type}, {"QT_VG_TOTAL", Int64.Type}, {"QT_ING", Int64.Type}, {"QT_MAT", Int64.Type}, {"QT_CONC", Int64.Type}, {"rede", type text}, {"modalidade", type text}}, "en-US"),
-				    Nomes = Table.RenameColumns(Tipos, {{"curso", "Curso"}, {"NO_CINE_ROTULO", "Rótulo CINE"}, {"rede", "Rede"}, {"modalidade", "Modalidade"}, {"NO_IES", "Instituição"}, {"fatec", "É Fatec"}})
+				    Filtro = Table.SelectRows(Tipos, each [fatec] = true),
+				    Nomes = Table.RenameColumns(Filtro, {{"curso", "Curso"}, {"NO_CINE_ROTULO", "Rótulo CINE"}, {"rede", "Rede"}, {"modalidade", "Modalidade"}, {"NO_IES", "Instituição"}, {"fatec", "É Fatec"}})
 				in
 				    Nomes
 
 	annotation PBI_ResultType = Table
+

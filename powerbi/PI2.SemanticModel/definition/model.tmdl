@@ -6,7 +6,11 @@ model Model
 		legacyRedirects
 		returnErrorValuesAsNull
 
-annotation PBI_QueryOrder = ["PastaDados"]
+annotation PBI_QueryOrder = ["PastaDados","_Medidas","dCalendario","dMunicipio","dArea","dCBO","dEscolaridade","fOfertaEnsino","fAdmissoes","fEstoqueEmprego","fPopulacao","fFormadosResidentes","fFrequenciaEscolar"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
 
 ref table _Medidas
 ref table dCalendario
@@ -20,3 +24,4 @@ ref table fEstoqueEmprego
 ref table fPopulacao
 ref table fFormadosResidentes
 ref table fFrequenciaEscolar
+

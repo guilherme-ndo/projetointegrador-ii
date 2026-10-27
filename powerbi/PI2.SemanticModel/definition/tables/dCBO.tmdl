@@ -9,7 +9,7 @@ table dCBO
 
 		annotation SummarizationSetBy = User
 
-	column 'Ocupação'
+	column Ocupação
 		dataType: string
 		lineageTag: 3b29d644-e8f5-5cbd-b69e-3075122dc30f
 		summarizeBy: none
@@ -81,3 +81,4 @@ table dCBO
 				    Nomes
 
 	annotation PBI_ResultType = Table
+

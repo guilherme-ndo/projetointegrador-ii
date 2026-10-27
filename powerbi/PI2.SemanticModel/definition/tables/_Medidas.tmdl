@@ -11,7 +11,7 @@ table _Medidas
 		displayFolder: Oferta
 		lineageTag: f5b19825-9bd0-5758-86be-7a29a9ae5c83
 
-	measure 'Matrículas' = SUM ( fOfertaEnsino[QT_MAT] )
+	measure Matrículas = SUM ( fOfertaEnsino[QT_MAT] )
 		formatString: #,0
 		displayFolder: Oferta
 		lineageTag: 898ccda8-9f72-5346-8a1c-6d716ed4d54d
@@ -39,7 +39,7 @@ table _Medidas
 		displayFolder: Oferta
 		lineageTag: 4ed278fd-349f-5d8c-8e86-4ac99d786a12
 
-	measure 'Admissões' = CALCULATE ( SUM ( fAdmissoes[peso] ), fAdmissoes[movimento] = "Admissão" )
+	measure Admissões = CALCULATE ( SUM ( fAdmissoes[peso] ), fAdmissoes[movimento] = "Admissão" )
 		formatString: #,0
 		displayFolder: Admissões
 		lineageTag: 7d2ac524-7633-5cae-856a-beff639e4ab6
@@ -148,7 +148,7 @@ table _Medidas
 		displayFolder: Estoque
 		lineageTag: d1362c38-03f8-5be5-8acb-1ad91478633f
 
-	measure 'População' = CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "Todas as idades" )
+	measure População = CALCULATE ( SUM ( fPopulacao[pessoas] ), fPopulacao[grupo_idade] = "Todas as idades" )
 		formatString: #,0
 		displayFolder: Censo 2022
 		lineageTag: 0f68ca9d-ff08-504c-acea-be8e2b3ba12c
@@ -209,3 +209,4 @@ table _Medidas
 				    Tabela
 
 	annotation PBI_ResultType = Table
+

@@ -4,6 +4,9 @@ Indicadores do projeto por ano e por área, calculados direto dos dados tratados
 Serve para conferir as medidas DAX do Power BI e alimentar relatório e
 apresentação. Rode depois dos scripts 02, 03, 04 e 05 (a RAIS é opcional).
 
+A oferta (ingressantes, matrículas, concluintes) é só das Fatecs da região quando
+utils.SO_FATEC = True; admissões e estoque continuam sendo o mercado todo.
+
 Saídas (pequenas, versionadas):
   dados_tratados/indicadores_ano.csv        um registro por ano (região toda)
   dados_tratados/indicadores_area_ano.csv   um registro por área CINE e ano
@@ -13,14 +16,14 @@ Uso: python scripts/indicadores.py
 """
 import pandas as pd
 
-from utils import TRATADOS, ler_admissoes
+from utils import TRATADOS, ler_admissoes, ler_oferta
 
 DEFASAGEM_CONCLUSAO = 3  # anos entre ingresso e conclusão (aproximação: bacharelados e tecnólogos misturados)
 SUPERIOR, MEDIO = "Superior completo ou mais", "Médio completo"
 
 
 def carregar():
-    oferta = pd.read_csv(TRATADOS / "fOfertaEnsino.csv", dtype={"CO_CINE_AREA_GERAL": str})
+    oferta = ler_oferta()
     cbo = pd.read_csv(TRATADOS / "dCBO.csv", dtype=str,
                       usecols=["cbo_codigo", "categoria_ocupacao", "area_codigo", "tipo_vinculo"])
     colunas = ["ano", "cbo2002ocupacao", "movimento", "nivel_instrucao", "peso", "salario", "salario_comparavel"]
@@ -55,10 +58,11 @@ def estoque_por_ano(estoque):
 def por_ano(oferta, adm, estoque):
     of = oferta.groupby("NU_ANO_CENSO").agg(
         ingressantes=("QT_ING", "sum"), matriculas=("QT_MAT", "sum"), concluintes=("QT_CONC", "sum"))
-    of["part_privada_matriculas"] = (oferta[oferta["rede"] == "Privada"].groupby("NU_ANO_CENSO")["QT_MAT"].sum()
-                                     / of["matriculas"])
-    of["part_ead_concluintes"] = (oferta[oferta["modalidade"] == "EaD"].groupby("NU_ANO_CENSO")["QT_CONC"].sum()
-                                  / of["concluintes"])
+    # where(..., 0) para dar 0% (e não vazio) quando não há rede privada, como nas Fatecs
+    of["part_privada_matriculas"] = (oferta["QT_MAT"].where(oferta["rede"] == "Privada", 0)
+                                     .groupby(oferta["NU_ANO_CENSO"]).sum() / of["matriculas"])
+    of["part_ead_concluintes"] = (oferta["QT_CONC"].where(oferta["modalidade"] == "EaD", 0)
+                                  .groupby(oferta["NU_ANO_CENSO"]).sum() / of["concluintes"])
     of["taxa_conclusao_defasada"] = of["concluintes"] / of["ingressantes"].shift(DEFASAGEM_CONCLUSAO)
 
     sup = adm[adm["nivel_instrucao"] == SUPERIOR]
@@ -96,6 +100,9 @@ def por_area_ano(oferta, adm, estoque):
         est = est.groupby(["ano", "area_codigo"])["vinculos"].sum().rename("estoque_superior_principal").reset_index()
         df = df.merge(est, on=["ano", "area_codigo"], how="outer")
     df["indice_descompasso"] = df["admissoes_superior_principal"] / df["concluintes"].where(df["concluintes"] > 0)
+    # áreas sem oferta (ex.: sem curso de Fatec) só aparecem pelo lado do mercado; o nome vem da dArea
+    nomes = pd.read_csv(TRATADOS / "dArea.csv", dtype=str).set_index("area_codigo")["area_nome"]
+    df["area_nome"] = df["area_nome"].fillna(df["area_codigo"].map(nomes))
     return df.sort_values(["ano", "area_codigo"])
 
 

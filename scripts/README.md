@@ -27,6 +27,8 @@ python scripts/07_detalhe.py          # detalhe por município e curso (Fatec); 
 | `07_detalhe.py` | saídas anteriores + `docs/curso_ocupacao_fatec.csv` | `dados_tratados/detalhe_*.csv`, `docs/cursos_fatec.md` |
 | `indicadores.py` | saídas de 02, 03 e 04 | `dados_tratados/indicadores_ano.csv`, `dados_tratados/indicadores_area_ano.csv` |
 
+A oferta usada nas análises é só a das Fatecs da região (`SO_FATEC = True` em `utils.py`); `fOfertaEnsino.csv` guarda todas as instituições. Com `SO_FATEC = False`, `indicadores.py` e `07_detalhe.py` voltam a usar todas as faculdades.
+
 Municípios do recorte e ano inicial ficam em `utils.py` (`MUNICIPIOS_RECORTE`, `ANO_INICIAL`).
 
 No CAGED, `python scripts/03_caged.py --tipos MOV FOR EXC` monta a série completa. As exclusões entram com `peso = -1`, então no Power BI as admissões são `SUM(peso)`, não `COUNTROWS`. Para o prêmio salarial, use só as linhas com `salario_comparavel = True` (salário mensal, sem intermitente).

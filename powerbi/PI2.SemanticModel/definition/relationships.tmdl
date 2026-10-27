@@ -61,3 +61,4 @@ relationship 8c8877d4-a027-5094-b3b8-aba220a90886
 relationship c90fbcf4-f068-5376-8977-412925e666b1
 	fromColumn: fFormadosResidentes.area_codigo
 	toColumn: dArea.area_codigo
+

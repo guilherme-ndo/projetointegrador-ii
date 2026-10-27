@@ -124,3 +124,4 @@ table fAdmissoes
 				    Tipos
 
 	annotation PBI_ResultType = Table
+

@@ -46,7 +46,7 @@ def texto_m(valor):
     return '"' + valor.replace('"', '""') + '"'
 
 
-def csv_m(arquivo, tipos, colunas=None, renomear=None):
+def csv_m(arquivo, tipos, colunas=None, renomear=None, filtro=None):
     """Partição M que lê um CSV de dados_tratados com tipos em cultura en-US."""
     if arquivo.endswith(".parquet"):
         passos = [f"Cabecalho = Parquet.Document(File.Contents(PastaDados & {texto_m(arquivo)}))"]
@@ -63,12 +63,19 @@ def csv_m(arquivo, tipos, colunas=None, renomear=None):
     lista = ", ".join(f"{{{texto_m(c)}, {t}}}" for c, t in tipos)
     passos.append(f'Tipos = Table.TransformColumnTypes({anterior}, {{{lista}}}, "en-US")')
     anterior = "Tipos"
+    if filtro:
+        passos.append(f"Filtro = Table.SelectRows(Tipos, each {filtro})")
+        anterior = "Filtro"
     if renomear:
         pares = ", ".join(f"{{{texto_m(a)}, {texto_m(b)}}}" for a, b in renomear.items())
-        passos.append(f"Nomes = Table.RenameColumns(Tipos, {{{pares}}})")
+        passos.append(f"Nomes = Table.RenameColumns({anterior}, {{{pares}}})")
         anterior = "Nomes"
     return "let\n" + ",\n".join("    " + p for p in passos) + f"\nin\n    {anterior}"
 
+
+# Linhas mantidas na carga (expressão M). A oferta fica só com as Fatecs da região,
+# como utils.SO_FATEC nos scripts; o CSV continua com todas as instituições.
+FILTRAR = {"fOfertaEnsino": "[fatec] = true"}
 
 # Nome da coluna no CSV -> nome exibido no Power BI
 RENOMEAR = {
@@ -302,7 +309,8 @@ def gerar_modelo():
 
     for nome, (arquivo, colunas, sel) in TABELAS.items():
         tipos = [(c, M_TIPO[t]) for c, t, _ in colunas]
-        m = csv_m(arquivo, tipos, [c for c, _, _ in colunas] if sel else None, RENOMEAR.get(nome))
+        m = csv_m(arquivo, tipos, [c for c, _, _ in colunas] if sel else None, RENOMEAR.get(nome),
+                  FILTRAR.get(nome))
         (definicao / "tables" / f"{nome}.tmdl").write_text(tabela_tmdl(nome, colunas, m), encoding="utf-8")
     extras = {
         "dCalendario": tabela_tmdl("dCalendario", [("Ano", "int64", False)], M_CALENDARIO),

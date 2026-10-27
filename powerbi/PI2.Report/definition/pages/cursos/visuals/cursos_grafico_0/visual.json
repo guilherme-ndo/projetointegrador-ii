@@ -1,9 +1,9 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.4.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.13.0/schema.json",
   "name": "cursos_grafico_0",
   "position": {
-    "x": 24,
-    "y": 210,
+    "x": 15.644444444444444,
+    "y": 210.48888888888888,
     "z": 7000,
     "height": 490,
     "width": 608,
@@ -115,5 +115,65 @@
       ]
     },
     "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "2b0b8206a5c4b2dc8d9a",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fOfertaEnsino"
+              }
+            },
+            "Property": "Instituição"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "edc53685090e099565a9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "fOfertaEnsino"
+              }
+            },
+            "Property": "Curso"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "bd2e7a1bc325346b0cd8",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Ingressantes"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4f31cce615c697296ad5",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_Medidas"
+              }
+            },
+            "Property": "Concluintes"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
   }
 }

@@ -25,7 +25,7 @@ Plano B para apresentar: exporte o painel em PDF (**Arquivo > Exportar > Exporta
 | dArea | `dArea.csv` | áreas CINE |
 | dCBO | `dCBO.csv` | ocupação, área (de-para) e categoria; filtra por área as admissões e o estoque |
 | dEscolaridade | gerada | nível de instrução |
-| fOfertaEnsino | `fOfertaEnsino.csv` | INEP: cursos, ingressantes, matrículas, concluintes |
+| fOfertaEnsino | `fOfertaEnsino.csv` | INEP: cursos, ingressantes, matrículas, concluintes (só Fatecs: o Power Query filtra `fatec = true`) |
 | fAdmissoes | `fAdmissoes.parquet` | CAGED: admissões (soma de `peso`; exclusões entram com -1) |
 | fEstoqueEmprego | `fEstoqueEmprego.csv` | RAIS: vínculos ativos em 31/12 |
 | fPopulacao | `fPopulacao.csv` | IBGE 2022: população por idade e nível de instrução |
